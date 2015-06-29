@@ -18,7 +18,7 @@ public class RankingActivity extends ActionBarActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         UsersFragment usersFragment = new UsersFragment();
-        fragmentTransaction.add(R.id.users_fragment, usersFragment, "HELLO");
+        fragmentTransaction.add(R.id.users_fragment, usersFragment, "USERSLISTING");
         fragmentTransaction.commit();
     }
 
