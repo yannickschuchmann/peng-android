@@ -15,9 +15,13 @@ public class RankingActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("type", "ranking");
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         UsersFragment usersFragment = new UsersFragment();
+        usersFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.users_fragment, usersFragment, "USERSLISTING");
         fragmentTransaction.commit();
     }

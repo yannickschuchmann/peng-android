@@ -31,7 +31,14 @@ public class UsersFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        mAdapter = new UsersAdapter(getActivity().getApplicationContext(), generateDummyList());
+        List<User> list;
+        if (getArguments().getString("type") == "ranking") {
+            list = generateDummyList();
+        } else {
+            // friends
+            list = generateDummyList();
+        }
+        mAdapter = new UsersAdapter(getActivity().getApplicationContext(), list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }
