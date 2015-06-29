@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="SectionHeadline">
+        <attr name="headlineText" format="string" />
+    </declare-styleable>
+</resources>
