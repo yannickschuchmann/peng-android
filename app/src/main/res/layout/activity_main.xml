@@ -16,15 +16,15 @@
                 android:textColor="@color/theme_text_light"
                 android:layout_height="wrap_content"/>
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true" android:layout_below="@+id/activity_movies_toolbar">
-        <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/scrollView" android:layout_gravity="center_horizontal">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView" android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/activity_movies_toolbar">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
@@ -36,6 +36,11 @@
                         android:id="@+id/user_image" android:layout_weight="0"
                         android:src="@drawable/dummy_profile" android:adjustViewBounds="false"
                         android:scaleType="centerInside"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:layout_weight="0">
+                </LinearLayout>
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -58,7 +63,73 @@
                             android:editable="false"/>
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/border_right"
+                        android:layout_height="match_parent" android:layout_weight="1" android:gravity="center">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Spiele"
+                            android:id="@+id/user_duels_count"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="38"
+                            android:id="@+id/textView" android:textSize="40dp"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+                              android:layout_height="match_parent" android:layout_weight="1"
+                              android:background="@drawable/border_right"
+                              android:gravity="center">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="Ranking"
+                              android:id="@+id/user_ranking"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="247"
+                              android:id="@+id/textView3" android:textSize="40dp"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+                              android:layout_height="match_parent" android:layout_weight="1"
+                              android:gravity="center">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="Spiele"
+                              android:id="@+id/user_friends_count"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="17"
+                              android:id="@+id/textView5" android:textSize="40dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="152dp"
+                    android:text="Neues Duell"
+                    android:id="@+id/buttonNewDuel" android:layout_gravity="center_horizontal"
+                    android:background="@color/theme_primary" android:textColor="@color/theme_text_light"
+                    android:textSize="30dp"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Offene Spiele"
+                        android:background="@drawable/border_bottom"
+                        android:textAllCaps="true"
+                        android:id="@+id/textView2" android:paddingLeft="0dp"
+                        android:paddingRight="0dp" android:paddingTop="15dp" android:paddingBottom="5dp"
+                        android:layout_marginLeft="20dp" android:layout_marginRight="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
