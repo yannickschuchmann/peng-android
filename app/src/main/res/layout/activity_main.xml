@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.yannickschuchmann.peng.app.MainActivity">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_movies_toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/theme_primary"
+            >
+        <TextView
+                android:text="@string/app_name"
+                android:layout_width="wrap_content"
+                android:textColor="@color/theme_text_light"
+                android:layout_height="wrap_content"/>
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true" android:layout_below="@+id/activity_movies_toolbar">
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView" android:layout_gravity="center_horizontal">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:weightSum="1" android:gravity="center"
+                    android:paddingTop="10dp" android:paddingBottom="10dp">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:id="@+id/user_image" android:layout_weight="0"
+                        android:src="@drawable/dummy_profile" android:adjustViewBounds="false"
+                        android:scaleType="centerInside"/>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:layout_weight="1"
+                        android:gravity="center_vertical">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Paul Woerner"
+                            android:id="@+id/user_name" android:textIsSelectable="false"
+                            android:textSize="@dimen/profile_user_name"/>
+                    <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="„Ich hab noch nie ein Spiel verloren.“"
+                            android:id="@+id/user_slogan" android:singleLine="false" android:autoText="false"
+                            android:nestedScrollingEnabled="false" android:elegantTextHeight="false"
+                            android:editable="false"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>
