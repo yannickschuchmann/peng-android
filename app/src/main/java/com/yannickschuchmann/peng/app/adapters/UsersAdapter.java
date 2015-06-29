@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.model.User;
 
@@ -27,7 +29,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
 
     @Override
     public UsersRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_row, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_row, viewGroup, false);
         UsersRowHolder mh = new UsersRowHolder(v);
         return mh;
     }
@@ -38,6 +40,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
 
         usersRowHolder.thumbnail.setImageResource(R.drawable.dummy_profile);
         usersRowHolder.nick.setText(user.getNick());
+        usersRowHolder.slogan.setText(user.getSlogan());
+        usersRowHolder.rank.setText(user.getRank());
     }
 
     @Override
@@ -46,13 +50,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
     }
 
     public class UsersRowHolder extends RecyclerView.ViewHolder {
-        protected ImageView thumbnail;
-        protected TextView nick;
+        @Bind(R.id.nick) TextView nick;
+        @Bind(R.id.thumbnail) ImageView thumbnail;
+        @Bind(R.id.slogan) TextView slogan;
+        @Bind(R.id.rank) TextView rank;
 
         public UsersRowHolder(View view) {
             super(view);
-            this.thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            this.nick = (TextView) view.findViewById(R.id.nick);
+            ButterKnife.bind(this, view);
         }
 
     }

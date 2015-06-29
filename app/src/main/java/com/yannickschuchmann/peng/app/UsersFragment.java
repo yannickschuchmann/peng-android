@@ -42,6 +42,7 @@ public class UsersFragment extends Fragment {
             User item = new User();
             item.setNick("Nickname #" + i);
             item.setSlogan("\"Ich gewinne immer\"");
+            item.setRank(i);
             usersList.add(item);
         }
         return usersList;
