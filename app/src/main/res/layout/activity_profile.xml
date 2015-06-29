@@ -21,8 +21,10 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/scrollView2"
-            android:layout_below="@+id/activity_movies_toolbar" android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true" android:layout_alignParentEnd="true">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="?attr/actionBarSize">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
