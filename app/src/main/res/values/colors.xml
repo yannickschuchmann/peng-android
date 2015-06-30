@@ -4,5 +4,6 @@
     <color name="theme_text_light">#FFFAF2</color>
     <color name="theme_text_gray">#4A6260</color>
     <color name="theme_accent">#6D241C</color>
+    <color name="theme_accent_blue">#272853</color>
     <color name="theme_window_background">#FFFAF2</color>
 </resources>
