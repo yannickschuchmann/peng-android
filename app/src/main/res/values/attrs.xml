@@ -2,4 +2,7 @@
     <declare-styleable name="SectionHeadline">
         <attr name="headlineText" format="string" />
     </declare-styleable>
+    <declare-styleable name="LinkButton">
+        <attr name="ButtonText" format="string" />
+    </declare-styleable>
 </resources>

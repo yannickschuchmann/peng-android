@@ -2,10 +2,6 @@ package com.yannickschuchmann.peng.app;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -13,20 +9,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class SectionHeadline extends LinearLayout {
-    TextView mHeadlineView;
+public class LinkButton extends LinearLayout {
+    TextView mLinkButtonView;
 
-    public SectionHeadline(Context context) {
+    public LinkButton(Context context) {
         super(context);
         init(context);
     }
 
-    public SectionHeadline(Context context, AttributeSet attrs) {
+    public LinkButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public SectionHeadline(Context context, AttributeSet attrs, int defStyle) {
+    public LinkButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
     }
@@ -36,33 +32,33 @@ public class SectionHeadline extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        View.inflate(context, R.layout.section_headline, this);
-        mHeadlineView = (TextView) findViewById(R.id.headline);
+        View.inflate(context, R.layout.link_button, this);
+        mLinkButtonView = (TextView) findViewById(R.id.button_text);
 
-        String headlineText = "HeadlineText";
+        String text = "ButtonText";
 
         // Assign custom attributes
         if (attrs != null) {
             TypedArray a = context.getTheme().obtainStyledAttributes(
                     attrs,
-                    R.styleable.SectionHeadline,
+                    R.styleable.LinkButton,
                     0, 0);
 
 
             try {
-                headlineText = a.getString(R.styleable.SectionHeadline_headlineText);
+                text = a.getString(R.styleable.LinkButton_ButtonText);
             } catch (Exception e) {
-                Log.e("SectionHeadline", "There was an error loading attributes.");
+                Log.e("LinkButton", "There was an error loading attributes.");
             } finally {
                 a.recycle();
             }
 
         }
-        setHeadlineText(headlineText);
+        setHeadlineText(text);
     }
 
     public void setHeadlineText(String text) {
-        mHeadlineView.setText(text);
+        mLinkButtonView.setText(text);
     }
 
 }

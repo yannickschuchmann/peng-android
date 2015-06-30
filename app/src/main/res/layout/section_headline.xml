@@ -2,10 +2,22 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingLeft="20dp"
+            android:paddingRight="20dp" android:paddingBottom="15dp">
+
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Statistik"
-                  android:background="@drawable/border_bottom" android:textAllCaps="true"
-                  android:id="@+id/headline" android:paddingLeft="0dp" android:paddingRight="0dp"
-                  android:paddingTop="15dp" android:paddingBottom="5dp" android:layout_marginLeft="20dp"
-                  android:layout_marginRight="20dp"/>
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="Statistik"
+              android:textAllCaps="true"
+              android:id="@+id/headline" android:paddingLeft="0dp" android:paddingRight="0dp"
+              android:paddingTop="15dp" android:paddingBottom="5dp"
+            />
+    <View
+            android:id="@+id/vDottedLine"
+            android:background="@drawable/border_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layerType="software" android:layout_marginTop="-5dp"/>
+    </LinearLayout>
 </merge>
