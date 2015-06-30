@@ -1,4 +1,4 @@
-package com.yannickschuchmann.peng.app;
+package com.yannickschuchmann.peng.app.views.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.yannickschuchmann.peng.app.R;
 
 
 public class SectionHeadline extends LinearLayout {

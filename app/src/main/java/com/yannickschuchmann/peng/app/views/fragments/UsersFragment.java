@@ -1,4 +1,4 @@
-package com.yannickschuchmann.peng.app;
+package com.yannickschuchmann.peng.app.views.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.yannickschuchmann.peng.app.adapters.UsersAdapter;
+import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.views.adapters.UsersAdapter;
 import com.yannickschuchmann.peng.model.User;
 
 import java.util.ArrayList;

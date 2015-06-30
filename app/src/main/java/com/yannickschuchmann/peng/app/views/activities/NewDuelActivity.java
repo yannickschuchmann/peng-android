@@ -1,4 +1,4 @@
-package com.yannickschuchmann.peng.app.activities;
+package com.yannickschuchmann.peng.app.views.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

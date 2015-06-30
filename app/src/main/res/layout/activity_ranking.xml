@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.yannickschuchmann.peng.app.activities.RankingActivity">
+                tools:context="com.yannickschuchmann.peng.app.views.activities.RankingActivity">
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/activity_movies_toolbar"
@@ -28,6 +28,6 @@
                 android:id="@+id/usersFragment"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                class="com.yannickschuchmann.peng.app.UsersFragment"/>
+                class="com.yannickschuchmann.peng.app.views.fragments.UsersFragment"/>
     </LinearLayout>
 </RelativeLayout>

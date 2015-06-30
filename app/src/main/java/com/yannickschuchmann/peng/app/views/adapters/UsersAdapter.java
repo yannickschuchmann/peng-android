@@ -1,4 +1,4 @@
-package com.yannickschuchmann.peng.app.adapters;
+package com.yannickschuchmann.peng.app.views.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
