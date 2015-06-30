@@ -3,7 +3,7 @@
                 xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.yannickschuchmann.peng.app.MainActivity">
+                tools:context="com.yannickschuchmann.peng.app.activities.MainActivity">
     <android.support.v7.widget.Toolbar
             android:id="@+id/activity_movies_toolbar"
             android:layout_height="wrap_content"

@@ -1,24 +1,25 @@
-package com.yannickschuchmann.peng.app;
+package com.yannickschuchmann.peng.app.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.yannickschuchmann.peng.app.R;
 
 
-public class ProfileActivity extends ActionBarActivity {
+public class NewDuelActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_new_duel);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_new_duel, menu);
         return true;
     }
 

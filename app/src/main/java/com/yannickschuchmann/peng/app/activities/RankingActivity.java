@@ -1,4 +1,4 @@
-package com.yannickschuchmann.peng.app;
+package com.yannickschuchmann.peng.app.activities;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.UsersFragment;
 
 
 public class RankingActivity extends ActionBarActivity {
