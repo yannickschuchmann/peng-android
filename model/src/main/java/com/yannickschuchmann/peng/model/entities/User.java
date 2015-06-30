@@ -1,6 +1,8 @@
-package com.yannickschuchmann.peng.model;
+package com.yannickschuchmann.peng.model.entities;
 
 public class User {
+    private int id;
+    private int uid;
     private String nick;
     private String slogan;
     private int rank;

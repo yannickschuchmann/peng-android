@@ -53,7 +53,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="Paul Woerner"
-                            android:id="@+id/user_name" android:textIsSelectable="false"
+                            android:id="@+id/user_nick" android:textIsSelectable="false"
                             android:textSize="@dimen/profile_user_name" android:textStyle="bold"/>
                     <TextView
                             android:layout_width="fill_parent"

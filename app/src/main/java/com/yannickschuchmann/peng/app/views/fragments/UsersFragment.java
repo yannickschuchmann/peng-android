@@ -11,7 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.adapters.UsersAdapter;
-import com.yannickschuchmann.peng.model.User;
+import com.yannickschuchmann.peng.model.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
