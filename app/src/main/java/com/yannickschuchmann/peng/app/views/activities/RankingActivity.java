@@ -3,6 +3,7 @@ package com.yannickschuchmann.peng.app.views.activities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
@@ -29,7 +30,9 @@ public class RankingActivity extends TransitionActivity implements UserAdapterVi
 
     @Override
     public void onItemClicked(User user) {
-
+        Intent intent = new Intent(getContext(), ProfileActivity.class);
+        intent.putExtra("userId", user.id);
+        startActivityWithAnimation(intent);
     }
 
     @Override

@@ -34,7 +34,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
         UsersRowHolder mh = new UsersRowHolder(v, new UsersRowHolder.IUsersRowHolderClicks() {
             @Override
             public void onItem(View caller, User user) {
+
                 UserAdapterView activity = (UserAdapterView) caller.getContext();
+
+                caller.setSelected(true);
 
                 activity.onItemClicked(user);
             }
@@ -73,6 +76,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
             mListener = listener;
             ButterKnife.bind(this, view);
 
+            view.setSelected(false);
             view.setClickable(true);
             view.setOnClickListener(this);
         }
