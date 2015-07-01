@@ -1,32 +1,51 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.yannickschuchmann.peng.app.views.activities.MainActivity">
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/activity_movies_toolbar"
-            android:layout_height="wrap_content"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.yannickschuchmann.peng.app.views.activities.MainActivity">
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/theme_primary"
             >
-        <TextView
-                android:text="@string/app_name"
+        <ImageView
                 android:layout_width="wrap_content"
-                android:textColor="@color/theme_text_light"
-                android:layout_height="wrap_content"/>
-    </android.support.v7.widget.Toolbar>
+                android:layout_height="fill_parent"
+                android:id="@+id/button_settings" android:src="@drawable/settings" android:layout_gravity="start"
+                android:padding="10dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Peng"
+                android:textSize="16dp"
+                android:textAllCaps="true"
+                android:id="@+id/title_text" android:layout_gravity="center"
+                android:textColor="@color/theme_text_light" android:layout_alignParentTop="false"
+                android:layout_alignParentBottom="false" android:layout_alignWithParentIfMissing="false"
+                android:layout_centerInParent="true" android:layout_weight="1" android:gravity="center"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/button_go_to_ranking" android:src="@drawable/burger" android:layout_gravity="end"
+                android:paddingTop="15dp" android:paddingRight="10dp" android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:layout_alignParentRight="true"/>
+    </LinearLayout>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scrollView" android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:paddingTop="?attr/actionBarSize">
+            >
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
@@ -126,4 +145,4 @@
         </LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

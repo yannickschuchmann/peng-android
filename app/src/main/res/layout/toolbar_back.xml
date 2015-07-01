@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/activity_movies_toolbar"
+              android:layout_height="?attr/actionBarSize"
+              android:background="@color/theme_primary"
+              android:id="@+id/activity_toolbar"
+        >
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/button_back" android:src="@drawable/arrow_back" android:layout_gravity="start"
+            android:padding="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/theme_primary"
-            >
-
-        <ImageView
-                android:layout_width="39dp"
-                android:layout_height="37dp"
-                android:id="@+id/button_back" android:src="@drawable/arrow_back" android:layout_gravity="left"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/title_text" android:layout_gravity="center" android:textColor="@color/theme_text_light"/>
-    </android.support.v7.widget.Toolbar>
-</LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:textSize="16dp"
+            android:textAllCaps="true"
+            android:id="@+id/title_text" android:layout_gravity="center"
+            android:textColor="@color/theme_text_light"/>
+</FrameLayout>

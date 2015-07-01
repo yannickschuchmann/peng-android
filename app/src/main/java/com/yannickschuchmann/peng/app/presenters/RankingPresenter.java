@@ -24,7 +24,7 @@ public class RankingPresenter extends Presenter {
 
     @Override
     public void start() {
-        mView.setToolbarTitle("Ranking");
+        mView.setToolbarTitle("Rangliste");
     }
 
     @Override

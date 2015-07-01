@@ -52,6 +52,29 @@ public class MainActivity extends TransitionActivity implements MainView {
         startActivityWithAnimation(intent);
     }
 
+    @OnClick(R.id.button_settings)
+    public void onSettingsClick() {
+        Intent intent = new Intent(getContext(), SettingsActivity.class);
+        startActivityWithAnimation(intent, true);
+    }
+
+    @OnClick(R.id.button_go_to_ranking)
+    public void onRankingClick() {
+        Intent intent = new Intent(getContext(), RankingActivity.class);
+        startActivityWithAnimation(intent);
+    }
+
+    @OnClick(R.id.user_image)
+    public void onImageClick() {
+        Intent intent = new Intent(getContext(), ProfileActivity.class);
+        intent.putExtra("userId", 1);
+        startActivityWithAnimation(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+    }
+
     @Override
     public void setNick(String value) {
         mNick.setText(value);
