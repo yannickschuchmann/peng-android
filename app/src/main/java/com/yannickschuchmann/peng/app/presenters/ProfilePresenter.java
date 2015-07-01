@@ -33,6 +33,8 @@ public class ProfilePresenter extends Presenter {
                 mView.setNick(user.getNick());
                 mView.setSlogan(user.getSlogan());
                 mView.setImage();
+
+                mView.setToolbarTitle(user.getNick());
             }
 
             @Override

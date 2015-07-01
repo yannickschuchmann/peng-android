@@ -5,4 +5,7 @@
     <declare-styleable name="LinkButton">
         <attr name="ButtonText" format="string" />
     </declare-styleable>
+    <declare-styleable name="ToolbarBack">
+        <attr name="TitleText" format="string" />
+    </declare-styleable>
 </resources>

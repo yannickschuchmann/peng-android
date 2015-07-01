@@ -2,22 +2,23 @@ package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.R;
-import com.yannickschuchmann.peng.app.presenters.MainPresenter;
 import com.yannickschuchmann.peng.app.presenters.NewDuelPresenter;
+import com.yannickschuchmann.peng.app.views.components.BackToolbar;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 
 
 public class NewDuelActivity extends TransitionActivity implements NewDuelView {
 
-    NewDuelPresenter mNewDuelPresenter;
+    NewDuelPresenter mPresenter;
+
+    @Bind(R.id.toolbarTitle)
+    BackToolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +27,18 @@ public class NewDuelActivity extends TransitionActivity implements NewDuelView {
 
         ButterKnife.bind(this);
 
-        mNewDuelPresenter = new NewDuelPresenter(this);
+        mPresenter = new NewDuelPresenter(this);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.start();
     }
 
     @OnClick(R.id.duel_random)
     public void onDuelRandom() {
-        mNewDuelPresenter.postRandomDuel();
+        mPresenter.postRandomDuel();
     }
 
     @OnClick(R.id.duel_friends)
@@ -52,4 +58,13 @@ public class NewDuelActivity extends TransitionActivity implements NewDuelView {
         return this;
     }
 
+    @Override
+    public void onToolbarBackClicked() {
+        onBackPressed();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        mToolbar.setTitleText(title);
+    }
 }

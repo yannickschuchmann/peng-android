@@ -1,20 +1,19 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
+import com.yannickschuchmann.peng.app.views.components.BackToolbar;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
+import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
 
 
-public class ProfileActivity extends TransitionActivity implements ProfileView {
+public class ProfileActivity extends TransitionActivity implements ProfileView, ToolbarBackView {
 
     ProfilePresenter mPresenter;
 
@@ -24,6 +23,8 @@ public class ProfileActivity extends TransitionActivity implements ProfileView {
     TextView mUserNick;
     @Bind(R.id.user_slogan)
     TextView mUserSlogan;
+    @Bind(R.id.toolbarTitle)
+    BackToolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,11 @@ public class ProfileActivity extends TransitionActivity implements ProfileView {
         ButterKnife.bind(this);
 
         mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mPresenter.start();
     }
 
@@ -54,5 +60,15 @@ public class ProfileActivity extends TransitionActivity implements ProfileView {
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void onToolbarBackClicked() {
+        onBackPressed();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        mToolbar.setTitleText(title);
     }
 }

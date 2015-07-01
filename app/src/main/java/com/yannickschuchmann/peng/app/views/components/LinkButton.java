@@ -55,10 +55,10 @@ public class LinkButton extends LinearLayout {
             }
 
         }
-        setHeadlineText(text);
+        setButtonText(text);
     }
 
-    public void setHeadlineText(String text) {
+    public void setButtonText(String text) {
         mLinkButtonView.setText(text);
     }
 

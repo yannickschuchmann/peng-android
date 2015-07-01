@@ -46,6 +46,7 @@ public class NewDuelPresenter extends Presenter {
 
     @Override
     public void start() {
+        mView.setToolbarTitle("Neues Duell");
         mService = new RestSource().getRestAdapter().create(DuelService.class);
     }
 

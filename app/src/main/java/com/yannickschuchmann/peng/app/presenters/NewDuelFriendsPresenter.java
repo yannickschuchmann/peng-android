@@ -42,6 +42,7 @@ public class NewDuelFriendsPresenter extends Presenter {
 
     @Override
     public void start() {
+        mView.setToolbarTitle("Fordere einen Freund");
         mService = new RestSource().getRestAdapter().create(DuelService.class);
     }
 
