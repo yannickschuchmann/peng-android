@@ -10,6 +10,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.User;
 
 import java.util.List;
@@ -30,7 +31,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
     @Override
     public UsersRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_row, viewGroup, false);
-        UsersRowHolder mh = new UsersRowHolder(v);
+        UsersRowHolder mh = new UsersRowHolder(v, new UsersRowHolder.IUsersRowHolderClicks() {
+            @Override
+            public void onItem(View caller, User user) {
+                UserAdapterView activity = (UserAdapterView) caller.getContext();
+
+                activity.onItemClicked(user);
+            }
+        });
         return mh;
     }
 
@@ -38,10 +46,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
     public void onBindViewHolder(UsersRowHolder usersRowHolder, int i) {
         User user = users.get(i);
 
+        usersRowHolder.mUser = user;
         usersRowHolder.thumbnail.setImageResource(R.drawable.dummy_profile);
         usersRowHolder.nick.setText(user.getNick());
         usersRowHolder.slogan.setText(user.getSlogan());
-        usersRowHolder.rank.setText(user.getRank());
+        usersRowHolder.rank.setText(String.valueOf(user.getRank()));
     }
 
     @Override
@@ -49,16 +58,32 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
         return (null != users ? users.size() : 0);
     }
 
-    public class UsersRowHolder extends RecyclerView.ViewHolder {
+    public static class UsersRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.nick) TextView nick;
         @Bind(R.id.thumbnail) ImageView thumbnail;
         @Bind(R.id.slogan) TextView slogan;
         @Bind(R.id.rank) TextView rank;
 
-        public UsersRowHolder(View view) {
+        public User mUser;
+
+        IUsersRowHolderClicks mListener;
+
+        public UsersRowHolder(View view, IUsersRowHolderClicks listener) {
             super(view);
+            mListener = listener;
             ButterKnife.bind(this, view);
+
+            view.setClickable(true);
+            view.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            mListener.onItem(v, mUser);
+        }
+
+        public static interface IUsersRowHolderClicks {
+            public void onItem(View caller, User user);
+        }
     }
 }

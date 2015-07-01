@@ -10,11 +10,11 @@
             android:minHeight="?attr/actionBarSize"
             android:background="@color/theme_primary"
             >
-    <TextView
-            android:text="@string/app_name"
-            android:layout_width="wrap_content"
-            android:textColor="@color/theme_text_light"
-            android:layout_height="wrap_content"/>
+        <TextView
+                android:text="@string/app_name"
+                android:layout_width="wrap_content"
+                android:textColor="@color/theme_text_light"
+                android:layout_height="wrap_content"/>
     </android.support.v7.widget.Toolbar>
     <LinearLayout
             android:orientation="vertical"
@@ -56,7 +56,8 @@
                             android:textSize="42dp"
                             android:textAllCaps="true"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:textAppearance="?android:attr/textAppearanceSmall" android:text="zum Duell heraus."
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:text="zum Duell heraus."
                               android:id="@+id/textView6" android:textColor="@color/theme_text_light"
                               android:textSize="17dp"/>
                 </LinearLayout>

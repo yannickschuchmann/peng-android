@@ -21,18 +21,29 @@ public class UsersFragment extends Fragment {
     protected UsersAdapter mAdapter;
     @Bind(R.id.userRecyclerView) RecyclerView mRecyclerView;
 
+    public static UsersFragment newInstance(Bundle bundle) {
+        UsersFragment fragment = new UsersFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_users, container, false);
         ButterKnife.bind(this, view);
 
-        initRecyclerView();
+
+        if (getArguments() != null) {
+            initRecyclerView();
+        }
         return view;
     }
 
     private void initRecyclerView() {
         List<User> list;
+        Bundle bundle = getArguments();
         if (getArguments().getString("type") == "ranking") {
             list = generateDummyList();
         } else {
@@ -48,6 +59,7 @@ public class UsersFragment extends Fragment {
         List<User> usersList = new ArrayList<User>();
         for (int i = 0; i < 30; i++) {
             User item = new User();
+            item.id = i;
             item.setNick("Nickname #" + i);
             item.setSlogan("\"Ich gewinne immer\"");
             item.setRank(i);
