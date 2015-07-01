@@ -12,6 +12,11 @@ import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.adapters.UsersAdapter;
 import com.yannickschuchmann.peng.model.entities.User;
+import com.yannickschuchmann.peng.model.rest.RestSource;
+import com.yannickschuchmann.peng.model.rest.services.UserService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,8 @@ import java.util.List;
 public class UsersFragment extends Fragment {
     protected UsersAdapter mAdapter;
     @Bind(R.id.userRecyclerView) RecyclerView mRecyclerView;
+    private UserService mService;
+
 
     public static UsersFragment newInstance(Bundle bundle) {
         UsersFragment fragment = new UsersFragment();
@@ -34,38 +41,37 @@ public class UsersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_users, container, false);
         ButterKnife.bind(this, view);
 
+        mService = new RestSource().getRestAdapter().create(UserService.class);
 
-        if (getArguments() != null) {
-            initRecyclerView();
+        Bundle bundle = getArguments();
+        if (getArguments().getString("type") == "ranking") {
+            getRanking();
+        } else {
+            // friends
+            getRanking();
         }
+
         return view;
     }
 
-    private void initRecyclerView() {
-        List<User> list;
-        Bundle bundle = getArguments();
-        if (getArguments().getString("type") == "ranking") {
-            list = generateDummyList();
-        } else {
-            // friends
-            list = generateDummyList();
-        }
+    private void initRecyclerView(List<User> list) {
         mAdapter = new UsersAdapter(getActivity().getApplicationContext(), list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private List<User> generateDummyList() {
-        List<User> usersList = new ArrayList<User>();
-        for (int i = 0; i < 30; i++) {
-            User item = new User();
-            item.id = i;
-            item.setNick("Nickname #" + i);
-            item.setSlogan("\"Ich gewinne immer\"");
-            item.setRank(i);
-            usersList.add(item);
-        }
-        return usersList;
+    private void getRanking() {
+        mService.getUsers(new Callback<List<User>>() {
+            @Override
+            public void success(List<User> users, Response response) {
+                initRecyclerView(users);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
 }
