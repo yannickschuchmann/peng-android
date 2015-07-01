@@ -32,7 +32,11 @@ public class MainPresenter extends Presenter {
         mService.getUser(1, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
-                showNick(user.getNick());
+                mMainView.setNick(user.getNick());
+                mMainView.setSlogan(user.getSlogan());
+                mMainView.setFriendsCount(user.getFriendsCount());
+                mMainView.setDuelsCount(user.getDuelsCount());
+                mMainView.setRank(user.getRank());
             }
 
             @Override

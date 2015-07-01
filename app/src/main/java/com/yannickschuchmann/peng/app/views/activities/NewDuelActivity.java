@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.yannickschuchmann.peng.app.R;
 
 
-public class NewDuelActivity extends ActionBarActivity {
+public class NewDuelActivity extends TransitionActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

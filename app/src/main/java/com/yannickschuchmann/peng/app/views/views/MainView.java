@@ -5,4 +5,8 @@ package com.yannickschuchmann.peng.app.views.views;
  */
 public interface MainView extends MVPView {
     public void setNick(String nick);
+    public void setSlogan(String slogan);
+    public void setRank(int rank);
+    public void setFriendsCount(int count);
+    public void setDuelsCount(int count);
 }
