@@ -1,6 +1,7 @@
 package com.yannickschuchmann.peng.app.presenters;
 
 import butterknife.Bind;
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -26,9 +27,14 @@ public class MainPresenter extends Presenter {
     public void start() {
         mService = new RestSource().getRestAdapter().create(UserService.class);
 
-        mService.getUser(1, new Callback<User>() {
+        final CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
+        currentUser.setUserId(1); // TODO move to login
+
+        mService.getUser(currentUser.getUserId(), new Callback<User>() {
             @Override
             public void success(User user, Response response) {
+                currentUser.setUser(user);
+
                 CharacterImage ci = new CharacterImage(mView.getContext(), user);
                 mView.setImage(ci.getDrawable());
                 mView.setNick(user.getNick());

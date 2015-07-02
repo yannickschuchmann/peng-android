@@ -9,6 +9,8 @@ public class User {
     private int duelsCount;
     private int rank;
     private String characterName;
+    private int characterOrder;
+    public int characterId;
 
     public String getNick() {
         return nick;
@@ -57,6 +59,14 @@ public class User {
 
     public void setCharacterName(String value) {
         this.characterName = value;
+    }
+
+    public int getCharacterOrder() {
+        return this.characterOrder;
+    }
+
+    public void setCharacterOrder(int value) {
+        this.characterOrder = value;
     }
 
 }

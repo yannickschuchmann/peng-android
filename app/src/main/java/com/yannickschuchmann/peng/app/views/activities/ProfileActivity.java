@@ -48,7 +48,7 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     @OnClick(R.id.user_image)
     public void onImageClick() {
         Intent intent = new Intent(getContext(), CharacterPagerActivity.class);
-        intent.putExtra("userId", 1);
+        intent.putExtra("userId", getIntent().getExtras().getInt("userId"));
         startActivityWithAnimation(intent);
     }
 

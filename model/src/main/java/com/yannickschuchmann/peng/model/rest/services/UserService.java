@@ -2,7 +2,9 @@ package com.yannickschuchmann.peng.model.rest.services;
 
 import com.yannickschuchmann.peng.model.entities.User;
 import retrofit.Callback;
+import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 import java.util.List;
@@ -16,4 +18,7 @@ public interface UserService {
 
     @GET("/api/v1/users")
     void getUsers(Callback<List<User>> cb);
+
+    @PUT("/api/v1/users/{id}")
+    void updateUser(@Path("id") int id, @Body User user, Callback<User> cb);
 }

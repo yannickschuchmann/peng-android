@@ -44,7 +44,7 @@ public class CharacterPagerActivity extends TransitionActivity implements Charac
     @Override
     protected void onStart() {
         super.onStart();
-        mPresenter.start(3);
+        mPresenter.start();
     }
 
     @Override

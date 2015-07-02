@@ -2,6 +2,7 @@ package com.yannickschuchmann.peng.app.presenters;
 
 import android.content.Context;
 import android.widget.Toast;
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.CharacterPagerView;
 import com.yannickschuchmann.peng.app.views.views.MainView;
@@ -23,6 +24,7 @@ public class CharacterPagerPresenter extends Presenter {
 
     private CharacterPagerView mView;
     private CharacterService mService;
+    private UserService mUserService;
     private Character mActiveCharacter;
     private List<Character> mCharacters;
     private int mActiveIndex;
@@ -31,12 +33,14 @@ public class CharacterPagerPresenter extends Presenter {
         mView = view;
     }
 
-    public void start(int activeIndex) {
+    @Override
+    public void start() {
+        mUserService = new RestSource().getRestAdapter().create(UserService.class);
         mService = new RestSource().getRestAdapter().create(CharacterService.class);
 
         mView.setToolbarTitle("Charakter");
 
-        mActiveIndex = activeIndex;
+        mActiveIndex = CurrentUser.getInstance(mView.getContext()).getCharacterId();
 
         mService.getCharacters(new Callback<List<Character>>() {
             @Override
@@ -54,17 +58,28 @@ public class CharacterPagerPresenter extends Presenter {
     }
 
     @Override
-    public void start() {
-
-    }
-
-    @Override
     public void stop() {
     }
 
     public void updateCharacter() {
-        // TODO update to API
-        Toast.makeText(mView.getContext(), "Saved " + mActiveCharacter.getNameDe(), Toast.LENGTH_SHORT).show();
+        CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
+        currentUser.getUser().characterId = mActiveCharacter.id;
+        mUserService.updateUser(currentUser.getUserId(),
+                currentUser.getUser(),
+                new Callback<User>() {
+                    @Override
+                    public void success(User user, Response response) {
+                        Character savedCharacter = mCharacters.get(user.getCharacterOrder());
+                        Toast.makeText(mView.getContext(), "Saved " + savedCharacter.getNameDe(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
+
+
     }
 
     public void onCharacterChanged(int position) {

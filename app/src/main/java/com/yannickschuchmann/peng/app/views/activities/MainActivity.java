@@ -15,6 +15,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.MainPresenter;
 import com.yannickschuchmann.peng.app.views.views.MainView;
@@ -81,7 +82,7 @@ public class MainActivity extends TransitionActivity implements MainView {
     @OnClick(R.id.user_image)
     public void onImageClick() {
         Intent intent = new Intent(getContext(), ProfileActivity.class);
-        intent.putExtra("userId", 1);
+        intent.putExtra("userId", CurrentUser.getInstance(this).getUserId());
         startActivityWithAnimation(intent);
     }
 
