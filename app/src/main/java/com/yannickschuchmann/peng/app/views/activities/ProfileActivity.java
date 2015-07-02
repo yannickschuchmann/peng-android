@@ -1,6 +1,7 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,8 +54,8 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     }
 
     @Override
-    public void setImage() {
-        mUserImage.setImageResource(R.drawable.dummy_profile);
+    public void setImage(Drawable image) {
+        mUserImage.setImageDrawable(image);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.yannickschuchmann.peng.app.presenters;
 
 import butterknife.Bind;
+import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
@@ -28,6 +29,8 @@ public class MainPresenter extends Presenter {
         mService.getUser(1, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
+                CharacterImage ci = new CharacterImage(mView.getContext(), user);
+                mView.setImage(ci.getDrawable());
                 mView.setNick(user.getNick());
                 mView.setSlogan(user.getSlogan());
                 mView.setFriendsCount(user.getFriendsCount());

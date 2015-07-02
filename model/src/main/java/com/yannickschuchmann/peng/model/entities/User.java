@@ -51,7 +51,8 @@ public class User {
     }
 
     public String getCharacterName() {
-        return this.characterName;
+        String cn = this.characterName;
+        return cn != null && !cn.equals("") ? cn : "medic";
     }
 
     public void setCharacterName(String value) {

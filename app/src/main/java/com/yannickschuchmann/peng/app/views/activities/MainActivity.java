@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,6 +35,8 @@ public class MainActivity extends TransitionActivity implements MainView {
     @Bind(R.id.user_image)
     ImageView mImage;
 
+    int mBackPressed = 0;
+
     MainPresenter mMainPresenter;
 
     @Override
@@ -41,9 +45,6 @@ public class MainActivity extends TransitionActivity implements MainView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        final int newColor = getResources().getColor(R.color.image_red_filter);
-        mImage.setColorFilter(newColor, PorterDuff.Mode.SRC_ATOP);
-
         mMainPresenter = new MainPresenter(this);
     }
 
@@ -51,6 +52,12 @@ public class MainActivity extends TransitionActivity implements MainView {
     protected void onStart() {
         super.onStart();
         mMainPresenter.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mBackPressed = 0;
     }
 
     @OnClick(R.id.button_new_duel)
@@ -80,6 +87,18 @@ public class MainActivity extends TransitionActivity implements MainView {
 
     @Override
     public void onBackPressed() {
+        mBackPressed++;
+        if (mBackPressed == 1) {
+            Toast.makeText(getApplicationContext(), "Press again for exit", Toast.LENGTH_SHORT).show();
+        } else if (mBackPressed >= 2) {
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    public void setImage(Drawable image) {
+        mImage.setImageDrawable(image);
     }
 
     @Override

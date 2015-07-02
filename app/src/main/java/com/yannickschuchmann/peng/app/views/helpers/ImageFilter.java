@@ -29,7 +29,7 @@ public class ImageFilter {
         brightnessMatrix.setScale(1.7f,1.7f,1.7f,1);
 
         greyscaleMatrix.postConcat(colorizeMatrix);
-        greyscaleMatrix.postConcat(contrastMatrix);
+//        greyscaleMatrix.postConcat(contrastMatrix);
         greyscaleMatrix.postConcat(brightnessMatrix);
         ColorMatrixColorFilter filter = new ColorMatrixColorFilter(greyscaleMatrix);
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.helpers.ImageFilter;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -52,14 +53,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
     public void onBindViewHolder(UsersRowHolder usersRowHolder, int i) {
         User user = users.get(i);
 
-        Drawable character = ImageFilter
-                .applyFiltersForColor(mContext, R.drawable.dummy_profile2, R.color.image_blue_filter);
+        CharacterImage ci = new CharacterImage(mContext, user);
 
-        int imageID = mContext.getResources()
-                .getIdentifier("character_" + user.getCharacterName(), "drawable", "com.yannickschuchmann.peng.app");
-
-        usersRowHolder.thumbnail.setImageDrawable(character);
-
+        usersRowHolder.thumbnail.setImageDrawable(ci.getBlueDrawable());
         usersRowHolder.mUser = user;
         usersRowHolder.nick.setText(user.getNick());
         usersRowHolder.slogan.setText(user.getSlogan());

@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -32,7 +33,8 @@ public class ProfilePresenter extends Presenter {
             public void success(User user, Response response) {
                 mView.setNick(user.getNick());
                 mView.setSlogan(user.getSlogan());
-                mView.setImage();
+                CharacterImage ci = new CharacterImage(mView.getContext(), user);
+                mView.setImage(ci.getDrawable());
 
                 mView.setToolbarTitle(user.getNick());
             }
