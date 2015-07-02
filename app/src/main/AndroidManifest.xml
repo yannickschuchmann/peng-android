@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yannickschuchmann.peng.app" >
+          package="com.yannickschuchmann.peng.app">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
         <activity
-            android:name=".views.activities.MainActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.MainActivity"
+                android:label="@string/title_activity_main"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,34 +20,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.ProfileActivity"
+                android:label="@string/title_activity_profile"
+                android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.RankingActivity"
-            android:label="@string/title_activity_ranking"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.RankingActivity"
+                android:label="@string/title_activity_ranking"
+                android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.NewDuelActivity"
-            android:label="@string/title_activity_new_duel"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.NewDuelActivity"
+                android:label="@string/title_activity_new_duel"
+                android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.SettingsActivity"
+                android:label="@string/title_activity_settings"
+                android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.DuelActivity"
-            android:label="@string/title_activity_duel"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.DuelActivity"
+                android:label="@string/title_activity_duel"
+                android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.NewDuelFriendsActivity"
-            android:label="@string/title_activity_new_duel_friends"
-            android:screenOrientation="portrait">
+                android:name=".views.activities.NewDuelFriendsActivity"
+                android:label="@string/title_activity_new_duel_friends"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name=".views.activities.CharacterPagerActivity"
+                android:label="@string/title_activity_characters_pager"
+                android:screenOrientation="portrait">
         </activity>
     </application>
 

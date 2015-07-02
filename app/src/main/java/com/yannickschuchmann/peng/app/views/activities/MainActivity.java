@@ -126,7 +126,6 @@ public class MainActivity extends TransitionActivity implements MainView {
         mRank.setText(String.valueOf(value));
     }
 
-
     @Override
     public Context getContext() {
         return this;

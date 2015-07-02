@@ -1,12 +1,14 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
@@ -41,6 +43,13 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     protected void onStart() {
         super.onStart();
         mPresenter.start();
+    }
+
+    @OnClick(R.id.user_image)
+    public void onImageClick() {
+        Intent intent = new Intent(getContext(), CharacterPagerActivity.class);
+        intent.putExtra("userId", 1);
+        startActivityWithAnimation(intent);
     }
 
     @Override
