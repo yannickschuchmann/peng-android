@@ -51,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="ändern"
+                        android:text="edit"
                         android:id="@+id/user_slogan_edit" android:layout_gravity="center_horizontal"
                         android:textSize="23dp" android:textColor="@color/theme_text_gray"/>
             </LinearLayout>
