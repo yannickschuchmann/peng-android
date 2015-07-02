@@ -7,4 +7,6 @@
     <color name="theme_accent_blue">#272853</color>
     <color name="theme_accent_green">#658280</color>
     <color name="theme_window_background">#FFFAF2</color>
+    <color name="image_blue_filter">#ff9bace8</color>
+    <color name="image_red_filter">#6D241C</color>
 </resources>

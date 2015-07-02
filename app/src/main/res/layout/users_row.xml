@@ -8,13 +8,14 @@
               android:weightSum="1">
     <ImageView
             android:id="@+id/thumbnail"
-            android:layout_width="110dp"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
-            android:src="@drawable/dummy_profile" android:paddingLeft="10dp" android:paddingRight="10dp"
-            android:layout_weight="0"/>
+            android:background="@drawable/red_circle"
+            android:src="@drawable/dummy_profile2" android:paddingLeft="10dp" android:paddingRight="10dp"
+            android:layout_weight="0" android:layout_marginLeft="20dp" android:layout_marginRight="10dp"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"

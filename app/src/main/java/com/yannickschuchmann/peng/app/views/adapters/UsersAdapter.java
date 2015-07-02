@@ -1,6 +1,8 @@
 package com.yannickschuchmann.peng.app.views.adapters;
 
 import android.content.Context;
+import android.graphics.*;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.views.helpers.ImageFilter;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.User;
 
@@ -49,8 +52,15 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
     public void onBindViewHolder(UsersRowHolder usersRowHolder, int i) {
         User user = users.get(i);
 
+        Drawable character = ImageFilter
+                .applyFiltersForColor(mContext, R.drawable.dummy_profile2, R.color.image_blue_filter);
+
+        int imageID = mContext.getResources()
+                .getIdentifier("character_" + user.getCharacterName(), "drawable", "com.yannickschuchmann.peng.app");
+
+        usersRowHolder.thumbnail.setImageDrawable(character);
+
         usersRowHolder.mUser = user;
-        usersRowHolder.thumbnail.setImageResource(R.drawable.dummy_profile);
         usersRowHolder.nick.setText(user.getNick());
         usersRowHolder.slogan.setText(user.getSlogan());
         usersRowHolder.rank.setText(String.valueOf(user.getRank()));

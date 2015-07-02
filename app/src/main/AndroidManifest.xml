@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".views.activities.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,27 +21,33 @@
         </activity>
         <activity
             android:name=".views.activities.ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".views.activities.RankingActivity"
-            android:label="@string/title_activity_ranking" >
+            android:label="@string/title_activity_ranking"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".views.activities.NewDuelActivity"
-            android:label="@string/title_activity_new_duel" >
+            android:label="@string/title_activity_new_duel"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".views.activities.SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".views.activities.DuelActivity"
-            android:label="@string/title_activity_duel" >
+            android:label="@string/title_activity_duel"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".views.activities.NewDuelFriendsActivity"
-            android:label="@string/title_activity_new_duel_friends" >
+            android:label="@string/title_activity_new_duel_friends"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

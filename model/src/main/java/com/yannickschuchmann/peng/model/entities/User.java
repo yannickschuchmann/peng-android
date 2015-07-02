@@ -8,6 +8,7 @@ public class User {
     private int friendsCount;
     private int duelsCount;
     private int rank;
+    private String characterName;
 
     public String getNick() {
         return nick;
@@ -25,12 +26,12 @@ public class User {
         this.slogan = slogan;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
     public int getRank() {
         return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public void setFriendsCount(int count) {
@@ -49,5 +50,12 @@ public class User {
         return this.duelsCount;
     }
 
+    public String getCharacterName() {
+        return this.characterName;
+    }
+
+    public void setCharacterName(String value) {
+        this.characterName = value;
+    }
 
 }
