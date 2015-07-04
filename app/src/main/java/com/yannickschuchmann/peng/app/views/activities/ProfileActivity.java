@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
@@ -14,11 +16,13 @@ import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.fragments.EditUserDialogFragment;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
+import com.yannickschuchmann.peng.model.entities.User;
 
 
-public class ProfileActivity extends TransitionActivity implements ProfileView, ToolbarBackView {
+public class ProfileActivity extends TransitionActivity implements ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
 
     ProfilePresenter mPresenter;
 
@@ -28,8 +32,8 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     TextView mUserNick;
     @Bind(R.id.user_slogan)
     TextView mUserSlogan;
-    @Bind(R.id.user_slogan_edit)
-    TextView mUserSloganEdit;
+    @Bind(R.id.user_edit)
+    TextView mUserEdit;
     @Bind(R.id.toolbarTitle)
     BackToolbar mToolbar;
 
@@ -40,7 +44,7 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
 
         ButterKnife.bind(this);
 
-        mUserSloganEdit.setVisibility(isCurrentUser() ? View.VISIBLE : View.INVISIBLE);
+        mUserEdit.setVisibility(isCurrentUser() ? View.VISIBLE : View.INVISIBLE);
 
         mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
     }
@@ -57,6 +61,13 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
         Intent intent = new Intent(getContext(), CharacterPagerActivity.class);
         intent.putExtra("userId", CurrentUser.getInstance(getContext()).getUserId());
         startActivityWithAnimation(intent);
+    }
+
+    @OnClick(R.id.user_edit)
+    public void onUserEdit() {
+        User user = CurrentUser.getInstance(getContext()).getUser();
+        EditUserDialogFragment dialogFragment = EditUserDialogFragment.newInstance(user.getNick(), user.getSlogan());
+        dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
     }
 
     private boolean isCurrentUser() {
@@ -91,5 +102,15 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     @Override
     public void setToolbarTitle(String title) {
         mToolbar.setTitleText(title);
+    }
+
+    @Override
+    public void onDialogPositiveClick(EditUserDialogFragment dialog) {
+        mPresenter.onUserEdited(dialog.getNick(), dialog.getSlogan());
+    }
+
+    @Override
+    public void onDialogNegativeClick(EditUserDialogFragment dialog) {
+        dialog.getDialog().cancel();
     }
 }

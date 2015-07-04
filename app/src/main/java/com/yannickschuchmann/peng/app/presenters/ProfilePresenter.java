@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
@@ -31,12 +32,7 @@ public class ProfilePresenter extends Presenter {
         mService.getUser(mUserId, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
-                mView.setNick(user.getNick());
-                mView.setSlogan(user.getSlogan());
-                CharacterImage ci = new CharacterImage(mView.getContext(), user);
-                mView.setImage(ci.getDrawable());
-
-                mView.setToolbarTitle(user.getNick());
+                setupView(user);
             }
 
             @Override
@@ -48,6 +44,35 @@ public class ProfilePresenter extends Presenter {
 
     @Override
     public void stop() {
+    }
+
+    private void setupView(User user) {
+        mView.setNick(user.getNick());
+        mView.setSlogan(user.getSlogan());
+        CharacterImage ci = new CharacterImage(mView.getContext(), user);
+        mView.setImage(ci.getDrawable());
+
+        mView.setToolbarTitle(user.getNick());
+    }
+
+    public void onUserEdited(String nick, String slogan) {
+        CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
+        User user = currentUser.getUser();
+        user.setNick(nick);
+        user.setSlogan(slogan);
+        currentUser.setUser(user);
+
+        mService.updateUser(user.id, user, new Callback<User>() {
+            @Override
+            public void success(User user, Response response) {
+                setupView(user);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
 }
