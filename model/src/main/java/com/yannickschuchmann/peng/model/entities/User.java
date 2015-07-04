@@ -1,5 +1,7 @@
 package com.yannickschuchmann.peng.model.entities;
 
+import java.util.List;
+
 public class User {
     public int id;
     private int uid;
@@ -11,6 +13,8 @@ public class User {
     private String characterName;
     private int characterOrder;
     public int characterId;
+    private List<Duel> lastDuels;
+    private List<Duel> openDuels;
 
     public String getNick() {
         return nick;
@@ -68,5 +72,13 @@ public class User {
     public void setCharacterOrder(int value) {
         this.characterOrder = value;
     }
+
+    public void setLastDuels(List<Duel> value) { this.lastDuels = value;}
+
+    public List<Duel> getLastDuels() { return this.lastDuels; }
+
+    public void setOpenDuels(List<Duel> value) { this.openDuels = value;}
+
+    public List<Duel> getOpenDuels() { return this.openDuels; }
 
 }

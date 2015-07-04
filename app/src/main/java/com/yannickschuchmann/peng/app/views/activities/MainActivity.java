@@ -1,6 +1,8 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -18,10 +20,17 @@ import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.MainPresenter;
+import com.yannickschuchmann.peng.app.views.fragments.DuelsFragment;
+import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
+import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
 import com.yannickschuchmann.peng.app.views.views.MainView;
+import com.yannickschuchmann.peng.model.entities.Duel;
+import com.yannickschuchmann.peng.model.entities.User;
+
+import java.util.List;
 
 
-public class MainActivity extends TransitionActivity implements MainView {
+public class MainActivity extends TransitionActivity implements MainView, DuelAdapterView {
 
     @Bind(R.id.user_nick)
     TextView mNick;
@@ -47,6 +56,7 @@ public class MainActivity extends TransitionActivity implements MainView {
         ButterKnife.bind(this);
 
         mMainPresenter = new MainPresenter(this);
+
     }
 
     @Override
@@ -96,35 +106,42 @@ public class MainActivity extends TransitionActivity implements MainView {
         }
     }
 
-
-    @Override
     public void setImage(Drawable image) {
         mImage.setImageDrawable(image);
     }
 
-    @Override
     public void setNick(String value) {
         mNick.setText(value);
     }
 
-    @Override
     public void setSlogan(String value) {
         mSlogan.setText(value);
     }
 
-    @Override
     public void setFriendsCount(int value) {
         mFriends.setText(String.valueOf(value));
     }
 
-    @Override
     public void setDuelsCount(int value) {
         mDuels.setText(String.valueOf(value));
     }
 
-    @Override
     public void setRank(int value) {
         mRank.setText(String.valueOf(value));
+    }
+
+    public void setOpenDuels(List<Duel> duels) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DuelsFragment duelsFragment = DuelsFragment.newInstance(new Bundle(), duels);
+        fragmentTransaction.replace(R.id.open_duels_fragment, duelsFragment , "OPENDUELSLISTING");
+        fragmentTransaction.commit();
+    }
+
+    public void onDuelClicked(Duel duel) {
+        Intent intent = new Intent(getContext(), DuelActivity.class);
+        intent.putExtra("duelId", duel.id);
+        startActivityWithAnimation(intent);
     }
 
     @Override

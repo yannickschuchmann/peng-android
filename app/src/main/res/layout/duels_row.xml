@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingTop="8dp" android:paddingBottom="6dp"
+              android:background="@drawable/border_bottom_dotted"
+              android:weightSum="1">
+    <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:background="@drawable/red_circle"
+            android:src="@drawable/dummy_profile2" android:paddingLeft="10dp" android:paddingRight="10dp"
+            android:layout_weight="0" android:layout_marginLeft="20dp" android:layout_marginRight="10dp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1">
+        <TextView
+                android:id="@+id/nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:maxLines="3" android:text="Lasse Bluten" android:singleLine="true"
+                android:textColor="@color/theme_primary"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="-5dp"
+                android:text="Du bist dran"
+                android:textAllCaps="true"
+                android:id="@+id/status" android:textSize="35dp" android:textColor="@color/theme_primary"
+                android:textStyle="bold"/>
+        <TextView android:id="@+id/bet" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:maxLines="3"
+                  android:singleLine="true" android:textColor="@color/theme_primary"
+                  android:text="&quot;Ich verdiene jetzt 25€/Std.&quot;" android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

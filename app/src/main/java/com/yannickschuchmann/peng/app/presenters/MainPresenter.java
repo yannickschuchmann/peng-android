@@ -42,6 +42,7 @@ public class MainPresenter extends Presenter {
                 mView.setFriendsCount(user.getFriendsCount());
                 mView.setDuelsCount(user.getDuelsCount());
                 mView.setRank(user.getRank());
+                mView.setOpenDuels(user.getOpenDuels());
             }
 
             @Override

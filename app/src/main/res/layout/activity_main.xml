@@ -142,7 +142,10 @@
                     android:id="@+id/headline1"
                     custom:headlineText="Offene Duelle"
                     />
-
+            <FrameLayout
+                    android:id="@+id/open_duels_fragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
