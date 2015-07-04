@@ -1,9 +1,12 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.SettingsPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
@@ -45,6 +48,19 @@ public class SettingsActivity extends TransitionActivity implements SettingsView
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @OnClick(R.id.edit_profil)
+    public void onEditProfil() {
+        Intent intent = new Intent(getContext(), ProfileActivity.class);
+        intent.putExtra("userId", CurrentUser.getInstance(getContext()).getUserId());
+        startActivityWithAnimation(intent);
+    }
+
+    @OnClick(R.id.edit_character)
+    public void onEditCharacter() {
+        Intent intent = new Intent(getContext(), CharacterPagerActivity.class);
+        startActivityWithAnimation(intent);
     }
 
     // swap transitions
