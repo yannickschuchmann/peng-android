@@ -6,9 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,6 +17,7 @@ import com.yannickschuchmann.peng.app.views.components.BackToolbar;
 import com.yannickschuchmann.peng.app.views.fragments.EditUserDialogFragment;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
+import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
 
@@ -36,6 +35,10 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     TextView mUserEdit;
     @Bind(R.id.toolbarTitle)
     BackToolbar mToolbar;
+    @Bind(R.id.last_games)
+    LinearLayout mLastGames;
+    @Bind(R.id.challenge_user)
+    Button mChallengeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,12 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
 
         ButterKnife.bind(this);
 
-        mUserEdit.setVisibility(isCurrentUser() ? View.VISIBLE : View.INVISIBLE);
+        if (!isCurrentUser()) {
+            mUserEdit.setVisibility(View.INVISIBLE);
+            mLastGames.setVisibility(View.GONE);
+        } else {
+            mChallengeUser.setVisibility(View.GONE);
+        }
 
         mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
     }
@@ -53,6 +61,12 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     protected void onStart() {
         super.onStart();
         mPresenter.start();
+    }
+
+    public void startDuelActivity(Duel duel) {
+        Intent intent = new Intent(getContext(), DuelActivity.class);
+        intent.putExtra("duelId", duel.id);
+        startActivityWithAnimation(intent);
     }
 
     @OnClick(R.id.user_image)
@@ -68,6 +82,11 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
         User user = CurrentUser.getInstance(getContext()).getUser();
         EditUserDialogFragment dialogFragment = EditUserDialogFragment.newInstance(user.getNick(), user.getSlogan());
         dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
+    }
+
+    @OnClick(R.id.challenge_user)
+    public void onChallengeUser() {
+        mPresenter.postDuel();
     }
 
     private boolean isCurrentUser() {

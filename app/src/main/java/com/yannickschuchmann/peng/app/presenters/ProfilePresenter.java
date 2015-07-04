@@ -4,6 +4,7 @@ import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
+import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
 import com.yannickschuchmann.peng.model.rest.services.UserService;
@@ -18,6 +19,7 @@ public class ProfilePresenter extends Presenter {
 
     private ProfileView mView;
     private int mUserId;
+    private User mUser;
     private UserService mService;
 
     public ProfilePresenter(ProfileView view, int userId) {
@@ -32,6 +34,7 @@ public class ProfilePresenter extends Presenter {
         mService.getUser(mUserId, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
+                mUser = user;
                 setupView(user);
             }
 
@@ -73,6 +76,28 @@ public class ProfilePresenter extends Presenter {
 
             }
         });
+    }
+
+    public void postDuel() {
+        User opponent = mUser;
+
+        // TODO remove dummy fake
+        Duel duel = new Duel();
+        duel.id = opponent.id;
+        mView.startDuelActivity(duel);
+
+        // TODO implement POST
+//        mService.postDuel(1, new Callback<Duel>() {
+//            @Override
+//            public void success(Duel duel, Response response) {
+//                mView.startDuelActivity(duel);
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//
+//            }
+//        });
     }
 
 }

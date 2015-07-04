@@ -61,12 +61,22 @@
                     android:id="@+id/headline1"
                     custom:headlineText="Statistik"
                     />
-            <com.yannickschuchmann.peng.app.views.components.SectionHeadline
+            <LinearLayout
+                    android:id="@+id/last_games"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/headline2"
-                    custom:headlineText="Letzte Spiele"
-                    />
+                    android:orientation="vertical" android:layout_height="wrap_content">
+                <com.yannickschuchmann.peng.app.views.components.SectionHeadline
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:headlineText="Letzte Spiele"
+                        />
+            </LinearLayout>
+            <Button android:layout_width="match_parent" android:layout_height="84dp" android:text="Herausfordern"
+                    android:id="@+id/challenge_user" android:layout_gravity="center_horizontal"
+                    android:background="@color/theme_primary" android:textColor="@color/theme_text_light"
+                    android:textSize="30dp"/>
+
+
         </LinearLayout>
     </ScrollView>
 

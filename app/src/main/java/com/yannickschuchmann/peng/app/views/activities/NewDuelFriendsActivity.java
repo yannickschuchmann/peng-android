@@ -49,7 +49,6 @@ public class NewDuelFriendsActivity extends TransitionActivity implements NewDue
         mPresenter.start();
     }
 
-    @Override
     public void startDuelActivity(Duel duel) {
         Intent intent = new Intent(getContext(), DuelActivity.class);
         intent.putExtra("duelId", duel.id);
