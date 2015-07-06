@@ -27,7 +27,6 @@ public class DuelsFragment extends Fragment {
     protected DuelsAdapter mAdapter;
     @Bind(R.id.duelRecyclerView) RecyclerView mRecyclerView;
     private List<Duel> mDuels;
-    private UserService mService;
 
 
     public static DuelsFragment newInstance(Bundle bundle, List<Duel> duels) {
@@ -43,28 +42,12 @@ public class DuelsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_duels, container, false);
         ButterKnife.bind(this, view);
 
-        mService = new RestSource().getRestAdapter().create(UserService.class);
+        initRecyclerView(mDuels);
 
-//        initRecyclerView(mDuels);
-        getRanking();
         return view;
     }
 
-    private void getRanking() {
-        mService.getUsers(new Callback<List<User>>() {
-            @Override
-            public void success(List<User> users, Response response) {
-                initRecyclerView(users);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
-    }
-
-    private void initRecyclerView(List<User> list) {
+    private void initRecyclerView(List<Duel> list) {
         mAdapter = new DuelsAdapter(getActivity().getApplicationContext(), list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);

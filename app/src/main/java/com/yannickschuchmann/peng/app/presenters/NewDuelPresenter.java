@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -24,24 +25,17 @@ public class NewDuelPresenter extends Presenter {
     }
 
     public void postRandomDuel() {
+        mService.postRandomDuel(CurrentUser.getInstance(mView.getContext()).getUserId(), new Callback<Duel>() {
+            @Override
+            public void success(Duel duel, Response response) {
+                mView.startDuelActivity(duel);
+            }
 
-        // TODO remove dummy fake
-        Duel duel = new Duel();
-        duel.id = 42;
-        mView.startDuelActivity(duel);
+            @Override
+            public void failure(RetrofitError error) {
 
-        // TODO implement POST
-//        mService.postRandomDuel(1, new Callback<Duel>() {
-//            @Override
-//            public void success(Duel duel, Response response) {
-//                mView.startDuelActivity(duel);
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//
-//            }
-//        });
+            }
+        });
     }
 
     @Override

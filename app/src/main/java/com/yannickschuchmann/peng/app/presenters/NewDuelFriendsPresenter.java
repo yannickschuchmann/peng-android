@@ -1,11 +1,15 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.views.NewDuelFriendsView;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
 import com.yannickschuchmann.peng.model.rest.services.DuelService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by yannick on 30.06.15.
@@ -21,23 +25,17 @@ public class NewDuelFriendsPresenter extends Presenter {
 
     public void postFriendDuel(User friend) {
 
-        // TODO remove dummy fake
-        Duel duel = new Duel();
-        duel.id = friend.id;
-        mView.startDuelActivity(duel);
+        mService.postDuel(CurrentUser.getInstance(mView.getContext()).getUserId(),friend.id, new Callback<Duel>() {
+            @Override
+            public void success(Duel duel, Response response) {
+                mView.startDuelActivity(duel);
+            }
 
-        // TODO implement POST
-//        mService.postDuel(1, new Callback<Duel>() {
-//            @Override
-//            public void success(Duel duel, Response response) {
-//                mView.startDuelActivity(duel);
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//
-//            }
-//        });
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
     @Override
