@@ -70,6 +70,12 @@
                         android:layout_height="wrap_content"
                         custom:headlineText="Letzte Spiele"
                         />
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/open_duels"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        />
             </LinearLayout>
             <Button android:layout_width="match_parent" android:layout_height="84dp" android:text="Herausfordern"
                     android:id="@+id/challenge_user" android:layout_gravity="center_horizontal"

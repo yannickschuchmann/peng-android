@@ -14,7 +14,7 @@ public interface DuelService {
 
     @FormUrlEncoded
     @POST("/api/v1/duels")
-    void postDuel(@Field("user_id") int userId, @Field("opponent_id") int opponent_id, Callback<Duel> cb);
+    void postDuel(@Field("user_id") int userId, @Field("opponent_id") int opponent_id, @Field("bet") String bet, Callback<Duel> cb);
 
     @FormUrlEncoded
     @POST("/api/v1/duels/random")

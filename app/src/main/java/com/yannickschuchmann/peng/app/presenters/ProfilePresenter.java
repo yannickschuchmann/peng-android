@@ -7,6 +7,7 @@ import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
+import com.yannickschuchmann.peng.model.rest.services.DuelService;
 import com.yannickschuchmann.peng.model.rest.services.UserService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -21,6 +22,7 @@ public class ProfilePresenter extends Presenter {
     private int mUserId;
     private User mUser;
     private UserService mService;
+    private DuelService mDuelService;
 
     public ProfilePresenter(ProfileView view, int userId) {
         mView = view;
@@ -30,6 +32,7 @@ public class ProfilePresenter extends Presenter {
     @Override
     public void start() {
         mService = new RestSource().getRestAdapter().create(UserService.class);
+        mDuelService = new RestSource().getRestAdapter().create(DuelService.class);
 
         mService.getUser(mUserId, new Callback<User>() {
             @Override
@@ -56,6 +59,8 @@ public class ProfilePresenter extends Presenter {
         mView.setImage(ci.getDrawable());
 
         mView.setToolbarTitle(user.getNick());
+
+        mView.setLastDuels(user.getLastDuels());
     }
 
     public void onUserEdited(String nick, String slogan) {
@@ -78,26 +83,19 @@ public class ProfilePresenter extends Presenter {
         });
     }
 
-    public void postDuel() {
+    public void postDuel(String bet) {
         User opponent = mUser;
+        mDuelService.postDuel(CurrentUser.getInstance(mView.getContext()).getUserId(), opponent.id, bet, new Callback<Duel>() {
+            @Override
+            public void success(Duel duel, Response response) {
+                mView.startDuelActivity(duel);
+            }
 
-        // TODO remove dummy fake
-        Duel duel = new Duel();
-        duel.id = opponent.id;
-        mView.startDuelActivity(duel);
+            @Override
+            public void failure(RetrofitError error) {
 
-        // TODO implement POST
-//        mService.postDuel(1, new Callback<Duel>() {
-//            @Override
-//            public void success(Duel duel, Response response) {
-//                mView.startDuelActivity(duel);
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//
-//            }
-//        });
+            }
+        });
     }
 
 }

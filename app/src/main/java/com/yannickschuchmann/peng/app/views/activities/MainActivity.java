@@ -136,11 +136,10 @@ public class MainActivity extends TransitionActivity implements MainView, DuelAd
     }
 
     public void setOpenDuels(List<Duel> duels) {
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        DuelsFragment duelsFragment = DuelsFragment.newInstance(new Bundle(), duels);
-//        fragmentTransaction.replace(R.id.open_duels, duelsFragment , "OPENDUELSLISTING");
-//        fragmentTransaction.commit();
+        if (mOpenDuels != null && mOpenDuels.getChildCount() > 0) {
+            mOpenDuels.removeAllViews();
+        }
+
         LinearLayout ll = mOpenDuels;
         DuelsAdapter adapter = new DuelsAdapter(getApplicationContext(), duels);
         for(int position=0; position < adapter.getItemCount(); position++){

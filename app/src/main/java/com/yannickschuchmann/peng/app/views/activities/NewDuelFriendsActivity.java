@@ -10,18 +10,22 @@ import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.NewDuelFriendsPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
+import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment.DuelBetDialogListener;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
 import com.yannickschuchmann.peng.app.views.views.NewDuelFriendsView;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
-public class NewDuelFriendsActivity extends TransitionActivity implements NewDuelFriendsView, UserAdapterView {
+public class NewDuelFriendsActivity extends TransitionActivity implements DuelBetDialogListener, NewDuelFriendsView, UserAdapterView {
 
     NewDuelFriendsPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
     BackToolbar mToolbar;
+
+    User mClickedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,9 @@ public class NewDuelFriendsActivity extends TransitionActivity implements NewDue
 
     @Override
     public void onItemClicked(User user) {
-        mPresenter.postFriendDuel(user);
+        mClickedUser = user;
+        DuelBetDialogFragment dialogFragment = DuelBetDialogFragment.newInstance();
+        dialogFragment.show(getSupportFragmentManager(), "DUEL_BET_DIALOG");
     }
 
     @Override
@@ -73,5 +79,15 @@ public class NewDuelFriendsActivity extends TransitionActivity implements NewDue
     @Override
     public void setToolbarTitle(String title) {
         mToolbar.setTitleText(title);
+    }
+
+    @Override
+    public void onDialogPositiveClick(DuelBetDialogFragment dialog) {
+        mPresenter.postFriendDuel(mClickedUser, dialog.getBet());
+    }
+
+    @Override
+    public void onDialogNegativeClick(DuelBetDialogFragment dialog) {
+        dialog.getDialog().cancel();
     }
 }

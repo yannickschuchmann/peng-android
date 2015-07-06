@@ -13,15 +13,19 @@ import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
+import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
 import com.yannickschuchmann.peng.app.views.fragments.EditUserDialogFragment;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
+import java.util.List;
 
-public class ProfileActivity extends TransitionActivity implements ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
+
+public class ProfileActivity extends TransitionActivity implements DuelBetDialogFragment.DuelBetDialogListener, ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
 
     ProfilePresenter mPresenter;
 
@@ -39,6 +43,8 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
     LinearLayout mLastGames;
     @Bind(R.id.challenge_user)
     Button mChallengeUser;
+    @Bind(R.id.open_duels)
+    LinearLayout mOpenDuels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +92,27 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
 
     @OnClick(R.id.challenge_user)
     public void onChallengeUser() {
-        mPresenter.postDuel();
+        DuelBetDialogFragment dialogFragment = DuelBetDialogFragment.newInstance();
+        dialogFragment.show(getSupportFragmentManager(), "DUEL_BET_DIALOG");
     }
 
     private boolean isCurrentUser() {
         return getIntent().getExtras().getInt("userId") == CurrentUser.getInstance(getContext()).getUserId();
+    }
+
+    public void setLastDuels(List<Duel> duels) {
+        if (mOpenDuels != null && mOpenDuels.getChildCount() > 0) {
+            mOpenDuels.removeAllViews();
+        }
+
+        LinearLayout ll = mOpenDuels;
+        DuelsAdapter adapter = new DuelsAdapter(getApplicationContext(), duels);
+        for(int position=0; position < adapter.getItemCount(); position++){
+            DuelsAdapter.DuelsRowHolder holder = adapter.onCreateViewHolder(ll, adapter.getItemViewType(position));
+            adapter.onBindViewHolder(holder, position);
+
+            ll.addView(holder.itemView);
+        }
     }
 
     @Override
@@ -130,6 +152,16 @@ public class ProfileActivity extends TransitionActivity implements ProfileView, 
 
     @Override
     public void onDialogNegativeClick(EditUserDialogFragment dialog) {
+        dialog.getDialog().cancel();
+    }
+
+    @Override
+    public void onDialogPositiveClick(DuelBetDialogFragment dialog) {
+        mPresenter.postDuel(dialog.getBet());
+    }
+
+    @Override
+    public void onDialogNegativeClick(DuelBetDialogFragment dialog) {
         dialog.getDialog().cancel();
     }
 }
