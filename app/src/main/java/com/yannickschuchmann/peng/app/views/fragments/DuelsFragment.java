@@ -42,6 +42,9 @@ public class DuelsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_duels, container, false);
         ButterKnife.bind(this, view);
 
+        int viewHeight = 100 * mDuels.size();
+        mRecyclerView.getLayoutParams().height = viewHeight;
+
         initRecyclerView(mDuels);
 
         return view;

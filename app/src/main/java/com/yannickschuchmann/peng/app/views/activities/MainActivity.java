@@ -9,9 +9,11 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
@@ -20,6 +22,7 @@ import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.MainPresenter;
+import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
 import com.yannickschuchmann.peng.app.views.fragments.DuelsFragment;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
 import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
@@ -44,6 +47,8 @@ public class MainActivity extends TransitionActivity implements MainView, DuelAd
     TextView mRank;
     @Bind(R.id.user_image)
     ImageView mImage;
+    @Bind(R.id.open_duels)
+    LinearLayout mOpenDuels;
 
     int mBackPressed = 0;
 
@@ -131,11 +136,19 @@ public class MainActivity extends TransitionActivity implements MainView, DuelAd
     }
 
     public void setOpenDuels(List<Duel> duels) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        DuelsFragment duelsFragment = DuelsFragment.newInstance(new Bundle(), duels);
-        fragmentTransaction.replace(R.id.open_duels_fragment, duelsFragment , "OPENDUELSLISTING");
-        fragmentTransaction.commit();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        DuelsFragment duelsFragment = DuelsFragment.newInstance(new Bundle(), duels);
+//        fragmentTransaction.replace(R.id.open_duels, duelsFragment , "OPENDUELSLISTING");
+//        fragmentTransaction.commit();
+        LinearLayout ll = mOpenDuels;
+        DuelsAdapter adapter = new DuelsAdapter(getApplicationContext(), duels);
+        for(int position=0; position < adapter.getItemCount(); position++){
+            DuelsAdapter.DuelsRowHolder holder = adapter.onCreateViewHolder(ll, adapter.getItemViewType(position));
+            adapter.onBindViewHolder(holder, position);
+
+            ll.addView(holder.itemView);
+        }
     }
 
     public void onDuelClicked(Duel duel) {
