@@ -24,4 +24,5 @@
     <string name="title_activity_duel">DuelActivity</string>
     <string name="title_activity_new_duel_friends">NewDuelFriendsActivity</string>
     <string name="title_activity_characters_pager">CharactersPagerActivity</string>
+    <string name="title_activity_auth">AuthActivity</string>
 </resources>

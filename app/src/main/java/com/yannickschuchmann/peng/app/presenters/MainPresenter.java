@@ -1,7 +1,9 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import android.content.Intent;
 import butterknife.Bind;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.views.activities.ProfileActivity;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -28,12 +30,18 @@ public class MainPresenter extends Presenter {
         mService = new RestSource().getRestAdapter().create(UserService.class);
 
         final CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
-        currentUser.setUserId(1); // TODO move to login
 
         mService.getUser(currentUser.getUserId(), new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 currentUser.setUser(user);
+
+                if (user.getNick() == null || user.getNick().equals("")) {
+                    Intent intent;
+                    intent = new Intent(mView.getContext(), ProfileActivity.class);
+                    intent.putExtra("showEditDialog", true);
+                    mView.startActivityWithAnimation(intent);
+                }
 
                 CharacterImage ci = new CharacterImage(mView.getContext(), user);
                 mView.setImage(ci.getDrawable());

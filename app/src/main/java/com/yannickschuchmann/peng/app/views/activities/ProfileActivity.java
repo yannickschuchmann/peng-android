@@ -60,6 +60,12 @@ public class ProfileActivity extends TransitionActivity implements DuelBetDialog
             mChallengeUser.setVisibility(View.GONE);
         }
 
+        if (getIntent().getBooleanExtra("showEditDialog", false)) {
+            User user = CurrentUser.getInstance(getContext()).getUser();
+            EditUserDialogFragment dialogFragment = EditUserDialogFragment.newInstance(user.getNick(), user.getSlogan());
+            dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
+        }
+
         mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
     }
 

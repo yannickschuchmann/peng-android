@@ -13,9 +13,7 @@ public class CurrentUser {
     private static Context mContext;
     public static final String PREFS_NAME = "CurrentUserFile";
 
-    public CurrentUser() {
-        mUser = new User();
-    }
+    public CurrentUser() {}
 
     public static CurrentUser getInstance(Context context) {
         mContext = context;
