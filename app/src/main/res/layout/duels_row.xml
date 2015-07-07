@@ -24,15 +24,13 @@
                 android:id="@+id/nick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp"
                 android:maxLines="3" android:text="Lasse Bluten" android:singleLine="true"
                 android:textColor="@color/theme_primary"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="-5dp"
                 android:text="Du bist dran"
                 android:textAllCaps="true"
                 android:id="@+id/status" android:textSize="35dp" android:textColor="@color/theme_primary"

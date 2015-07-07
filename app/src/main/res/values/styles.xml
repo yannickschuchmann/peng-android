@@ -6,14 +6,14 @@
     </style>
 
     <style name="DigitsTheme"
-           parent="Theme.AppCompat.Light.NoActionBar">
+           parent="Theme.AppCompat.NoActionBar">
         <item name="android:textColorPrimary">
-            @color/theme_primary</item>
-        <item name="android:textColorSecondary">
-            @android:color/darker_gray</item>
-        <item name="android:windowBackground">
             @color/theme_window_background</item>
-        <item name="android:textColorLink">@color/theme_accent</item>
-        <item name="colorAccent">@color/theme_accent</item>
+        <item name="android:textColorSecondary">
+            @color/theme_window_background</item>
+        <item name="android:windowBackground">
+            @color/theme_accent</item>
+        <item name="android:textColorLink">@color/theme_window_background</item>
+        <item name="colorAccent">@color/theme_window_background</item>
     </style>
 </resources>

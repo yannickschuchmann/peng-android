@@ -20,7 +20,7 @@ public class TransitionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/futura-normal.ttf")
+                        .setDefaultFontPath("fonts/Futura-Extended.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );

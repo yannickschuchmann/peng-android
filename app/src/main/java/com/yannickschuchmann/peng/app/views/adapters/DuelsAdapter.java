@@ -56,7 +56,7 @@ public class DuelsAdapter extends RecyclerView.Adapter<DuelsAdapter.DuelsRowHold
         duelsRowHolder.mDuel = duel;
 
         User opponent = new User();
-        opponent.setNick("Angelo");
+        opponent.setNick("Gegnername");
 
 //        CharacterImage ci = new CharacterImage(mContext, duel);
 //        duelsRowHolder.thumbnail.setImageDrawable(ci.getBlueDrawable());

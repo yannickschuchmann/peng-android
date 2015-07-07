@@ -59,7 +59,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
         usersRowHolder.mUser = user;
         usersRowHolder.nick.setText(user.getNick());
         usersRowHolder.slogan.setText(user.getSlogan());
-        usersRowHolder.rank.setText(String.valueOf(user.getRank()));
+        usersRowHolder.rank.setText(String.valueOf(user.getRank()) + ". Platz");
     }
 
     @Override
