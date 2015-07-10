@@ -76,7 +76,7 @@ public class ProfileActivity extends TransitionActivity implements DuelBetDialog
     }
 
     public void startDuelActivity(Duel duel) {
-        Intent intent = new Intent(getContext(), DuelActivity.class);
+        Intent intent = new Intent(getContext(), SensorActivity.class);
         intent.putExtra("duelId", duel.id);
         startActivityWithAnimation(intent);
     }

@@ -155,7 +155,7 @@ public class MainActivity extends TransitionActivity implements MainView, DuelAd
     }
 
     public void onDuelClicked(Duel duel) {
-        Intent intent = new Intent(getContext(), DuelActivity.class);
+        Intent intent = new Intent(getContext(), SensorActivity.class);
         intent.putExtra("duelId", duel.id);
         startActivityWithAnimation(intent);
     }

@@ -1,0 +1,363 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".SensorActivity"
+    android:background="@drawable/duell_screen"
+    android:columnCount="19"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:id="@+id/mainLinearLayout"
+    android:clickable="true">
+
+    <Space
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.18" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="5px"
+            android:layout_height="5px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textLabelHealthEnemy"
+            android:id="@+id/textLabelHealthEnemy"
+            android:layout_marginTop="08dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_x="20dp"
+            android:layout_y="13dp"
+            android:layout_row="3"
+            android:layout_column="2"
+            android:layout_gravity="left|top" />
+
+        <Space
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_weight="0.66" />
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="23dp"
+            android:id="@+id/imageMagazineEnemy"
+            android:background="@drawable/magazin"
+            android:layout_alignTop="@+id/textLabelHealthEnemy"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:longClickable="true"
+            android:layout_gravity="right" />
+
+        <Space
+            android:layout_width="10px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageEnemyMag1"
+            android:layout_row="3"
+            android:layout_column="12"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentBottom="false"
+            android:layout_gravity="right" />
+
+        <Space
+            android:layout_width="5px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageEnemyMag2"
+            android:layout_row="3"
+            android:layout_column="13"
+            android:layout_gravity="right" />
+
+        <Space
+            android:layout_width="5px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageEnemyMag3"
+            android:layout_row="3"
+            android:layout_column="14"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.45"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="160dp"
+            android:id="@+id/imageEnemy"
+            android:layout_x="82dp"
+            android:layout_y="51dp"
+            android:layout_alignTop="@+id/textLabelX"
+            android:layout_alignRight="@+id/textLabelHealthEnemy"
+            android:layout_alignEnd="@+id/textLabelHealthEnemy"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="5"
+            android:layout_column="10"
+            android:layout_weight="0.36" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textLabelCountdown"
+            android:id="@+id/textLabelCountdown"
+            android:layout_marginTop="14dp"
+            android:editable="false"
+            android:layout_below="@+id/textLabelHealthEnemy"
+            android:layout_alignLeft="@+id/buttonStart"
+            android:layout_alignStart="@+id/buttonStart"
+            android:layout_x="101dp"
+            android:layout_y="241dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="6"
+            android:layout_column="10" />
+
+        <ImageView
+            android:layout_width="152dp"
+            android:layout_height="47dp"
+            android:id="@+id/imageResult"
+            android:layout_gravity="center_horizontal"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonStart"
+            android:id="@+id/buttonStart"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:enabled="true"
+            android:layout_x="122dp"
+            android:layout_y="192dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="7"
+            android:layout_column="10"
+            android:visibility="visible" />
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="160dp"
+            android:id="@+id/imageUser"
+            android:cropToPadding="true"
+            android:layout_below="@+id/textLabelZ"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/textLabelLoadedMagazineUser"
+            android:layout_x="52dp"
+            android:layout_y="244dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="8"
+            android:layout_column="10"
+            android:layout_weight="0.21" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_weight="0.91">
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageUserMag1"
+            android:layout_row="14"
+            android:layout_column="2" />
+
+        <Space
+            android:layout_width="5px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageUserMag2"
+            android:layout_row="14"
+            android:layout_column="3" />
+
+        <Space
+            android:layout_width="5px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageUserMag3"
+            android:layout_row="14"
+            android:layout_column="4"
+            android:focusableInTouchMode="true"
+            android:baselineAlignBottom="false" />
+
+        <Space
+            android:layout_width="10px"
+            android:layout_height="5px" />
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="23dp"
+            android:id="@+id/imageMagazineUser"
+            android:background="@drawable/magazin"
+            android:layout_alignTop="@+id/textLabelHealthEnemy"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Space
+            android:layout_width="245px"
+            android:layout_height="5px" />
+
+        <TextView
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textLabelHealthUser"
+            android:id="@+id/textLabelHealthUser"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="26dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_x="292dp"
+            android:layout_y="453dp"
+            android:layout_gravity="right"
+            android:layout_row="14"
+            android:layout_column="18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textLabelLoadedMagazineEnemy"
+            android:id="@+id/textLabelLoadedMagazineEnemy"
+            android:layout_alignTop="@+id/textLabelCountdown"
+            android:layout_toLeftOf="@+id/textLabelHealthUser"
+            android:layout_toStartOf="@+id/textLabelHealthUser"
+            android:layout_x="236dp"
+            android:layout_y="45dp"
+            android:layout_gravity="right"
+            android:layout_row="4"
+            android:layout_column="11"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textLabelLoadedMagazineUser"
+            android:id="@+id/textLabelLoadedMagazineUser"
+            android:layout_above="@+id/textLabelHealthUser"
+            android:layout_alignLeft="@+id/textLabelZ"
+            android:layout_alignStart="@+id/textLabelZ"
+            android:layout_marginBottom="43dp"
+            android:layout_x="24dp"
+            android:layout_y="433dp"
+            android:layout_row="14"
+            android:layout_column="9"
+            android:enabled="false"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/textLabelX"
+            android:id="@+id/textLabelX"
+            android:layout_below="@+id/textLabelSensoren"
+            android:layout_alignLeft="@+id/textLabelHealthEnemy"
+            android:layout_alignStart="@+id/textLabelHealthEnemy"
+            android:layout_x="37dp"
+            android:layout_y="81dp"
+            android:layout_row="9"
+            android:layout_column="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/textLabelY"
+            android:id="@+id/textLabelY"
+            android:layout_below="@+id/textLabelX"
+            android:layout_alignLeft="@+id/textLabelX"
+            android:layout_alignStart="@+id/textLabelX"
+            android:layout_x="37dp"
+            android:layout_y="97dp"
+            android:layout_row="10"
+            android:layout_column="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/textLabelZ"
+            android:id="@+id/textLabelZ"
+            android:layout_below="@+id/textLabelY"
+            android:layout_alignLeft="@+id/textLabelY"
+            android:layout_alignStart="@+id/textLabelY"
+            android:layout_x="38dp"
+            android:layout_y="112dp"
+            android:layout_row="11"
+            android:layout_column="10"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="P"
+            android:id="@+id/textLabelProximity"
+            android:layout_below="@+id/textLabelY"
+            android:layout_alignLeft="@+id/textLabelY"
+            android:layout_alignStart="@+id/textLabelY"
+            android:layout_x="38dp"
+            android:layout_y="112dp"
+            android:layout_row="12"
+            android:layout_column="10"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -37,7 +38,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".views.activities.DuelActivity"
+            android:name=".views.activities.SensorActivity"
             android:label="@string/title_activity_duel"
             android:screenOrientation="portrait" >
         </activity>
