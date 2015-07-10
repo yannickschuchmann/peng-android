@@ -1,7 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
 import android.content.Intent;
-import butterknife.Bind;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.activities.ProfileActivity;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
@@ -9,6 +8,7 @@ import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
 import com.yannickschuchmann.peng.model.rest.services.UserService;
+import com.yannickschuchmann.peng.app.socket.SocketAPI;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -35,6 +35,7 @@ public class MainPresenter extends Presenter {
             @Override
             public void success(User user, Response response) {
                 currentUser.setUser(user);
+                SocketAPI.getInstance(mView.getContext());
 
                 if (user.getNick() == null || user.getNick().equals("")) {
                     Intent intent;
@@ -58,6 +59,7 @@ public class MainPresenter extends Presenter {
 
             }
         });
+
     }
 
     @Override

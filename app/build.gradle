@@ -31,6 +31,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
     }
+    packagingOptions {
+
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -52,8 +58,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     compile 'com.jakewharton:butterknife:7.0.0'
 
-    compile 'com.github.nkzawa:socket.io-client:0.5.1'
-    compile 'com.github.nkzawa:engine.io-client:0.5.1'
+    compile 'br.net.bmobile:websocketrails-android:1.0.2'
 
     compile project(':model')
     compile project(':common')
