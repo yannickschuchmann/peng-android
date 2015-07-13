@@ -10,6 +10,8 @@ public class Actor {
     private int hitPoints;
     private int shots;
     private String type;
+    private String nick;
+    private String characterName;
 
     public int getId() {
         return id;
@@ -57,5 +59,21 @@ public class Actor {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 }

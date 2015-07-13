@@ -110,8 +110,6 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
         textLabelHealthUser.setText(Integer.toString(mMe.getHitPoints()));
         textLabelHealthEnemy.setText(Integer.toString(mOpponent.getHitPoints()));
-//        textLabelLoadedMagazineUser.setText(Boolean.toString(userCharacter.getWeaponLoaded()));
-//        textLabelLoadedMagazineEnemy.setText(Boolean.toString(enemyCharacter.getWeaponLoaded()));
 
         Drawable user = getResources().getDrawable(R.drawable.blue_waits);
         imageUser.setImageDrawable(user);

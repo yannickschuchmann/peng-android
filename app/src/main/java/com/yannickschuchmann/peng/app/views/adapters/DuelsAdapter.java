@@ -13,6 +13,7 @@ import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
+import com.yannickschuchmann.peng.model.entities.Actor;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
@@ -51,15 +52,12 @@ public class DuelsAdapter extends RecyclerView.Adapter<DuelsAdapter.DuelsRowHold
     @Override
     public void onBindViewHolder(DuelsRowHolder duelsRowHolder, int i) {
         Duel duel = duels.get(i);
-
-
         duelsRowHolder.mDuel = duel;
 
-        User opponent = new User();
-        opponent.setNick("Gegnername");
+        Actor opponent = duel.getOpponent();
 
-//        CharacterImage ci = new CharacterImage(mContext, duel);
-//        duelsRowHolder.thumbnail.setImageDrawable(ci.getBlueDrawable());
+        CharacterImage ci = new CharacterImage(mContext, opponent.getCharacterName());
+        duelsRowHolder.thumbnail.setImageDrawable(ci.getBlueDrawable());
         duelsRowHolder.nick.setText(opponent.getNick());
         duelsRowHolder.bet.setText(duel.getBet());
         duelsRowHolder.status.setText(duel.getStatus());
