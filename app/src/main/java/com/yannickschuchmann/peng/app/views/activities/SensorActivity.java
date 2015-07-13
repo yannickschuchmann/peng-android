@@ -23,11 +23,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import android.media.MediaPlayer;
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.presenters.SensorPresenter;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.AverageMovementCalculation;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
+import com.yannickschuchmann.peng.app.views.views.SensorView;
 
 
-public class SensorActivity extends Activity implements View.OnClickListener {
+public class SensorActivity extends TransitionActivity implements SensorView, View.OnClickListener {
 
     //*****************VARIABLES*****************
     private Button buttonStartClick;
@@ -46,11 +48,14 @@ public class SensorActivity extends Activity implements View.OnClickListener {
     private Thread averageMovementCalculationThread;
     private LinearLayout mainLinearLayout;
 
+    private SensorPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
+
+        mPresenter = new SensorPresenter(this, getIntent().getIntExtra("duelId", 0));
 
         //*********************CONSTRUCTORS*********************
         vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
@@ -119,6 +124,12 @@ public class SensorActivity extends Activity implements View.OnClickListener {
 
         setMagazineImageByNumberOfBulletsLoaded(0, "e");
         setMagazineImageByNumberOfBulletsLoaded(0, "u");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.start();
     }
 
     public void onResume() {
@@ -372,5 +383,10 @@ public class SensorActivity extends Activity implements View.OnClickListener {
                 mediaPlayer.start();
                 break;
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
