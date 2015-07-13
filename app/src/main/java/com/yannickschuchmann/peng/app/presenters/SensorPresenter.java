@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
 import com.yannickschuchmann.peng.app.views.views.SensorView;
@@ -38,7 +39,11 @@ public class SensorPresenter extends Presenter {
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(
+                        mView.getContext().getApplicationContext(),
+                        "ups, da ist was schief gegangen",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         });
     }
@@ -60,7 +65,11 @@ public class SensorPresenter extends Presenter {
 
                 @Override
                 public void failure(RetrofitError error) {
-
+                    Toast.makeText(
+                            mView.getContext().getApplicationContext(),
+                            "ups, da ist was schief gegangen",
+                            Toast.LENGTH_SHORT
+                    ).show();
                 }
         });
     }

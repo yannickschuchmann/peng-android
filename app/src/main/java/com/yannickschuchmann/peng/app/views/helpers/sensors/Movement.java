@@ -32,16 +32,12 @@ public class Movement {
         // no string switch statements in Java 6
         if (string.equals("defensive")) {
             result = 0;
-
         } else if (string.equals("offensive")) {
             result = 1;
-
         } else if (string.equals("neutral")) {
             result = 2;
-
         } else {
             result = 0;
-
         }
         return result;
     }

@@ -52,7 +52,11 @@ public class CharacterPagerPresenter extends Presenter {
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(
+                        mView.getContext().getApplicationContext(),
+                        "ups, da ist was schief gegangen",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         });
     }

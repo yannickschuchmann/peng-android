@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
@@ -33,7 +34,11 @@ public class NewDuelPresenter extends Presenter {
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(
+                        mView.getContext().getApplicationContext(),
+                        "ups, da ist was schief gegangen",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         });
     }

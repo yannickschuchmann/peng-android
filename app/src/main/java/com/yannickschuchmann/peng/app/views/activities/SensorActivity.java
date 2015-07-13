@@ -167,39 +167,34 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                 }
 
                 public void onFinish() {
+                    int result;
+                    tempX = x;
+                    tempY = y;
+                    tempZ = z;
+                    tempP = p;
+                    result = movement.movementResult(tempX, tempY, tempZ, tempP);
+                    textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
 
-                    if(true /*y>-6*/) {//Ausgangslage ist jetzt erstmal beliebig!
-                        int result;
-                        tempX = x;
-                        tempY = y;
-                        tempZ = z;
-                        tempP = p;
-                        result = movement.movementResult(tempX, tempY, tempZ, tempP);
-                        textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
+                    movementSound(result);
 
-                        movementSound(result);
-
-                        try {
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        vibrator.vibrate(50);
-                        try {
-                            Thread.sleep(150);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        vibrator.vibrate(50);
-
-                        mPresenter.setResult(result);
-
-                        setActionImageByMovementCode(result, "e");
-                        setActionImageByMovementCode(result, "u");
-
-                    }else{
-                        textLabelCountdown.setText("Keine Bewegung erkannt");
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    vibrator.vibrate(50);
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    vibrator.vibrate(50);
+
+                    mPresenter.setResult(result);
+
+                    // for now movement is set for own character,
+                    // if this is not the desired behaviour we should remove this line
+                    setActionImageByMovementCode(result, "u");
                 }
             }.start();
         } else {
@@ -236,25 +231,18 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     imageUser.setImageDrawable(defense);
                     Drawable defenseView = getResources().getDrawable(R.drawable.verteidigt);
                     imageResult.setImageDrawable(defenseView);
-
                     break;
                 case 1:
                     Drawable attack = getResources().getDrawable(R.drawable.blue_shoots);
                     imageUser.setImageDrawable(attack);
                     Drawable attackView = getResources().getDrawable(R.drawable.schuss);
                     imageResult.setImageDrawable(attackView);
-
-//                    userCharacter.setCharacterMagazine(userCharacter.getCharacterMagazine() - 1);            //MAGAZIN WIRD HIER GESETZT ZUR DEMONSTRATION
-//                    setMagazineImageByNumberOfBulletsLoaded(userCharacter.getCharacterMagazine(), "u");
                     break;
                 case 2:
                     Drawable reload = getResources().getDrawable(R.drawable.blue_reloads);
                     imageUser.setImageDrawable(reload);
                     Drawable reloadView = getResources().getDrawable(R.drawable.nachladen);
                     imageResult.setImageDrawable(reloadView);
-
-//                    userCharacter.setCharacterMagazine(userCharacter.getCharacterMagazine() + 1);            //MAGAZIN WIRD HIER GESETZT ZUR DEMONSTRATION
-//                    setMagazineImageByNumberOfBulletsLoaded(userCharacter.getCharacterMagazine(), "u");
                     break;
                 case 3:
                     Drawable wait = getResources().getDrawable(R.drawable.blue_waits);

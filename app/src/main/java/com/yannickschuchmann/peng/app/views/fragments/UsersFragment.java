@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
@@ -69,7 +70,11 @@ public class UsersFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(
+                        mView.getContext().getApplicationContext(),
+                        "ups, da ist was schief gegangen",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
         });
     }

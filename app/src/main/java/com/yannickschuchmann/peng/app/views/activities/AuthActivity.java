@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.digits.sdk.android.*;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterAuthToken;
@@ -67,7 +68,11 @@ public class AuthActivity extends TransitionActivity {
 
                             @Override
                             public void failure(RetrofitError error) {
-
+                                Toast.makeText(
+                                        getContext().getApplicationContext(),
+                                        "ups, da ist was schief gegangen",
+                                        Toast.LENGTH_SHORT
+                                ).show();
                             }
                         });
             }
