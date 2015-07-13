@@ -1,8 +1,6 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,43 +8,61 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.support.annotation.MainThread;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import android.media.MediaPlayer;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.SensorPresenter;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.AverageMovementCalculation;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
 import com.yannickschuchmann.peng.app.views.views.SensorView;
+import com.yannickschuchmann.peng.model.entities.Actor;
+import com.yannickschuchmann.peng.model.entities.Duel;
 
 
-public class SensorActivity extends TransitionActivity implements SensorView, View.OnClickListener {
+public class SensorActivity extends TransitionActivity implements SensorView {
 
     //*****************VARIABLES*****************
-    private Button buttonStartClick;
+    @Bind(R.id.buttonStart) Button buttonStartClick;
     private Vibrator vibrator;
     private SensorManager sensorManager;
     private Sensor sensor, proximitySensor;
-    private TextView textLabelX, textLabelY, textLabelZ, textLabelProximity,textLabelHealthEnemy, textLabelHealthUser, textLabelLoadedMagazineEnemy, textLabelLoadedMagazineUser, textLabelCountdown;
-    private Character enemyCharacter, userCharacter;
+    @Bind(R.id.textLabelX) TextView textLabelX;
+    @Bind(R.id.textLabelY) TextView textLabelY;
+    @Bind(R.id.textLabelZ) TextView textLabelZ;
+    @Bind(R.id.textLabelProximity) TextView textLabelProximity;
+    @Bind(R.id.textLabelHealthEnemy) TextView textLabelHealthEnemy;
+    @Bind(R.id.textLabelHealthUser) TextView textLabelHealthUser;
+    @Bind(R.id.textLabelLoadedMagazineEnemy) TextView textLabelLoadedMagazineEnemy;
+    @Bind(R.id.textLabelLoadedMagazineUser) TextView textLabelLoadedMagazineUser;
+    @Bind(R.id.textLabelCountdown) TextView textLabelCountdown;
+
+    @Bind(R.id.imageUser) ImageView imageUser;
+    @Bind(R.id.imageEnemy) ImageView imageEnemy;
+    @Bind(R.id.imageUserMag1) ImageView imageUserMag1;
+    @Bind(R.id.imageUserMag2) ImageView imageUserMag2;
+    @Bind(R.id.imageUserMag3) ImageView imageUserMag3;
+    @Bind(R.id.imageEnemyMag1) ImageView imageEnemyMag1;
+    @Bind(R.id.imageEnemyMag2) ImageView imageEnemyMag2;
+    @Bind(R.id.imageEnemyMag3) ImageView imageEnemyMag3;
+    @Bind(R.id.imageResult) ImageView imageResult;
+    @Bind(R.id.mainLinearLayout) LinearLayout mainLinearLayout;
+
+    private Actor mMe, mOpponent;
     private Movement movement;
     private float x, y, z, p, tempX, tempY, tempZ, tempP;
-    private ImageView imageUser, imageEnemy, imageUserMag1, imageUserMag2, imageUserMag3, imageEnemyMag1, imageEnemyMag2, imageEnemyMag3, imageResult;
     private ArrayList <Integer> arrayListX = new ArrayList<Integer>();
     private ArrayList <Integer> arrayListY = new ArrayList<Integer>();
     private ArrayList <Integer> arrayListZ = new ArrayList<Integer>();
     private AverageMovementCalculation averageMovementCalculation;
     private Thread averageMovementCalculationThread;
-    private LinearLayout mainLinearLayout;
 
     private SensorPresenter mPresenter;
 
@@ -57,6 +73,8 @@ public class SensorActivity extends TransitionActivity implements SensorView, Vi
 
         mPresenter = new SensorPresenter(this, getIntent().getIntExtra("duelId", 0));
 
+        ButterKnife.bind(this);
+
         //*********************CONSTRUCTORS*********************
         vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
 
@@ -64,66 +82,9 @@ public class SensorActivity extends TransitionActivity implements SensorView, Vi
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
-        buttonStartClick = (Button) findViewById(R.id.buttonStart);
-        mainLinearLayout = (LinearLayout) findViewById(R.id.mainLinearLayout);
-
-        textLabelX = (TextView) findViewById(R.id.textLabelX);
-        textLabelY = (TextView) findViewById(R.id.textLabelY);
-        textLabelZ = (TextView) findViewById(R.id.textLabelZ);
-        textLabelProximity = (TextView) findViewById(R.id.textLabelProximity);
-        textLabelHealthEnemy = (TextView) findViewById(R.id.textLabelHealthEnemy);
-        textLabelHealthUser = (TextView) findViewById(R.id.textLabelHealthUser);
-        textLabelLoadedMagazineEnemy = (TextView) findViewById(R.id.textLabelLoadedMagazineEnemy);
-        textLabelLoadedMagazineUser = (TextView) findViewById(R.id.textLabelLoadedMagazineUser);
-        textLabelCountdown = (TextView) findViewById(R.id.textLabelCountdown);
-        imageUser = (ImageView) findViewById(R.id.imageUser);
-        imageEnemy = (ImageView) findViewById(R.id.imageEnemy);
-        imageEnemyMag1 = (ImageView) findViewById(R.id.imageEnemyMag1);
-        imageEnemyMag2 = (ImageView) findViewById(R.id.imageEnemyMag2);
-        imageEnemyMag3 = (ImageView) findViewById(R.id.imageEnemyMag3);
-        imageUserMag1 = (ImageView) findViewById(R.id.imageUserMag1);
-        imageUserMag2 = (ImageView) findViewById(R.id.imageUserMag2);
-        imageUserMag3 = (ImageView) findViewById(R.id.imageUserMag3);
-        imageResult = (ImageView) findViewById(R.id.imageResult);
-
         movement = new Movement();
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
-//        enemyCharacter = new Character("Enemy Character");
-//        userCharacter = new Character("User Character");
-
-        //*********************SET LISTENER*********************
-        buttonStartClick.setOnClickListener(this);
-
-        //Set default character Attributes (later with database values)
-//        enemyCharacter.setCharacterHealth(3);
-//        enemyCharacter.setMaxNumberOfBullets(3);
-//        enemyCharacter.setCharacterMagazine(0);
-//        enemyCharacter.setWeaponLoaded(false);
-//        enemyCharacter.setCharacterMagazine(0);
-//
-//        userCharacter.setCharacterHealth(3);
-//        userCharacter.setMaxNumberOfBullets(3);
-//        userCharacter.setCharacterMagazine(0);
-//        userCharacter.setWeaponLoaded(false);
-//        userCharacter.setCharacterMagazine(0);
-
-
-        //*****************SET LABELS*****************
-//        textLabelHealthEnemy.setText(Integer.toString(enemyCharacter.getHealth()));
-//        textLabelHealthUser.setText(Integer.toString(userCharacter.getHealth()));
-//        textLabelLoadedMagazineEnemy.setText(Boolean.toString(enemyCharacter.getWeaponLoaded()));
-//        textLabelLoadedMagazineUser.setText(Boolean.toString(userCharacter.getWeaponLoaded()));
-
-        Drawable user = getResources().getDrawable(R.drawable.blue_waits);
-        imageUser.setImageDrawable(user);
-        Drawable ready = getResources().getDrawable(R.drawable.bereit);
-        imageResult.setImageDrawable(ready);
-        Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
-        imageEnemy.setImageDrawable(enemy);
-
-        setMagazineImageByNumberOfBulletsLoaded(0, "e");
-        setMagazineImageByNumberOfBulletsLoaded(0, "u");
     }
 
     @Override
@@ -140,6 +101,30 @@ public class SensorActivity extends TransitionActivity implements SensorView, Vi
     public void onStop() {
         super.onStop();
         unregisterListenerAccelerometer();
+    }
+
+    public void setupView(Duel duel) {
+
+        mMe = duel.getMe();
+        mOpponent = duel.getOpponent();
+
+        textLabelHealthUser.setText(Integer.toString(mMe.getHitPoints()));
+        textLabelHealthEnemy.setText(Integer.toString(mOpponent.getHitPoints()));
+//        textLabelLoadedMagazineUser.setText(Boolean.toString(userCharacter.getWeaponLoaded()));
+//        textLabelLoadedMagazineEnemy.setText(Boolean.toString(enemyCharacter.getWeaponLoaded()));
+
+        Drawable user = getResources().getDrawable(R.drawable.blue_waits);
+        imageUser.setImageDrawable(user);
+        Drawable ready = getResources().getDrawable(R.drawable.bereit);
+        imageResult.setImageDrawable(ready);
+        Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
+        imageEnemy.setImageDrawable(enemy);
+
+        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
+        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
+
+        setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
+        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -165,73 +150,70 @@ public class SensorActivity extends TransitionActivity implements SensorView, Vi
         }
     };
 
-    @Override
-    public void onClick(View v) {
-        //Switch for different buttons
-        switch (v.getId()){
-            case R.id.buttonStart:
-                if(true /*movement.checkIfWaitPosition(x, y, z)*/){     //Ausgangslage ist jetzt erstmal beliebig!
-                    textLabelCountdown.setText("Countdown start");
-                    vibrator.vibrate(100);
 
-                    new CountDownTimer(5000, 1000){             //Countdown before move
-                        public void onTick(long millisUntilFinished) {
-                            textLabelCountdown.setText("Countdown: " + ((millisUntilFinished / 1000) - 1));
-                            if( (millisUntilFinished / 1000) <= 1 ){
-                                textLabelCountdown.setText("Bewegen");
-                                vibrator.vibrate(1000);
-                            }else{
-                                vibrator.vibrate(100);
-                            }
-                        }
+    @OnClick(R.id.buttonStart)
+    public void onButtonStart() {
+        if(true /*movement.checkIfWaitPosition(x, y, z)*/){     //Ausgangslage ist jetzt erstmal beliebig!
+            textLabelCountdown.setText("Countdown start");
+            vibrator.vibrate(100);
 
-                        public void onFinish() {
-
-                            if(true /*y>-6*/) {//Ausgangslage ist jetzt erstmal beliebig!
-                                int result;
-                                tempX = x;
-                                tempY = y;
-                                tempZ = z;
-                                tempP = p;
-                                result = movement.movementResult(tempX, tempY, tempZ, tempP);
-                                textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
-
-                                movementSound(result);
-
-                                try {
-                                    Thread.sleep(50);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                vibrator.vibrate(50);
-                                try {
-                                    Thread.sleep(150);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                vibrator.vibrate(50);
-
-                                setActionImageByMovementCode(result, "e");
-                                setActionImageByMovementCode(result, "u");
-
-                            }else{
-                                textLabelCountdown.setText("Keine Bewegung erkannt");
-                            }
-                        }
-                    }.start();
+            new CountDownTimer(5000, 1000){             //Countdown before move
+                public void onTick(long millisUntilFinished) {
+                    textLabelCountdown.setText("Countdown: " + ((millisUntilFinished / 1000) - 1));
+                    if( (millisUntilFinished / 1000) <= 1 ){
+                        textLabelCountdown.setText("Bewegen");
+                        vibrator.vibrate(1000);
+                    }else{
+                        vibrator.vibrate(100);
+                    }
                 }
-                else{
-                    textLabelCountdown.setText("Startposition einnehmen");
+
+                public void onFinish() {
+
+                    if(true /*y>-6*/) {//Ausgangslage ist jetzt erstmal beliebig!
+                        int result;
+                        tempX = x;
+                        tempY = y;
+                        tempZ = z;
+                        tempP = p;
+                        result = movement.movementResult(tempX, tempY, tempZ, tempP);
+                        textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
+
+                        movementSound(result);
+
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        vibrator.vibrate(50);
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        vibrator.vibrate(50);
+
+                        mPresenter.setResult(result);
+
+                        setActionImageByMovementCode(result, "e");
+                        setActionImageByMovementCode(result, "u");
+
+                    }else{
+                        textLabelCountdown.setText("Keine Bewegung erkannt");
+                    }
                 }
-                break;
+            }.start();
+        } else {
+            textLabelCountdown.setText("Startposition einnehmen");
         }
     }
 
     public void setActionImageByMovementCode(int movementCode, String userType){
         //This Method change the image to the given movement code
         //User types: e = enemy, u = user
-        if(userType == "e"){
-            switch (movementCode){
+        if (userType == "e"){
+            switch (movementCode) {
                 case 0:
                     Drawable defense = getResources().getDrawable(R.drawable.red_protects);
                     imageEnemy.setImageDrawable(defense);
@@ -249,7 +231,7 @@ public class SensorActivity extends TransitionActivity implements SensorView, Vi
                     imageEnemy.setImageDrawable(wait);
                     break;
             }
-        }else {
+        } else {
             switch (movementCode) {
                 case 0:
                     Drawable defense = getResources().getDrawable(R.drawable.blue_protects);

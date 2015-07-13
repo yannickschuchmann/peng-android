@@ -8,6 +8,44 @@ public class Movement {
 
     }
 
+    public static String ResultCodeToString(int result) {
+        String action_type;
+        switch (result) {
+            case 0:
+                action_type = "defensive";
+                break;
+            case 1:
+                action_type = "offensive";
+                break;
+            case 2:
+                action_type = "neutral";
+                break;
+            default:
+                action_type = "defensive";
+                break;
+        }
+        return action_type;
+    }
+
+    public static int StringToResultCode(String string) {
+        int result;
+        // no string switch statements in Java 6
+        if (string.equals("defensive")) {
+            result = 0;
+
+        } else if (string.equals("offensive")) {
+            result = 1;
+
+        } else if (string.equals("neutral")) {
+            result = 2;
+
+        } else {
+            result = 0;
+
+        }
+        return result;
+    }
+
     public int movementResult(float x, float y, float z, float p){
         /*
             x, y, z are the axis from the Accelerometer

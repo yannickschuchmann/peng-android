@@ -1,6 +1,7 @@
 package com.yannickschuchmann.peng.app.presenters;
 
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
 import com.yannickschuchmann.peng.app.views.views.SensorView;
 import com.yannickschuchmann.peng.app.views.views.SettingsView;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -18,6 +19,7 @@ public class SensorPresenter extends Presenter {
     private SensorView mView;
     private int mDuelId;
     private DuelService mDuelService;
+    private Duel mDuel;
     public SensorPresenter(SensorView view, int duelId) {
         mDuelId = duelId;
         mView = view;
@@ -30,7 +32,8 @@ public class SensorPresenter extends Presenter {
         mDuelService.getDuel(mDuelId, CurrentUser.getInstance(mView.getContext()).getUserId(), new Callback<Duel>() {
             @Override
             public void success(Duel duel, Response response) {
-                
+                mDuel = duel;
+                mView.setupView(duel);
             }
 
             @Override
@@ -43,5 +46,22 @@ public class SensorPresenter extends Presenter {
     @Override
     public void stop() {
 
+    }
+
+    public void setResult(int result) {
+        if (mDuel == null) return;
+        mDuelService.postAction(mDuel.id, mDuel.getMe().getUserId(), Movement.ResultCodeToString(result),
+            new Callback<Duel>() {
+                @Override
+                public void success(Duel duel, Response response) {
+                    mDuel = duel;
+                    mView.setupView(duel);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+
+                }
+        });
     }
 }

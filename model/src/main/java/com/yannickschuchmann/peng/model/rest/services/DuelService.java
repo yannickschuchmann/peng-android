@@ -24,7 +24,6 @@ public interface DuelService {
     @POST("/api/v1/duels/{id}")
     void postAction(@Path("id") int id,
                     @Field("user_id") int userId,
-                    @Field("opponent_id") int opponentId,
                     @Field("action_type") String actionType,
                     Callback<Duel> cb);
 }
