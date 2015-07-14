@@ -67,17 +67,39 @@ public class SocketAPI {
             @Override
             public void onDataAvailable(Object data) {
                 LinkedHashMap map = (LinkedHashMap) data;
-                LinkedHashMap duelMap = (LinkedHashMap) map.get("duel");
-                Duel duel = mapper.convertValue(duelMap, Duel.class);
-
+                Duel duel = mapper.convertValue(map, Duel.class);
 
                 NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(mContext.NOTIFICATION_SERVICE);
 
                 Intent mIntent = new Intent(mContext, SensorActivity.class);
+                mIntent.putExtra("duelId", duel.id);
                 PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
                 builder.setContentTitle("Du wurdest herausgefordert!");
-                builder.setContentText(String.valueOf(duel.id));
+                builder.setContentText("Von " + duel.getOpponent().getNick());
+                builder.setSmallIcon(R.drawable.character_cowboy);
+                builder.setContentIntent(pendingIntent);
+                builder.setLights(0xffff0000, 1000, 1000);
+                builder.setColor(0xff00ff00);
+
+                notificationManager.notify(762, builder.build());
+            }
+        });
+
+        mDispatcher.bind("duels.action_posted", new WebSocketRailsDataCallback() {
+            @Override
+            public void onDataAvailable(Object data) {
+                LinkedHashMap map = (LinkedHashMap) data;
+                Duel duel = mapper.convertValue(map, Duel.class);
+
+                NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(mContext.NOTIFICATION_SERVICE);
+
+                Intent mIntent = new Intent(mContext, SensorActivity.class);
+                mIntent.putExtra("duelId", duel.id);
+                PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+                builder.setContentTitle("Du bist dran!");
+                builder.setContentText("Gegen " + duel.getOpponent().getNick());
                 builder.setSmallIcon(R.drawable.character_cowboy);
                 builder.setContentIntent(pendingIntent);
                 builder.setLights(0xffff0000, 1000, 1000);

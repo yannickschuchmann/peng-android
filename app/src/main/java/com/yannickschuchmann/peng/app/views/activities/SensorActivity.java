@@ -130,17 +130,17 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         Drawable resultImage =
                 duel.getResult().equals("hit") ? attackDrawable :
                 duel.getResult().equals("blocked") ? defenseDrawable :
+                duel.getResult().equals("nothing") ? readyDrawable :
+                duel.getResult().equals("won") ? readyDrawable :
+                duel.getResult().equals("lost") ? readyDrawable :
                 readyDrawable;
 
         imageResult.setImageDrawable(resultImage);
+        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
+        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
 
         setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
         setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
-
-        if (update) {
-            setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
-            setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
-        }
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -212,7 +212,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
                     // for now movement is set for own character,
                     // if this is not the desired behaviour we should remove this line
-//                    setActionImageByMovementCode(result, "u");
+                    // setActionImageByMovementCode(result, "u");
                 }
             }.start();
         } else {
