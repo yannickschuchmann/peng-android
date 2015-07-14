@@ -34,7 +34,7 @@ public class SensorPresenter extends Presenter {
             @Override
             public void success(Duel duel, Response response) {
                 mDuel = duel;
-                mView.setupView(duel);
+                mView.setupView(duel, true);
             }
 
             @Override
@@ -53,14 +53,19 @@ public class SensorPresenter extends Presenter {
 
     }
 
+    public Duel getDuel() {
+        return mDuel;
+    }
+
     public void setResult(int result) {
         if (mDuel == null) return;
+
         mDuelService.postAction(mDuel.id, mDuel.getMe().getUserId(), Movement.ResultCodeToString(result),
             new Callback<Duel>() {
                 @Override
                 public void success(Duel duel, Response response) {
                     mDuel = duel;
-                    mView.setupView(duel);
+                    mView.setupView(duel, duel.isMyTurn());
                 }
 
                 @Override

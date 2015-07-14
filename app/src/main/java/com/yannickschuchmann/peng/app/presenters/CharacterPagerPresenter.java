@@ -1,11 +1,8 @@
 package com.yannickschuchmann.peng.app.presenters;
 
-import android.content.Context;
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
-import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.CharacterPagerView;
-import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.entities.Character;
 import com.yannickschuchmann.peng.model.rest.RestSource;
@@ -27,7 +24,7 @@ public class CharacterPagerPresenter extends Presenter {
     private UserService mUserService;
     private Character mActiveCharacter;
     private List<Character> mCharacters;
-    private int mActiveIndex;
+    private int mActiveId;
 
     public CharacterPagerPresenter(CharacterPagerView view) {
         mView = view;
@@ -40,14 +37,18 @@ public class CharacterPagerPresenter extends Presenter {
 
         mView.setToolbarTitle("Charakter");
 
-        mActiveIndex = CurrentUser.getInstance(mView.getContext()).getCharacterId();
+        mActiveId = CurrentUser.getInstance(mView.getContext()).getCharacterId();
 
         mService.getCharacters(new Callback<List<Character>>() {
             @Override
             public void success(List<Character> characters, Response response) {
                 mCharacters = characters;
-                mActiveCharacter = characters.get(mActiveIndex);
-                mView.setPagerAdapter(characters, mActiveIndex);
+                int activeCharacterIndex = 0;
+                for (int i = 0; i < characters.size(); i++) {
+                    if (characters.get(i).id == mActiveId) activeCharacterIndex = i;
+                }
+                mActiveCharacter = characters.get(activeCharacterIndex);
+                mView.setPagerAdapter(characters, activeCharacterIndex);
             }
 
             @Override

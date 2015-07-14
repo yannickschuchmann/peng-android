@@ -46,6 +46,6 @@ public class CurrentUser {
     }
 
     public int getCharacterId() {
-        return mUser.getCharacterOrder();
+        return mUser.characterId;
     }
 }

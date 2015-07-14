@@ -64,6 +64,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     private AverageMovementCalculation averageMovementCalculation;
     private Thread averageMovementCalculationThread;
 
+    private Drawable defenseDrawable;
+    private Drawable attackDrawable;
+    private Drawable reloadDrawable;
+    private Drawable readyDrawable;
+
     private SensorPresenter mPresenter;
 
     @Override
@@ -85,6 +90,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         movement = new Movement();
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
+
+        defenseDrawable = getResources().getDrawable(R.drawable.verteidigt);
+        attackDrawable = getResources().getDrawable(R.drawable.schuss);
+        reloadDrawable = getResources().getDrawable(R.drawable.nachladen);
+        readyDrawable = getResources().getDrawable(R.drawable.bereit);
     }
 
     @Override
@@ -103,7 +113,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         unregisterListenerAccelerometer();
     }
 
-    public void setupView(Duel duel) {
+    public void setupView(Duel duel, boolean update) {
 
         mMe = duel.getMe();
         mOpponent = duel.getOpponent();
@@ -113,16 +123,24 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
         Drawable user = getResources().getDrawable(R.drawable.blue_waits);
         imageUser.setImageDrawable(user);
-        Drawable ready = getResources().getDrawable(R.drawable.bereit);
-        imageResult.setImageDrawable(ready);
         Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
         imageEnemy.setImageDrawable(enemy);
 
-        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
-        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
 
+        Drawable resultImage =
+                duel.getResult().equals("hit") ? attackDrawable :
+                duel.getResult().equals("blocked") ? defenseDrawable :
+                readyDrawable;
+
+        imageResult.setImageDrawable(resultImage);
+
+        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
         setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
-        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
+
+        if (update) {
+            setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
+            setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
+        }
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -151,7 +169,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
     @OnClick(R.id.buttonStart)
     public void onButtonStart() {
-        if(true /*movement.checkIfWaitPosition(x, y, z)*/){     //Ausgangslage ist jetzt erstmal beliebig!
+        if (mPresenter.getDuel().isMyTurn()) {
             textLabelCountdown.setText("Countdown start");
             vibrator.vibrate(100);
 
@@ -194,7 +212,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
                     // for now movement is set for own character,
                     // if this is not the desired behaviour we should remove this line
-                    setActionImageByMovementCode(result, "u");
+//                    setActionImageByMovementCode(result, "u");
                 }
             }.start();
         } else {
@@ -229,26 +247,18 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                 case 0:
                     Drawable defense = getResources().getDrawable(R.drawable.blue_protects);
                     imageUser.setImageDrawable(defense);
-                    Drawable defenseView = getResources().getDrawable(R.drawable.verteidigt);
-                    imageResult.setImageDrawable(defenseView);
                     break;
                 case 1:
                     Drawable attack = getResources().getDrawable(R.drawable.blue_shoots);
                     imageUser.setImageDrawable(attack);
-                    Drawable attackView = getResources().getDrawable(R.drawable.schuss);
-                    imageResult.setImageDrawable(attackView);
                     break;
                 case 2:
                     Drawable reload = getResources().getDrawable(R.drawable.blue_reloads);
                     imageUser.setImageDrawable(reload);
-                    Drawable reloadView = getResources().getDrawable(R.drawable.nachladen);
-                    imageResult.setImageDrawable(reloadView);
                     break;
                 case 3:
                     Drawable wait = getResources().getDrawable(R.drawable.blue_waits);
                     imageUser.setImageDrawable(wait);
-                    Drawable ready = getResources().getDrawable(R.drawable.bereit);
-                    imageResult.setImageDrawable(ready);
                     break;
             }
         }

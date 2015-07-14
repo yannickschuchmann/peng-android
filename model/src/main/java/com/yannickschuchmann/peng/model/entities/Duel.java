@@ -10,6 +10,16 @@ public class Duel {
     private Action myAction;
     private Action opponentAction;
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    private String result;
+
     public int getId() {
         return id;
     }
