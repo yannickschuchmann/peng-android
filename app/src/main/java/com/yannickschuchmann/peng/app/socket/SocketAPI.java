@@ -10,8 +10,10 @@ import br.net.bmobile.websocketrails.WebSocketRailsDataCallback;
 import br.net.bmobile.websocketrails.WebSocketRailsDispatcher;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yannickschuchmann.peng.app.BusProvider;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.events.ActionPostedEvent;
 import com.yannickschuchmann.peng.app.receiver.DuelReceiver;
 import com.yannickschuchmann.peng.app.services.DuelNotificationService;
 import com.yannickschuchmann.peng.app.views.activities.SensorActivity;
@@ -29,7 +31,7 @@ import java.util.LinkedHashMap;
  */
 public class SocketAPI {
     private static SocketAPI mInstance = null;
-    private WebSocketRailsDispatcher mDispatcher;
+    private static WebSocketRailsDispatcher mDispatcher;
     private Context mContext;
 
     private ObjectMapper mapper = new ObjectMapper();
@@ -37,6 +39,8 @@ public class SocketAPI {
     public SocketAPI(Context context) {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mContext = context;
+        BusProvider.getInstance().register(this);
+
         try {
             mDispatcher = new WebSocketRailsDispatcher(new URL(Constants.API_URL + "/websocket"));
             mDispatcher.connect();
@@ -47,13 +51,15 @@ public class SocketAPI {
         }
     }
 
-    ;
-
     public static SocketAPI getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new SocketAPI(context);
         }
         return mInstance;
+    }
+
+    public static String getStatus() {
+        return mDispatcher.getState();
     }
 
     private void login() {
@@ -92,6 +98,8 @@ public class SocketAPI {
             public void onDataAvailable(Object data) {
                 LinkedHashMap map = (LinkedHashMap) data;
                 Duel duel = mapper.convertValue(map, Duel.class);
+
+                BusProvider.getInstance().post(new ActionPostedEvent(duel));
 
                 NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(mContext.NOTIFICATION_SERVICE);
 

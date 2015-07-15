@@ -42,6 +42,21 @@ public class Movement {
         return result;
     }
 
+    public static int RoundResultToResultCode(String string) {
+        int result;
+        // no string switch statements in Java 6
+        if (string.equals("blocked")) {
+            result = 0;
+        } else if (string.equals("won")) {
+            result = 1;
+        } else if (string.equals("neutral")) {
+            result = 2;
+        } else {
+            result = 0;
+        }
+        return result;
+    }
+
     public int movementResult(float x, float y, float z, float p){
         /*
             x, y, z are the axis from the Accelerometer

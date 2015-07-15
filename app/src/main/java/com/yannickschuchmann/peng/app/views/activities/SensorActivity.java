@@ -125,6 +125,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         unregisterListenerAccelerometer();
     }
 
+    public void receiveAction(Duel duel, boolean update) {
+//        movementSound(Movement.RoundResultToResultCode(duel.getResult()));
+        this.setupView(duel, update);
+    }
+
     public void setupView(Duel duel, boolean update) {
 
         mMe = duel.getMe();
