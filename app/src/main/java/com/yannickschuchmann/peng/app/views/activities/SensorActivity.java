@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,6 +50,8 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Bind(R.id.imageUserMag2) ImageView imageUserMag2;
     @Bind(R.id.imageUserMag3) ImageView imageUserMag3;
 
+    @Bind(R.id.sensor_overlay) LinearLayout sensorOverlay;
+
     @Bind(R.id.imageUser)
     GifImageView imageUser;
     @Bind(R.id.imageEnemy) GifImageView imageEnemy;
@@ -82,6 +85,8 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         mPresenter = new SensorPresenter(this, getIntent().getIntExtra("duelId", 0));
 
         ButterKnife.bind(this);
+
+        sensorOverlay.setVisibility(View.GONE);
 
         //*********************CONSTRUCTORS*********************
         vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
@@ -180,9 +185,12 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     };
 
 
-    @OnClick(R.id.imageResult)
+    @OnClick(R.id.mainLinearLayout)
     public void onButtonStart() {
         if (mPresenter.getDuel().isMyTurn()) {
+
+            sensorOverlay.setVisibility(View.VISIBLE);
+
             vibrator.vibrate(100);
 
             new CountDownTimer(5000, 1000){             //Countdown before move
@@ -205,6 +213,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     result = movement.movementResult(tempX, tempY, tempZ, tempP);
 //                    textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
 
+
                     movementSound(result);
 
                     try {
@@ -219,6 +228,9 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                         e.printStackTrace();
                     }
                     vibrator.vibrate(50);
+
+                    imageResult.setImageDrawable(waitDrawable);
+                    sensorOverlay.setVisibility(View.GONE);
 
                     mPresenter.setResult(result);
 

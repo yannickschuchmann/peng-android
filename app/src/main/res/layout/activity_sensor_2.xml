@@ -1,111 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" android:weightSum="100"
-              android:background="@drawable/card_background">
-
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp" android:layout_weight="11">
-        <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:text="1"
-                android:id="@+id/textLabelHealthEnemy" android:layout_gravity="left|bottom" android:gravity="center"
-                android:background="@drawable/heart_red" android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp" android:textColor="@color/theme_text_light" android:textSize="23dp"
-                android:textStyle="bold"/>
+                  android:orientation="vertical"
+                  android:id="@+id/mainLinearLayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:weightSum="100"
+                  android:background="@drawable/card_background">
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent" android:gravity="bottom|right" android:layout_marginRight="25dp">
+                android:layout_height="0dp" android:layout_weight="11">
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Magazin"
-                    android:textAllCaps="true"
-                    android:id="@+id/textView14" android:textSize="30dp" android:textStyle="bold"
-                    />
-            <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="25dp"
-                    android:id="@+id/imageEnemyMag1" android:src="@drawable/shoot_loaded"
-                    android:layout_marginBottom="7dp" android:layout_marginLeft="10dp"/>
-            <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag2"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
-                       android:layout_marginLeft="10dp"/>
-            <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag3"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
-                       android:layout_marginLeft="10dp"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="1"
+                    android:id="@+id/textLabelHealthEnemy" android:layout_gravity="left|bottom" android:gravity="center"
+                    android:background="@drawable/heart_red" android:layout_marginLeft="10dp"
+                    android:layout_marginTop="0dp" android:textColor="@color/theme_text_light" android:textSize="23dp"
+                    android:textStyle="bold"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent" android:gravity="bottom|right" android:layout_marginRight="25dp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Magazin"
+                        android:textAllCaps="true"
+                        android:id="@+id/textView14" android:textSize="30dp" android:textStyle="bold"
+                        />
+                <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/imageEnemyMag1" android:src="@drawable/shoot_loaded"
+                        android:layout_marginBottom="7dp" android:layout_marginLeft="10dp"/>
+                <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag2"
+                           android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
+                           android:layout_marginLeft="10dp"/>
+                <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag3"
+                           android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
+                           android:layout_marginLeft="10dp"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp" android:layout_weight="78">
-        <LinearLayout
-                android:orientation="vertical"
+        <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" android:weightSum="100">
+                android:layout_height="0dp" android:layout_weight="78">
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
-                    android:layout_height="0dp" android:layout_weight="44">
-                <pl.droidsonroids.gif.GifImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/bandit_red_reload"
-                        android:id="@+id/imageEnemy"
-                        />
+                    android:layout_height="fill_parent" android:weightSum="100">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp" android:layout_weight="44">
+                    <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/bandit_red_reload"
+                            android:id="@+id/imageEnemy"
+                            />
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp" android:layout_weight="12">
+                    <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                            android:src="@drawable/b_ready" android:id="@+id/imageResult"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp" android:layout_weight="44">
+                    <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:rotation="180"
+                            android:src="@drawable/amerindian_blu_reload"
+                            android:id="@+id/imageUser"
+                            />
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp" android:layout_weight="12">
-                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
-                        android:src="@drawable/b_ready" android:id="@+id/imageResult"/>
+        </RelativeLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp" android:layout_weight="11">
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
+                          android:layout_height="match_parent" android:gravity="bottom"
+                          android:layout_marginLeft="30dp" android:layout_weight="1">
+                <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag1"
+                           android:src="@drawable/shoot_loaded" android:layout_marginBottom="0dp"
+                           android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
+                <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag2"
+                           android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
+                           android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
+                <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag3"
+                           android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
+                           android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Magazin"
+                          android:textAllCaps="true" android:id="@+id/textView15" android:textSize="30dp"
+                          android:textStyle="bold" android:layout_marginTop="2dp" android:layout_gravity="top"/>
             </LinearLayout>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp" android:layout_weight="44">
-                <pl.droidsonroids.gif.GifImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:rotation="180"
-                        android:src="@drawable/amerindian_blu_reload"
-                        android:id="@+id/imageUser"
-                        />
-            </LinearLayout>
+            <TextView android:layout_width="50dp" android:layout_height="50dp" android:text="1"
+                      android:id="@+id/textLabelHealthUser" android:gravity="center"
+                      android:background="@drawable/heart_red"
+                      android:textColor="@color/theme_text_light" android:textSize="23dp"
+                      android:textStyle="bold" android:layout_marginRight="10dp" android:layout_gravity="center_vertical"/>
         </LinearLayout>
-    </RelativeLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp" android:layout_weight="11">
-        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content"
-                      android:layout_height="match_parent" android:gravity="bottom"
-                      android:layout_marginLeft="30dp" android:layout_weight="1">
-            <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag1"
-                       android:src="@drawable/shoot_loaded" android:layout_marginBottom="0dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
-            <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag2"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
-            <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag3"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceMedium" android:text="Magazin"
-                      android:textAllCaps="true" android:id="@+id/textView15" android:textSize="30dp"
-                      android:textStyle="bold" android:layout_marginTop="2dp" android:layout_gravity="top"/>
-        </LinearLayout>
-        <TextView android:layout_width="50dp" android:layout_height="50dp" android:text="1"
-                  android:id="@+id/textLabelHealthUser" android:gravity="center"
-                  android:background="@drawable/heart_red"
-                  android:textColor="@color/theme_text_light" android:textSize="23dp"
-                  android:textStyle="bold" android:layout_marginRight="10dp" android:layout_gravity="center_vertical"/>
     </LinearLayout>
-</LinearLayout>
+    <LinearLayout
+            android:id="@+id/sensor_overlay"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:background="@color/theme_primary" android:gravity="center">
+
+    </LinearLayout>
+</FrameLayout>
