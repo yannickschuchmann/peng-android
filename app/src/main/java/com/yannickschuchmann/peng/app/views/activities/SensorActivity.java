@@ -177,7 +177,6 @@ public class SensorActivity extends TransitionActivity implements SensorView {
             x = event.values[0];
             y = event.values[1];
             z = event.values[2];
-
         }
     };
 
@@ -218,9 +217,6 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     result = movement.movementResult(tempX, tempY, tempZ, tempP);
 //                    textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
 
-
-                    movementSound(result);
-
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
@@ -234,10 +230,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     }
                     vibrator.vibrate(50);
 
+                    if (mPresenter.setResult(result)) movementSound(result);
+
                     imageResult.setImageDrawable(waitDrawable);
                     sensorOverlay.setVisibility(View.GONE);
 
-                    mPresenter.setResult(result);
 
                     // for now movement is set for own character,
                     // if this is not the desired behaviour we should remove this line

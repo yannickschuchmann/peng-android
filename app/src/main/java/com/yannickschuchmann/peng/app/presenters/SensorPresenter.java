@@ -64,8 +64,25 @@ public class SensorPresenter extends Presenter {
         return mDuel;
     }
 
-    public void setResult(int result) {
-        if (mDuel == null) return;
+    public boolean setResult(int result) {
+        if (mDuel == null) return false;
+
+        if (mDuel.getMe().getShots() == 0 && result == 1) {
+            Toast.makeText(
+                    mView.getContext().getApplicationContext(),
+                    "Keine Patronen mehr! Du musst Nachladen!",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return false;
+        }
+        if (mDuel.getMe().getShots() == 3 && result == 2) {
+            Toast.makeText(
+                    mView.getContext().getApplicationContext(),
+                    "Trommel ist voll! Schiess mal!",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return false;
+        }
 
         mDuelService.postAction(mDuel.id, mDuel.getMe().getUserId(), Movement.ResultCodeToString(result),
             new Callback<Duel>() {
@@ -85,6 +102,7 @@ public class SensorPresenter extends Presenter {
                     ).show();
                 }
         });
+        return true;
     }
 
     @Subscribe public void onActionPosted(ActionPostedEvent event) {
