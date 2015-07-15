@@ -75,6 +75,7 @@ public class SocketAPI {
                 mIntent.putExtra("duelId", duel.id);
                 PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+                builder.setAutoCancel(true);
                 builder.setContentTitle("Du wurdest herausgefordert!");
                 builder.setContentText("Von " + duel.getOpponent().getNick());
                 builder.setSmallIcon(R.drawable.character_cowboy);
@@ -98,6 +99,7 @@ public class SocketAPI {
                 mIntent.putExtra("duelId", duel.id);
                 PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+                builder.setAutoCancel(true);
                 builder.setContentTitle("Du bist dran!");
                 builder.setContentText("Gegen " + duel.getOpponent().getNick());
                 builder.setSmallIcon(R.drawable.character_cowboy);
