@@ -27,17 +27,18 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Magazin"
                     android:textAllCaps="true"
-                    android:id="@+id/textView14" android:textSize="26dp" android:textStyle="bold"/>
+                    android:id="@+id/textView14" android:textSize="30dp" android:textStyle="bold"
+                    />
             <ImageView
                     android:layout_width="15dp"
                     android:layout_height="25dp"
                     android:id="@+id/imageEnemyMag1" android:src="@drawable/shoot_loaded"
-                    android:layout_marginBottom="3dp" android:layout_marginLeft="10dp"/>
+                    android:layout_marginBottom="7dp" android:layout_marginLeft="10dp"/>
             <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag2"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="3dp"
+                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
                        android:layout_marginLeft="10dp"/>
             <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageEnemyMag3"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="3dp"
+                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="7dp"
                        android:layout_marginLeft="10dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -88,18 +89,18 @@
                       android:layout_height="match_parent" android:gravity="bottom"
                       android:layout_marginLeft="30dp" android:layout_weight="1">
             <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag1"
-                       android:src="@drawable/shoot_loaded" android:layout_marginBottom="3dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="5dp"/>
+                       android:src="@drawable/shoot_loaded" android:layout_marginBottom="0dp"
+                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
             <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag2"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="3dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="5dp"/>
+                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
+                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
             <ImageView android:layout_width="15dp" android:layout_height="25dp" android:id="@+id/imageUserMag3"
-                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="3dp"
-                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="5dp"/>
+                       android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
+                       android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:textAppearance="?android:attr/textAppearanceMedium" android:text="Magazin"
-                      android:textAllCaps="true" android:id="@+id/textView15" android:textSize="26dp"
-                      android:textStyle="bold" android:layout_gravity="top" android:layout_marginTop="5dp"/>
+                      android:textAllCaps="true" android:id="@+id/textView15" android:textSize="30dp"
+                      android:textStyle="bold" android:layout_marginTop="2dp" android:layout_gravity="top"/>
         </LinearLayout>
         <TextView android:layout_width="50dp" android:layout_height="50dp" android:text="1"
                   android:id="@+id/textLabelHealthUser" android:gravity="center"

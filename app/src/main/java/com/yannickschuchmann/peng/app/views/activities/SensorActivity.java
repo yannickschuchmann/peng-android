@@ -76,10 +76,10 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
 
-        defenseDrawable = getResources().getDrawable(R.drawable.verteidigt);
-        attackDrawable = getResources().getDrawable(R.drawable.schuss);
-        reloadDrawable = getResources().getDrawable(R.drawable.nachladen);
-        readyDrawable = getResources().getDrawable(R.drawable.bereit);
+        defenseDrawable = getResources().getDrawable(R.drawable.b_ready);
+        attackDrawable = getResources().getDrawable(R.drawable.b_win);
+        reloadDrawable = getResources().getDrawable(R.drawable.b_reload);
+        readyDrawable = getResources().getDrawable(R.drawable.b_ready);
     }
 
     @Override
