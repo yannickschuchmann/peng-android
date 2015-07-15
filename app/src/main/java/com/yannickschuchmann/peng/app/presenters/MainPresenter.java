@@ -34,6 +34,7 @@ public class MainPresenter extends Presenter {
 
         final CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
 
+        mView.showLoading();
         mService.getUser(currentUser.getUserId(), new Callback<User>() {
             @Override
             public void success(User user, Response response) {
@@ -55,6 +56,8 @@ public class MainPresenter extends Presenter {
                 mView.setDuelsCount(user.getDuelsCount());
                 mView.setRank(user.getRank());
                 mView.setOpenDuels(user.getOpenDuels());
+
+                mView.hideLoading();
             }
 
             @Override

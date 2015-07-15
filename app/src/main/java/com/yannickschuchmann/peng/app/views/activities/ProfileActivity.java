@@ -25,7 +25,7 @@ import com.yannickschuchmann.peng.model.entities.User;
 import java.util.List;
 
 
-public class ProfileActivity extends TransitionActivity implements DuelBetDialogFragment.DuelBetDialogListener, ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
+public class ProfileActivity extends LoadingActivity implements DuelBetDialogFragment.DuelBetDialogListener, ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
 
     ProfilePresenter mPresenter;
 

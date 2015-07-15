@@ -39,6 +39,7 @@ public class CharacterPagerPresenter extends Presenter {
 
         mActiveId = CurrentUser.getInstance(mView.getContext()).getCharacterId();
 
+        mView.showLoading();
         mService.getCharacters(new Callback<List<Character>>() {
             @Override
             public void success(List<Character> characters, Response response) {
@@ -49,6 +50,7 @@ public class CharacterPagerPresenter extends Presenter {
                 }
                 mActiveCharacter = characters.get(activeCharacterIndex);
                 mView.setPagerAdapter(characters, activeCharacterIndex);
+                mView.hideLoading();
             }
 
             @Override

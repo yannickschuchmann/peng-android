@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by yannick on 30.06.15.
  */
-public interface ProfileView extends ToolbarBackView {
+public interface ProfileView extends LoadingToolbarBackView {
     public void setNick(String nick);
     public void setSlogan(String slogan);
     public void setImage(Drawable image);

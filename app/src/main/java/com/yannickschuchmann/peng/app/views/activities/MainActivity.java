@@ -37,7 +37,7 @@ import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
 
-public class MainActivity extends TransitionActivity implements MainView, DuelAdapterView {
+public class MainActivity extends LoadingActivity implements MainView, DuelAdapterView {
 
     @Bind(R.id.user_nick)
     TextView mNick;
@@ -164,5 +164,6 @@ public class MainActivity extends TransitionActivity implements MainView, DuelAd
     public Context getContext() {
         return this;
     }
+
 
 }

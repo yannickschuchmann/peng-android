@@ -6,6 +6,6 @@ import com.yannickschuchmann.peng.model.entities.User;
 /**
  * Created by yannick on 30.06.15.
  */
-public interface NewDuelFriendsView extends ToolbarBackView {
+public interface NewDuelFriendsView extends LoadingToolbarBackView {
     public void startDuelActivity(Duel duel);
 }

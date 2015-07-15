@@ -22,7 +22,7 @@ import com.yannickschuchmann.peng.model.entities.Character;
 import java.util.List;
 
 
-public class CharacterPagerActivity extends TransitionActivity implements CharacterPagerView {
+public class CharacterPagerActivity extends LoadingActivity implements CharacterPagerView {
 
     private CharactersPagerAdapter mCharactersPagerAdapter;
     CharacterPagerPresenter mPresenter;

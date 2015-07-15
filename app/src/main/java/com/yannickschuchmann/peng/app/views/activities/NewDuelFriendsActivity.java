@@ -18,7 +18,7 @@ import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
-public class NewDuelFriendsActivity extends TransitionActivity implements DuelBetDialogListener, NewDuelFriendsView, UserAdapterView {
+public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDialogListener, NewDuelFriendsView, UserAdapterView {
 
     NewDuelFriendsPresenter mPresenter;
 

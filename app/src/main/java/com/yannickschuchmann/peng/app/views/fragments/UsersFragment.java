@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +27,8 @@ import java.util.List;
 public class UsersFragment extends Fragment {
     protected UsersAdapter mAdapter;
     @Bind(R.id.userRecyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.progress_overlay)
+    FrameLayout overlay;
     private UserService mService;
 
 
@@ -62,10 +65,12 @@ public class UsersFragment extends Fragment {
     }
 
     private void getRanking() {
+        overlay.setVisibility(View.VISIBLE);
         mService.getUsers(new Callback<List<User>>() {
             @Override
             public void success(List<User> users, Response response) {
                 initRecyclerView(users);
+                overlay.setVisibility(View.GONE);
             }
 
             @Override

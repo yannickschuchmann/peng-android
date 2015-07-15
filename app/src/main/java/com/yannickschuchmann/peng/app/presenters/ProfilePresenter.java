@@ -35,11 +35,13 @@ public class ProfilePresenter extends Presenter {
         mService = new RestSource().getRestAdapter().create(UserService.class);
         mDuelService = new RestSource().getRestAdapter().create(DuelService.class);
 
+        mView.showLoading();
         mService.getUser(mUserId, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 mUser = user;
                 setupView(user);
+                mView.hideLoading();
             }
 
             @Override
@@ -75,10 +77,12 @@ public class ProfilePresenter extends Presenter {
         user.setSlogan(slogan);
         currentUser.setUser(user);
 
+        mView.showLoading();
         mService.updateUser(user.id, user, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 setupView(user);
+                mView.hideLoading();
             }
 
             @Override
@@ -90,10 +94,12 @@ public class ProfilePresenter extends Presenter {
 
     public void postDuel(String bet) {
         User opponent = mUser;
+        mView.showLoading();
         mDuelService.postDuel(CurrentUser.getInstance(mView.getContext()).getUserId(), opponent.id, bet, new Callback<Duel>() {
             @Override
             public void success(Duel duel, Response response) {
                 mView.startDuelActivity(duel);
+                mView.hideLoading();
             }
 
             @Override

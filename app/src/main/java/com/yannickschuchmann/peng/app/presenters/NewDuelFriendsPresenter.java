@@ -26,9 +26,11 @@ public class NewDuelFriendsPresenter extends Presenter {
 
     public void postFriendDuel(User friend, String bet) {
 
+        mView.showLoading();
         mService.postDuel(CurrentUser.getInstance(mView.getContext()).getUserId(),friend.id, bet, new Callback<Duel>() {
             @Override
             public void success(Duel duel, Response response) {
+                mView.hideLoading();
                 mView.startDuelActivity(duel);
             }
 

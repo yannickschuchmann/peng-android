@@ -1,24 +1,28 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.yannickschuchmann.peng.app.views.activities.RankingActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.yannickschuchmann.peng.app.views.activities.RankingActivity">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <com.yannickschuchmann.peng.app.views.components.BackToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbarTitle"
-            />
-    <LinearLayout
-            android:orientation="vertical"
-            android:paddingTop="?attr/actionBarSize"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true" android:id="@+id/users_fragment_container"
-            android:layout_alignParentTop="true">
-        <FrameLayout
-                android:id="@+id/users_fragment"
+        <com.yannickschuchmann.peng.app.views.components.BackToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbarTitle"
+                />
+        <LinearLayout
+                android:orientation="vertical"
+                android:paddingTop="?attr/actionBarSize"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"/>
-    </LinearLayout>
-</RelativeLayout>
+                android:layout_height="fill_parent"
+                android:layout_centerHorizontal="true" android:id="@+id/users_fragment_container"
+                android:layout_alignParentTop="true">
+            <FrameLayout
+                    android:id="@+id/users_fragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <include layout="@layout/include_loading"/>
+
+</FrameLayout>
