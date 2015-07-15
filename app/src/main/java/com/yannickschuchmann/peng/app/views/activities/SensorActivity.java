@@ -30,30 +30,15 @@ import com.yannickschuchmann.peng.model.entities.Duel;
 public class SensorActivity extends TransitionActivity implements SensorView {
 
     //*****************VARIABLES*****************
-    @Bind(R.id.buttonStart) Button buttonStartClick;
     private Vibrator vibrator;
     private SensorManager sensorManager;
     private Sensor sensor, proximitySensor;
-    @Bind(R.id.textLabelX) TextView textLabelX;
-    @Bind(R.id.textLabelY) TextView textLabelY;
-    @Bind(R.id.textLabelZ) TextView textLabelZ;
-    @Bind(R.id.textLabelProximity) TextView textLabelProximity;
     @Bind(R.id.textLabelHealthEnemy) TextView textLabelHealthEnemy;
     @Bind(R.id.textLabelHealthUser) TextView textLabelHealthUser;
-    @Bind(R.id.textLabelLoadedMagazineEnemy) TextView textLabelLoadedMagazineEnemy;
-    @Bind(R.id.textLabelLoadedMagazineUser) TextView textLabelLoadedMagazineUser;
-    @Bind(R.id.textLabelCountdown) TextView textLabelCountdown;
 
     @Bind(R.id.imageUser) ImageView imageUser;
     @Bind(R.id.imageEnemy) ImageView imageEnemy;
-    @Bind(R.id.imageUserMag1) ImageView imageUserMag1;
-    @Bind(R.id.imageUserMag2) ImageView imageUserMag2;
-    @Bind(R.id.imageUserMag3) ImageView imageUserMag3;
-    @Bind(R.id.imageEnemyMag1) ImageView imageEnemyMag1;
-    @Bind(R.id.imageEnemyMag2) ImageView imageEnemyMag2;
-    @Bind(R.id.imageEnemyMag3) ImageView imageEnemyMag3;
     @Bind(R.id.imageResult) ImageView imageResult;
-    @Bind(R.id.mainLinearLayout) LinearLayout mainLinearLayout;
 
     private Actor mMe, mOpponent;
     private Movement movement;
@@ -74,7 +59,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sensor);
+        setContentView(R.layout.activity_sensor_2);
 
         mPresenter = new SensorPresenter(this, getIntent().getIntExtra("duelId", 0));
 
@@ -121,10 +106,10 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         textLabelHealthUser.setText(Integer.toString(mMe.getHitPoints()));
         textLabelHealthEnemy.setText(Integer.toString(mOpponent.getHitPoints()));
 
-        Drawable user = getResources().getDrawable(R.drawable.blue_waits);
-        imageUser.setImageDrawable(user);
-        Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
-        imageEnemy.setImageDrawable(enemy);
+//        Drawable user = getResources().getDrawable(R.drawable.blue_waits);
+//        imageUser.setImageDrawable(user);
+//        Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
+//        imageEnemy.setImageDrawable(enemy);
 
 
         Drawable resultImage =
@@ -136,11 +121,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                 readyDrawable;
 
         imageResult.setImageDrawable(resultImage);
-        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
-        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
+//        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
+//        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
 
-        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
-        setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
+//        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
+//        setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -151,9 +136,6 @@ public class SensorActivity extends TransitionActivity implements SensorView {
             y = event.values[1];
             z = event.values[2];
 
-            textLabelX.setText("X: " + (int) x);
-            textLabelY.setText("Y: " + (int) y);
-            textLabelZ.setText("Z: " + (int) z);
         }
     };
 
@@ -162,22 +144,20 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
         public void onSensorChanged(SensorEvent event) {
             p = event.values[0];
-            textLabelProximity.setText("P: " + (int) p);
         }
     };
 
 
-    @OnClick(R.id.buttonStart)
+    @OnClick(R.id.imageResult)
     public void onButtonStart() {
         if (mPresenter.getDuel().isMyTurn()) {
-            textLabelCountdown.setText("Countdown start");
             vibrator.vibrate(100);
 
             new CountDownTimer(5000, 1000){             //Countdown before move
                 public void onTick(long millisUntilFinished) {
-                    textLabelCountdown.setText("Countdown: " + ((millisUntilFinished / 1000) - 1));
+//                    textLabelCountdown.setText("Countdown: " + ((millisUntilFinished / 1000) - 1));
                     if( (millisUntilFinished / 1000) <= 1 ){
-                        textLabelCountdown.setText("Bewegen");
+//                        textLabelCountdown.setText("Bewegen");
                         vibrator.vibrate(1000);
                     }else{
                         vibrator.vibrate(100);
@@ -191,7 +171,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     tempZ = z;
                     tempP = p;
                     result = movement.movementResult(tempX, tempY, tempZ, tempP);
-                    textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
+//                    textLabelCountdown.setText("Countdown"/*"X : " + (int) tempX + ", Y : " + (int) tempY + ", Z : " + (int) tempZ + ", Type: " + result*/);
 
                     movementSound(result);
 
@@ -215,53 +195,51 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     // setActionImageByMovementCode(result, "u");
                 }
             }.start();
-        } else {
-            textLabelCountdown.setText("Startposition einnehmen");
         }
     }
 
     public void setActionImageByMovementCode(int movementCode, String userType){
         //This Method change the image to the given movement code
         //User types: e = enemy, u = user
-        if (userType == "e"){
-            switch (movementCode) {
-                case 0:
-                    Drawable defense = getResources().getDrawable(R.drawable.red_protects);
-                    imageEnemy.setImageDrawable(defense);
-                    break;
-                case 1:
-                    Drawable attack = getResources().getDrawable(R.drawable.red_shoots);
-                    imageEnemy.setImageDrawable(attack);
-                    break;
-                case 2:
-                    Drawable reload = getResources().getDrawable(R.drawable.red_reloads);
-                    imageEnemy.setImageDrawable(reload);
-                    break;
-                case 3:
-                    Drawable wait = getResources().getDrawable(R.drawable.red_waits);
-                    imageEnemy.setImageDrawable(wait);
-                    break;
-            }
-        } else {
-            switch (movementCode) {
-                case 0:
-                    Drawable defense = getResources().getDrawable(R.drawable.blue_protects);
-                    imageUser.setImageDrawable(defense);
-                    break;
-                case 1:
-                    Drawable attack = getResources().getDrawable(R.drawable.blue_shoots);
-                    imageUser.setImageDrawable(attack);
-                    break;
-                case 2:
-                    Drawable reload = getResources().getDrawable(R.drawable.blue_reloads);
-                    imageUser.setImageDrawable(reload);
-                    break;
-                case 3:
-                    Drawable wait = getResources().getDrawable(R.drawable.blue_waits);
-                    imageUser.setImageDrawable(wait);
-                    break;
-            }
-        }
+//        if (userType == "e"){
+//            switch (movementCode) {
+//                case 0:
+//                    Drawable defense = getResources().getDrawable(R.drawable.red_protects);
+//                    imageEnemy.setImageDrawable(defense);
+//                    break;
+//                case 1:
+//                    Drawable attack = getResources().getDrawable(R.drawable.red_shoots);
+//                    imageEnemy.setImageDrawable(attack);
+//                    break;
+//                case 2:
+//                    Drawable reload = getResources().getDrawable(R.drawable.red_reloads);
+//                    imageEnemy.setImageDrawable(reload);
+//                    break;
+//                case 3:
+//                    Drawable wait = getResources().getDrawable(R.drawable.red_waits);
+//                    imageEnemy.setImageDrawable(wait);
+//                    break;
+//            }
+//        } else {
+//            switch (movementCode) {
+//                case 0:
+//                    Drawable defense = getResources().getDrawable(R.drawable.blue_protects);
+//                    imageUser.setImageDrawable(defense);
+//                    break;
+//                case 1:
+//                    Drawable attack = getResources().getDrawable(R.drawable.blue_shoots);
+//                    imageUser.setImageDrawable(attack);
+//                    break;
+//                case 2:
+//                    Drawable reload = getResources().getDrawable(R.drawable.blue_reloads);
+//                    imageUser.setImageDrawable(reload);
+//                    break;
+//                case 3:
+//                    Drawable wait = getResources().getDrawable(R.drawable.blue_waits);
+//                    imageUser.setImageDrawable(wait);
+//                    break;
+//            }
+//        }
     }
 
     public void setMagazineImageByNumberOfBulletsLoaded(int numberOfBulletsLoaded, String userType){
@@ -269,59 +247,59 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         Drawable magazineUnloadedImage = getResources().getDrawable(R.drawable.shoot_unloaded);
         Drawable magazineLoadedImage = getResources().getDrawable(R.drawable.shoot_loaded);
 
-        if(userType == "e"){
-            switch (numberOfBulletsLoaded){
-
-                case 0 :
-                    imageEnemyMag1.setImageDrawable(magazineUnloadedImage);
-                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
-                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-
-                case 1 :
-                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
-                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-
-                case 2 :
-                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
-                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-                case 3 :
-                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
-                    imageEnemyMag3.setImageDrawable(magazineLoadedImage);
-                    break;
-            }
-        }else{
-            switch (numberOfBulletsLoaded) {
-                case 0:
-                    imageUserMag1.setImageDrawable(magazineUnloadedImage);
-                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
-                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-
-                case 1:
-                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
-                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-
-                case 2:
-                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-                    imageUserMag2.setImageDrawable(magazineLoadedImage);
-                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-                    break;
-
-                case 3:
-                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-                    imageUserMag2.setImageDrawable(magazineLoadedImage);
-                    imageUserMag3.setImageDrawable(magazineLoadedImage);
-                    break;
-            }
-        }
+//        if(userType == "e"){
+//            switch (numberOfBulletsLoaded){
+//
+//                case 0 :
+//                    imageEnemyMag1.setImageDrawable(magazineUnloadedImage);
+//                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
+//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//
+//                case 1 :
+//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+//                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
+//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//
+//                case 2 :
+//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+//                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
+//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//                case 3 :
+//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+//                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
+//                    imageEnemyMag3.setImageDrawable(magazineLoadedImage);
+//                    break;
+//            }
+//        }else{
+//            switch (numberOfBulletsLoaded) {
+//                case 0:
+//                    imageUserMag1.setImageDrawable(magazineUnloadedImage);
+//                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
+//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//
+//                case 1:
+//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+//                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
+//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//
+//                case 2:
+//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+//                    imageUserMag2.setImageDrawable(magazineLoadedImage);
+//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+//                    break;
+//
+//                case 3:
+//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+//                    imageUserMag2.setImageDrawable(magazineLoadedImage);
+//                    imageUserMag3.setImageDrawable(magazineLoadedImage);
+//                    break;
+//            }
+//        }
     }
 
     public void registerListenerAccelerometer(){
