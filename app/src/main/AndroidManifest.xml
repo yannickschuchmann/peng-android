@@ -9,47 +9,47 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".views.activities.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.RankingActivity"
-            android:label="@string/title_activity_ranking"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.NewDuelActivity"
-            android:label="@string/title_activity_new_duel"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.SensorActivity"
-            android:label="@string/title_activity_duel"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.NewDuelFriendsActivity"
-            android:label="@string/title_activity_new_duel_friends"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".views.activities.CharacterPagerActivity"
-            android:label="@string/title_activity_characters_pager"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
 
@@ -59,11 +59,11 @@
 
         <activity
             android:name=".views.activities.AuthActivity"
-            android:label="@string/title_activity_auth" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

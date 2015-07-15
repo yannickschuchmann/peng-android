@@ -35,6 +35,7 @@ public class AuthActivity extends TransitionActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+        setTitle(R.string.app_name);
         int userId = CurrentUser.getInstance(getContext()).getUserId();
         if (userId != 0) {
             Intent intent = new Intent(getContext(), MainActivity.class);
