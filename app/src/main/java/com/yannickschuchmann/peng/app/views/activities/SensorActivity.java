@@ -50,6 +50,8 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Bind(R.id.imageUserMag2) ImageView imageUserMag2;
     @Bind(R.id.imageUserMag3) ImageView imageUserMag3;
 
+    @Bind(R.id.countDownOverlay) ImageView countDownOverlay;
+
     @Bind(R.id.sensor_overlay) LinearLayout sensorOverlay;
 
     @Bind(R.id.imageUser)
@@ -200,10 +202,19 @@ public class SensorActivity extends TransitionActivity implements SensorView {
             new CountDownTimer(5000, 1000){             //Countdown before move
                 public void onTick(long millisUntilFinished) {
 //                    textLabelCountdown.setText("Countdown: " + ((millisUntilFinished / 1000) - 1));
+                    int countDownId = getResources()
+                            .getIdentifier(
+                                    "o_" + String.valueOf(millisUntilFinished / 1000 - 1),
+                                    "drawable",
+                                    "com.yannickschuchmann.peng.app"
+                            );
+
+
                     if( (millisUntilFinished / 1000) <= 1 ){
-//                        textLabelCountdown.setText("Bewegen");
+                        countDownOverlay.setImageDrawable(getResources().getDrawable(R.drawable.o_los));
                         vibrator.vibrate(1000);
                     }else{
+                        countDownOverlay.setImageDrawable(getResources().getDrawable(countDownId));
                         vibrator.vibrate(100);
                     }
                 }
@@ -230,9 +241,11 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     }
                     vibrator.vibrate(50);
 
-                    if (mPresenter.setResult(result)) movementSound(result);
+                    if (mPresenter.setResult(result)) {
+                        movementSound(result);
+                        imageResult.setImageDrawable(waitDrawable);
+                    }
 
-                    imageResult.setImageDrawable(waitDrawable);
                     sensorOverlay.setVisibility(View.GONE);
 
 
