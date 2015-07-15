@@ -5,8 +5,10 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.NewDuelFriendsPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
@@ -62,6 +64,14 @@ public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDi
     @Override
     public void onItemClicked(User user) {
         mClickedUser = user;
+        if (mClickedUser.id == CurrentUser.getInstance(getContext()).getUserId()) {
+            Toast.makeText(
+                    getContext().getApplicationContext(),
+                    "Du kannst dich nicht selbst duellieren.",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return;
+        }
         DuelBetDialogFragment dialogFragment = DuelBetDialogFragment.newInstance();
         dialogFragment.show(getSupportFragmentManager(), "DUEL_BET_DIALOG");
     }
