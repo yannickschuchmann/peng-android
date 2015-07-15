@@ -1,6 +1,7 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import android.media.MediaPlayer;
 import butterknife.Bind;
@@ -25,6 +28,8 @@ import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
 import com.yannickschuchmann.peng.app.views.views.SensorView;
 import com.yannickschuchmann.peng.model.entities.Actor;
 import com.yannickschuchmann.peng.model.entities.Duel;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class SensorActivity extends TransitionActivity implements SensorView {
@@ -36,8 +41,17 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Bind(R.id.textLabelHealthEnemy) TextView textLabelHealthEnemy;
     @Bind(R.id.textLabelHealthUser) TextView textLabelHealthUser;
 
-    @Bind(R.id.imageUser) ImageView imageUser;
-    @Bind(R.id.imageEnemy) ImageView imageEnemy;
+    @Bind(R.id.imageEnemyMag1) ImageView imageEnemyMag1;
+    @Bind(R.id.imageEnemyMag2) ImageView imageEnemyMag2;
+    @Bind(R.id.imageEnemyMag3) ImageView imageEnemyMag3;
+
+    @Bind(R.id.imageUserMag1) ImageView imageUserMag1;
+    @Bind(R.id.imageUserMag2) ImageView imageUserMag2;
+    @Bind(R.id.imageUserMag3) ImageView imageUserMag3;
+
+    @Bind(R.id.imageUser)
+    GifImageView imageUser;
+    @Bind(R.id.imageEnemy) GifImageView imageEnemy;
     @Bind(R.id.imageResult) ImageView imageResult;
 
     private Actor mMe, mOpponent;
@@ -49,10 +63,14 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     private AverageMovementCalculation averageMovementCalculation;
     private Thread averageMovementCalculationThread;
 
-    private Drawable defenseDrawable;
-    private Drawable attackDrawable;
-    private Drawable reloadDrawable;
+    private Drawable blockedDrawable;
+    private Drawable loseDrawable;
+    private Drawable missedDrawable;
     private Drawable readyDrawable;
+    private Drawable reloadDrawable;
+    private Drawable versusDrawable;
+    private Drawable waitDrawable;
+    private Drawable winDrawable;
 
     private SensorPresenter mPresenter;
 
@@ -76,10 +94,14 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
 
-        defenseDrawable = getResources().getDrawable(R.drawable.b_ready);
-        attackDrawable = getResources().getDrawable(R.drawable.b_win);
-        reloadDrawable = getResources().getDrawable(R.drawable.b_reload);
+        blockedDrawable = getResources().getDrawable(R.drawable.b_blocked);
+        loseDrawable = getResources().getDrawable(R.drawable.b_lose);
+        missedDrawable = getResources().getDrawable(R.drawable.b_missed);
         readyDrawable = getResources().getDrawable(R.drawable.b_ready);
+        reloadDrawable = getResources().getDrawable(R.drawable.b_reload);
+        versusDrawable = getResources().getDrawable(R.drawable.b_versus);
+        waitDrawable = getResources().getDrawable(R.drawable.b_wait);
+        winDrawable = getResources().getDrawable(R.drawable.b_win);
     }
 
     @Override
@@ -113,19 +135,29 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
 
         Drawable resultImage =
-                duel.getResult().equals("hit") ? attackDrawable :
-                duel.getResult().equals("blocked") ? defenseDrawable :
-                duel.getResult().equals("nothing") ? readyDrawable :
-                duel.getResult().equals("won") ? readyDrawable :
-                duel.getResult().equals("lost") ? readyDrawable :
+                duel.getResult().equals("blocked") ? blockedDrawable :
+                duel.getResult().equals("reload") ? reloadDrawable :
+                duel.getResult().equals("versus") ? versusDrawable :
+                duel.getResult().equals("wait") ? waitDrawable :
+                duel.getResult().equals("same") ? missedDrawable :
+                duel.getResult().equals("nothing") ? missedDrawable :
+                duel.getResult().equals("won") ? winDrawable :
+                duel.getResult().equals("lost") ? loseDrawable :
                 readyDrawable;
 
         imageResult.setImageDrawable(resultImage);
-//        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
-//        setActionImageByMovementCode(Movement.StringToResultCode(duel.getOpponentAction().getType()), "e");
 
-//        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
-//        setActionImageByMovementCode(Movement.StringToResultCode(duel.getMyAction().getType()), "u");
+        setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
+//        setActionImageByMovementCode(
+//                Movement.StringToResultCode(duel.getOpponentAction().getType()), "e",
+//                duel.getOpponent().getCharacterName()
+//        );
+
+        setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
+//        setActionImageByMovementCode(
+//                Movement.StringToResultCode(duel.getMyAction().getType()), "u",
+//                duel.getMe().getCharacterName()
+//        );
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -198,48 +230,29 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         }
     }
 
-    public void setActionImageByMovementCode(int movementCode, String userType){
-        //This Method change the image to the given movement code
-        //User types: e = enemy, u = user
-//        if (userType == "e"){
-//            switch (movementCode) {
-//                case 0:
-//                    Drawable defense = getResources().getDrawable(R.drawable.red_protects);
-//                    imageEnemy.setImageDrawable(defense);
-//                    break;
-//                case 1:
-//                    Drawable attack = getResources().getDrawable(R.drawable.red_shoots);
-//                    imageEnemy.setImageDrawable(attack);
-//                    break;
-//                case 2:
-//                    Drawable reload = getResources().getDrawable(R.drawable.red_reloads);
-//                    imageEnemy.setImageDrawable(reload);
-//                    break;
-//                case 3:
-//                    Drawable wait = getResources().getDrawable(R.drawable.red_waits);
-//                    imageEnemy.setImageDrawable(wait);
-//                    break;
-//            }
-//        } else {
-//            switch (movementCode) {
-//                case 0:
-//                    Drawable defense = getResources().getDrawable(R.drawable.blue_protects);
-//                    imageUser.setImageDrawable(defense);
-//                    break;
-//                case 1:
-//                    Drawable attack = getResources().getDrawable(R.drawable.blue_shoots);
-//                    imageUser.setImageDrawable(attack);
-//                    break;
-//                case 2:
-//                    Drawable reload = getResources().getDrawable(R.drawable.blue_reloads);
-//                    imageUser.setImageDrawable(reload);
-//                    break;
-//                case 3:
-//                    Drawable wait = getResources().getDrawable(R.drawable.blue_waits);
-//                    imageUser.setImageDrawable(wait);
-//                    break;
-//            }
-//        }
+    public void setActionImageByMovementCode(int movementCode, String userType, String character){
+        GifImageView imageView;
+        String color;
+        if (userType == "e") {
+            imageView = imageEnemy;
+            color = "red";
+        } else {
+            imageView = imageUser;
+            color = "blu";
+        }
+        String action = Movement.ResultCodeToString(movementCode);
+
+        int imageID = getResources()
+                .getIdentifier(character + "_" + color + "_" + action, "drawable", "com.yannickschuchmann.peng.app");
+
+        GifDrawable characterImage;
+        try {
+            characterImage = new GifDrawable(getResources(), imageID);
+            imageView.setImageDrawable(characterImage);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void setMagazineImageByNumberOfBulletsLoaded(int numberOfBulletsLoaded, String userType){
@@ -247,59 +260,59 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         Drawable magazineUnloadedImage = getResources().getDrawable(R.drawable.shoot_unloaded);
         Drawable magazineLoadedImage = getResources().getDrawable(R.drawable.shoot_loaded);
 
-//        if(userType == "e"){
-//            switch (numberOfBulletsLoaded){
-//
-//                case 0 :
-//                    imageEnemyMag1.setImageDrawable(magazineUnloadedImage);
-//                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
-//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//
-//                case 1 :
-//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-//                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
-//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//
-//                case 2 :
-//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-//                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
-//                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//                case 3 :
-//                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
-//                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
-//                    imageEnemyMag3.setImageDrawable(magazineLoadedImage);
-//                    break;
-//            }
-//        }else{
-//            switch (numberOfBulletsLoaded) {
-//                case 0:
-//                    imageUserMag1.setImageDrawable(magazineUnloadedImage);
-//                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
-//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//
-//                case 1:
-//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-//                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
-//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//
-//                case 2:
-//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-//                    imageUserMag2.setImageDrawable(magazineLoadedImage);
-//                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
-//                    break;
-//
-//                case 3:
-//                    imageUserMag1.setImageDrawable(magazineLoadedImage);
-//                    imageUserMag2.setImageDrawable(magazineLoadedImage);
-//                    imageUserMag3.setImageDrawable(magazineLoadedImage);
-//                    break;
-//            }
-//        }
+        if(userType == "e"){
+            switch (numberOfBulletsLoaded){
+
+                case 0 :
+                    imageEnemyMag1.setImageDrawable(magazineUnloadedImage);
+                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
+                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+
+                case 1 :
+                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+                    imageEnemyMag2.setImageDrawable(magazineUnloadedImage);
+                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+
+                case 2 :
+                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
+                    imageEnemyMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+                case 3 :
+                    imageEnemyMag1.setImageDrawable(magazineLoadedImage);
+                    imageEnemyMag2.setImageDrawable(magazineLoadedImage);
+                    imageEnemyMag3.setImageDrawable(magazineLoadedImage);
+                    break;
+            }
+        }else{
+            switch (numberOfBulletsLoaded) {
+                case 0:
+                    imageUserMag1.setImageDrawable(magazineUnloadedImage);
+                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
+                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+
+                case 1:
+                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+                    imageUserMag2.setImageDrawable(magazineUnloadedImage);
+                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+
+                case 2:
+                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+                    imageUserMag2.setImageDrawable(magazineLoadedImage);
+                    imageUserMag3.setImageDrawable(magazineUnloadedImage);
+                    break;
+
+                case 3:
+                    imageUserMag1.setImageDrawable(magazineLoadedImage);
+                    imageUserMag2.setImageDrawable(magazineLoadedImage);
+                    imageUserMag3.setImageDrawable(magazineLoadedImage);
+                    break;
+            }
+        }
     }
 
     public void registerListenerAccelerometer(){
