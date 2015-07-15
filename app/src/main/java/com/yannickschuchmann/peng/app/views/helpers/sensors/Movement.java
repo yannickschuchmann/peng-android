@@ -27,6 +27,20 @@ public class Movement {
         return action_type;
     }
 
+    public static String ActionNameToActionFileName(String string) {
+        String action_type;
+        if (string.equals("defensive")) {
+            action_type = "block";
+        } else if (string.equals("offensive")) {
+            action_type = "shoot";
+        } else if (string.equals("neutral")) {
+            action_type = "reload";
+        } else {
+            action_type = string;
+        }
+        return action_type;
+    }
+
     public static int StringToResultCode(String string) {
         int result;
         // no string switch statements in Java 6

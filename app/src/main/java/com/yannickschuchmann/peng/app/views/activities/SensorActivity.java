@@ -160,16 +160,39 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         imageResult.setImageDrawable(resultImage);
 
         setMagazineImageByNumberOfBulletsLoaded(mOpponent.getShots(), "e");
-//        setActionImageByMovementCode(
-//                Movement.StringToResultCode(duel.getOpponentAction().getType()), "e",
-//                duel.getOpponent().getCharacterName()
-//        );
-
         setMagazineImageByNumberOfBulletsLoaded(mMe.getShots(), "u");
-//        setActionImageByMovementCode(
-//                Movement.StringToResultCode(duel.getMyAction().getType()), "u",
-//                duel.getMe().getCharacterName()
-//        );
+
+        if (duel.getResult().equals("won")) {
+            setActionImageByMovementCode(
+                    "loser_1", "e",
+                    duel.getOpponent().getCharacterName()
+            );
+
+            setActionImageByMovementCode(
+                    "winner_1", "u",
+                    duel.getMe().getCharacterName()
+            );
+        } else if (duel.getResult().equals("lost")) {
+            setActionImageByMovementCode(
+                    "winner_1", "e",
+                    duel.getOpponent().getCharacterName()
+            );
+
+            setActionImageByMovementCode(
+                    "loser_1", "u",
+                    duel.getMe().getCharacterName()
+            );
+        } else {
+            setActionImageByMovementCode(
+                    duel.getOpponentAction().getType(), "e",
+                    duel.getOpponent().getCharacterName()
+            );
+
+            setActionImageByMovementCode(
+                    duel.getMyAction().getType(), "u",
+                    duel.getMe().getCharacterName()
+            );
+        }
     }
 
     SensorEventListener accelListener = new SensorEventListener() {
@@ -257,7 +280,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         }
     }
 
-    public void setActionImageByMovementCode(int movementCode, String userType, String character){
+    public void setActionImageByMovementCode(String actionName, String userType, String character){
         GifImageView imageView;
         String color;
         if (userType == "e") {
@@ -267,7 +290,8 @@ public class SensorActivity extends TransitionActivity implements SensorView {
             imageView = imageUser;
             color = "blu";
         }
-        String action = Movement.ResultCodeToString(movementCode);
+
+        String action = Movement.ActionNameToActionFileName(actionName);
 
         int imageID = getResources()
                 .getIdentifier(character + "_" + color + "_" + action, "drawable", "com.yannickschuchmann.peng.app");
