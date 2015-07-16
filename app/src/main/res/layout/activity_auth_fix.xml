@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             tools:context="com.yannickschuchmann.peng.app.views.activities.AuthFixActivity"
+             android:gravity="center" android:orientation="vertical" android:background="@color/theme_accent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent" android:layout_height="fill_parent" android:gravity="center">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login mit Handynummer"
+                android:id="@+id/textView16" android:textColor="@color/theme_text_light" android:textSize="20dp"
+                android:layout_marginBottom="10dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/phone_number" android:background="@color/theme_text_light" android:hint="Deine Nummer"
+                android:gravity="center" android:text="+49"/>
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:id="@+id/login_button" android:background="@color/theme_primary"
+                android:textColor="@color/theme_text_light" android:layout_marginTop="10dp"/>
+    </LinearLayout>
+    <include layout="@layout/include_loading"/>
+</FrameLayout>

@@ -22,4 +22,8 @@
     <string name="textLabelLoadedMagazineUser">Magazin</string>
     <string name="buttonOpenSensorActivity">Fight</string>
     <string name="textLabelProximity">P</string>
+    <string name="title_activity_auth_fix">AuthFixActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

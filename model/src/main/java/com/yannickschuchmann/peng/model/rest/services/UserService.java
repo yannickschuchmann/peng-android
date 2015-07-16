@@ -23,4 +23,8 @@ public interface UserService {
     @POST("/api/v1/users/check_credentials")
     void checkCredentials(@Field("X-Auth-Service-Provider") String serviceProvider,
                           @Field("X-Verify-Credentials-Authorization") String authorization, Callback<User> cb);
+
+    @FormUrlEncoded
+    @POST("/api/v1/users/check_credentials_fix")
+    void checkCredentialsFix(@Field("phone-number") String phoneNumber, Callback<User> cb);
 }
