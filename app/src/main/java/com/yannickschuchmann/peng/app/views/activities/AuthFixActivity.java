@@ -33,10 +33,18 @@ public class AuthFixActivity extends LoadingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_fix);
+        setTitle("Peng");
+
+        int userId = CurrentUser.getInstance(getContext()).getUserId();
+        if (userId != 0) {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            startActivityWithAnimation(intent);
+        }
 
         mService = new RestSource().getRestAdapter().create(UserService.class);
 
         ButterKnife.bind(this);
+
     }
 
     @OnClick(R.id.login_button)
