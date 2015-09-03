@@ -19,8 +19,6 @@ public interface UserService {
     @PUT("/api/v1/users/{id}")
     void updateUser(@Path("id") int id, @Body User user, Callback<User> cb);
 
-    @FormUrlEncoded
-    @POST("/api/v1/users/check_credentials")
-    void checkCredentials(@Field("X-Auth-Service-Provider") String serviceProvider,
-                          @Field("X-Verify-Credentials-Authorization") String authorization, Callback<User> cb);
+    @POST("/api/v1/users")
+    void login(@Body User user, Callback<User> cb);
 }

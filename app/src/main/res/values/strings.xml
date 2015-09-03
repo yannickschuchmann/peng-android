@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Peng</string>
 
+    <string name="facebook_app_id">746478115480021</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_ranking">RankingActivity</string>
