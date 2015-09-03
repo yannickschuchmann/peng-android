@@ -3,7 +3,6 @@ package com.yannickschuchmann.peng.app.presenters;
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.views.views.NewDuelFriendsView;
-import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;

@@ -3,8 +3,6 @@ package com.yannickschuchmann.peng.app.views.helpers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import com.yannickschuchmann.peng.app.R;
-import com.yannickschuchmann.peng.app.views.fragments.CharacterPageFragment;
-import com.yannickschuchmann.peng.model.entities.Character;
 import com.yannickschuchmann.peng.model.entities.User;
 
 /**

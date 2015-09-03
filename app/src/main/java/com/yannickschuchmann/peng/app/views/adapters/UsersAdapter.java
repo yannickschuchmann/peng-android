@@ -1,8 +1,6 @@
 package com.yannickschuchmann.peng.app.views.adapters;
 
 import android.content.Context;
-import android.graphics.*;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
-import com.yannickschuchmann.peng.app.views.helpers.ImageFilter;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.User;
 

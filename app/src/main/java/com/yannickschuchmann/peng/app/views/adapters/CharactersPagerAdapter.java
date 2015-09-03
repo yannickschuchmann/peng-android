@@ -1,7 +1,7 @@
 package com.yannickschuchmann.peng.app.views.adapters;
 
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.yannickschuchmann.peng.app.views.fragments.CharacterPageFragment;
 import com.yannickschuchmann.peng.model.entities.Character;

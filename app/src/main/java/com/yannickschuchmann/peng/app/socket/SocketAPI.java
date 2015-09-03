@@ -1,6 +1,5 @@
 package com.yannickschuchmann.peng.app.socket;
 
-import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,8 +13,6 @@ import com.yannickschuchmann.peng.app.BusProvider;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.events.ActionPostedEvent;
-import com.yannickschuchmann.peng.app.receiver.DuelReceiver;
-import com.yannickschuchmann.peng.app.services.DuelNotificationService;
 import com.yannickschuchmann.peng.app.views.activities.SensorActivity;
 import com.yannickschuchmann.peng.common.Constants;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -23,7 +20,6 @@ import com.yannickschuchmann.peng.model.entities.Message;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.LinkedHashMap;
 
 /**

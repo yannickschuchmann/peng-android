@@ -1,22 +1,15 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.view.ViewPager;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.CharacterPagerPresenter;
-import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
-import com.yannickschuchmann.peng.app.views.activities.TransitionActivity;
 import com.yannickschuchmann.peng.app.views.adapters.CharactersPagerAdapter;
 import com.yannickschuchmann.peng.app.views.components.BackToolbar;
 import com.yannickschuchmann.peng.app.views.views.CharacterPagerView;
-import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
-import com.yannickschuchmann.peng.model.entities.*;
 import com.yannickschuchmann.peng.model.entities.Character;
 
 import java.util.List;

@@ -1,8 +1,5 @@
 package com.yannickschuchmann.peng.app.views.views;
 
-import android.content.Context;
-import android.content.Intent;
-import com.yannickschuchmann.peng.app.views.views.MVPView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 
 /**

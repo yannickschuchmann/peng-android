@@ -12,10 +12,8 @@ import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
-import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.Actor;
 import com.yannickschuchmann.peng.model.entities.Duel;
-import com.yannickschuchmann.peng.model.entities.User;
 
 import java.util.List;
 

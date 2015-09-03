@@ -2,13 +2,10 @@ package com.yannickschuchmann.peng.app.presenters;
 
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
-import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
-import com.yannickschuchmann.peng.model.entities.User;
 import com.yannickschuchmann.peng.model.rest.RestSource;
 import com.yannickschuchmann.peng.model.rest.services.DuelService;
-import com.yannickschuchmann.peng.model.rest.services.UserService;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;

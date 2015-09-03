@@ -1,24 +1,19 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import android.media.MediaPlayer;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +26,9 @@ import com.yannickschuchmann.peng.model.entities.Actor;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class SensorActivity extends TransitionActivity implements SensorView {

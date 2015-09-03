@@ -11,14 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
-import com.yannickschuchmann.peng.app.views.adapters.UsersAdapter;
 import com.yannickschuchmann.peng.model.entities.Duel;
-import com.yannickschuchmann.peng.model.entities.User;
-import com.yannickschuchmann.peng.model.rest.RestSource;
-import com.yannickschuchmann.peng.model.rest.services.UserService;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 import java.util.List;
 

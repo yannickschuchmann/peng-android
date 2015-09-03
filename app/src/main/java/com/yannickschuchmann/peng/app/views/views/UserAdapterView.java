@@ -1,6 +1,5 @@
 package com.yannickschuchmann.peng.app.views.views;
 
-import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
 /**

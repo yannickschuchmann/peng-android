@@ -1,7 +1,5 @@
 package com.yannickschuchmann.peng.app.views.views;
 
-import android.graphics.drawable.Drawable;
-import com.yannickschuchmann.peng.model.entities.*;
 import com.yannickschuchmann.peng.model.entities.Character;
 
 import java.util.List;

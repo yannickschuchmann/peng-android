@@ -1,17 +1,9 @@
 package com.yannickschuchmann.peng.app.views.activities;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,21 +11,14 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.digits.sdk.android.Digits;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterCore;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.MainPresenter;
 import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
-import com.yannickschuchmann.peng.app.views.fragments.DuelsFragment;
-import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
 import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
 import com.yannickschuchmann.peng.app.views.views.MainView;
 import com.yannickschuchmann.peng.model.entities.Duel;
-import com.yannickschuchmann.peng.model.entities.User;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
 
