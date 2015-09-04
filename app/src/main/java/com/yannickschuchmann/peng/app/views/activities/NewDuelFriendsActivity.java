@@ -64,7 +64,7 @@ public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDi
     @Override
     public void onItemClicked(User user) {
         mClickedUser = user;
-        if (mClickedUser.id == CurrentUser.getInstance(getContext()).getUserId()) {
+        if (mClickedUser.getId() == CurrentUser.getInstance(getContext()).getUserId()) {
             Toast.makeText(
                     getContext().getApplicationContext(),
                     "Du kannst dich nicht selbst duellieren.",

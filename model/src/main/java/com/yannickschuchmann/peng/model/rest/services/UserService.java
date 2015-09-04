@@ -19,6 +19,6 @@ public interface UserService {
     @PUT("/api/v1/users/{id}")
     void updateUser(@Path("id") int id, @Body User user, Callback<User> cb);
 
-    @POST("/api/v1/users")
-    void login(@Body User user, Callback<User> cb);
+    @POST("/api/v1/users/login_facebook")
+    void loginFacebook(@Body User user, Callback<User> cb);
 }

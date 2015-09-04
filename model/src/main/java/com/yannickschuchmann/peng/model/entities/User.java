@@ -3,10 +3,14 @@ package com.yannickschuchmann.peng.model.entities;
 import java.util.List;
 
 public class User {
-    public int id;
-    private int uid;
+    public String id;
+    private String uid;
     private String nick;
     private String slogan;
+    private String first_name;
+    private String last_name;
+    private String email;
+//    private String picture;
     private int friendsCount;
     private int duelsCount;
     private int rank;
@@ -31,6 +35,8 @@ public class User {
     public void setSlogan(String slogan) {
         this.slogan = slogan;
     }
+
+    public int getId() { return Integer.valueOf(id); }
 
     public int getRank() {
         return rank;
