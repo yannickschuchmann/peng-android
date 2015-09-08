@@ -24,9 +24,9 @@ public class ProfilePresenter extends Presenter {
     private UserService mService;
     private DuelService mDuelService;
 
-    public ProfilePresenter(ProfileView view, int userId) {
+    public ProfilePresenter(ProfileView view) {
         mView = view;
-        mUserId = userId;
+        mUserId = CurrentUser.getInstance(mView.getContext()).getUserId();
     }
 
     @Override
@@ -35,23 +35,10 @@ public class ProfilePresenter extends Presenter {
         mDuelService = new RestSource().getRestAdapter().create(DuelService.class);
 
         mView.showLoading();
-        mService.getUser(mUserId, new Callback<User>() {
-            @Override
-            public void success(User user, Response response) {
-                mUser = user;
-                setupView(user);
-                mView.hideLoading();
-            }
+        mUser = CurrentUser.getInstance(mView.getContext()).getUser();
+        setupView(mUser);
+        mView.hideLoading();
 
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(
-                        mView.getContext().getApplicationContext(),
-                        "ups, da ist was schief gegangen",
-                        Toast.LENGTH_SHORT
-                ).show();
-            }
-        });
     }
 
     @Override

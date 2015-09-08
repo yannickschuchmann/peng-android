@@ -37,14 +37,15 @@ public class CurrentUser {
     public void setUserId(String id) {
         SharedPreferences prefs = mContext.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putInt("userId", Integer.valueOf(id));
+        int userId = Integer.valueOf(id);
+        editor.putInt("userId", userId);
         editor.commit();
     }
 
     public int getUserId() {
         SharedPreferences prefs = mContext.getSharedPreferences(PREFS_NAME, 0);
-        return prefs.getInt("userId", 0);
+        int userId = prefs.getInt("userId", 0);
+        return userId;
     }
 
     public boolean isLoggedIn() {

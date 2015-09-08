@@ -32,6 +32,7 @@ public class AuthActivity extends TransitionActivity implements FacebookCallback
     @Bind(R.id.login_button)
     LoginButton loginButton;
 
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,28 +85,20 @@ public class AuthActivity extends TransitionActivity implements FacebookCallback
     }
 
     public void loginFacebookUser() {
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,first_name,last_name,email,picture,friends");
-        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        count = count + 1;
+        mService.loginFacebook(accessToken.getToken(), accessToken.getUserId() , new Callback<User>() {
             @Override
-            public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-                mService.loginFacebook(new Gson().fromJson(jsonObject.toString(), User.class), new Callback<User>() {
-                    @Override
-                    public void success(User user, Response response) {
-                        CurrentUser.getInstance(getContext()).setUser(user);
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        startActivityWithAnimation(intent);
-                    }
+            public void success(User user, Response response) {
+                CurrentUser.getInstance(getContext()).setUser(user);
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivityWithAnimation(intent);
+            }
 
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
+            @Override
+            public void failure(RetrofitError error) {
 
             }
         });
-        request.setParameters(parameters);
-        request.executeAsync();
     }
 }

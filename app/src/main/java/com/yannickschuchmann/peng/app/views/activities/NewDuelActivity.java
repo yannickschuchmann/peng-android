@@ -67,4 +67,14 @@ public class NewDuelActivity extends TransitionActivity implements NewDuelView {
     public void setToolbarTitle(String title) {
         mToolbar.setTitleText(title);
     }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 }

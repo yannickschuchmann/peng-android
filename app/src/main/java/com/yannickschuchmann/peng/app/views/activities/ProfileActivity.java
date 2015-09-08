@@ -68,7 +68,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
             dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
         }
 
-        mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
+        mPresenter = new ProfilePresenter(this);
     }
 
     @Override

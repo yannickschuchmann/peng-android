@@ -69,4 +69,14 @@ public class RankingActivity extends TransitionActivity implements UserAdapterVi
     public void setToolbarTitle(String title) {
         mToolbar.setTitleText(title);
     }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 }

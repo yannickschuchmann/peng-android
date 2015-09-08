@@ -19,6 +19,7 @@ public interface UserService {
     @PUT("/api/v1/users/{id}")
     void updateUser(@Path("id") int id, @Body User user, Callback<User> cb);
 
+    @FormUrlEncoded
     @POST("/api/v1/users/login_facebook")
-    void loginFacebook(@Body User user, Callback<User> cb);
+    void loginFacebook(@Field("token") String token, @Field("uid") String uid, Callback<User> cb);
 }

@@ -70,4 +70,14 @@ public class SettingsActivity extends TransitionActivity implements SettingsView
         super.onBackPressed();
         overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 }

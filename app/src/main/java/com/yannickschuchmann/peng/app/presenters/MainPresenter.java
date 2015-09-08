@@ -30,44 +30,28 @@ public class MainPresenter extends Presenter {
     public void start() {
         mService = new RestSource().getRestAdapter().create(UserService.class);
 
-        final CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
+        User user = CurrentUser.getInstance(mView.getContext()).getUser();
 
         mView.showLoading();
-        mService.getUser(currentUser.getUserId(), new Callback<User>() {
-            @Override
-            public void success(User user, Response response) {
-                currentUser.setUser(user);
-                SocketAPI.getInstance(mView.getContext());
+        SocketAPI.getInstance(mView.getContext());
 
-                if (user.getNick() == null || user.getNick().equals("")) {
-                    Intent intent;
-                    intent = new Intent(mView.getContext(), ProfileActivity.class);
-                    intent.putExtra("showEditDialog", true);
-                    mView.startActivityWithAnimation(intent);
-                }
+        if (user.getNick() == null || user.getNick().equals("")) {
+            Intent intent;
+            intent = new Intent(mView.getContext(), ProfileActivity.class);
+            intent.putExtra("showEditDialog", true);
+            mView.startActivityWithAnimation(intent);
+        }
 
-                CharacterImage ci = new CharacterImage(mView.getContext(), user);
-                mView.setImage(ci.getDrawable());
-                mView.setNick(user.getNick());
-                mView.setSlogan(user.getSlogan());
-                mView.setFriendsCount(user.getFriendsCount());
-                mView.setDuelsCount(user.getDuelsCount());
-                mView.setRank(user.getRank());
-                mView.setOpenDuels(user.getOpenDuels());
+        CharacterImage ci = new CharacterImage(mView.getContext(), user);
+        mView.setImage(ci.getDrawable());
+        mView.setNick(user.getNick());
+        mView.setSlogan(user.getSlogan());
+        mView.setFriendsCount(user.getFriendsCount());
+        mView.setDuelsCount(user.getDuelsCount());
+        mView.setRank(user.getRank());
+        mView.setOpenDuels(user.getOpenDuels());
 
-                mView.hideLoading();
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(
-                        mView.getContext().getApplicationContext(),
-                        "ups, da ist was schief gegangen",
-                        Toast.LENGTH_SHORT
-                ).show();
-            }
-        });
-
+        mView.hideLoading();
     }
 
     @Override

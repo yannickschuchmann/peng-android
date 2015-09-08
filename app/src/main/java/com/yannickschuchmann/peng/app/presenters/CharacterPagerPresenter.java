@@ -71,6 +71,8 @@ public class CharacterPagerPresenter extends Presenter {
     public void updateCharacter() {
         CurrentUser currentUser = CurrentUser.getInstance(mView.getContext());
         currentUser.getUser().characterId = mActiveCharacter.id;
+        currentUser.getUser().setCharacterName(mActiveCharacter.getName());
+        
         mUserService.updateUser(currentUser.getUserId(),
                 currentUser.getUser(),
                 new Callback<User>() {
