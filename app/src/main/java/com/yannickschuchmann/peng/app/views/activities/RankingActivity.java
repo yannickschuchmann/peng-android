@@ -9,7 +9,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.RankingPresenter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
 import com.yannickschuchmann.peng.app.views.views.RankingView;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
@@ -19,7 +19,7 @@ import com.yannickschuchmann.peng.model.entities.User;
 public class RankingActivity extends TransitionActivity implements UserAdapterView, RankingView {
 
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
 
     RankingPresenter mPresenter;
 

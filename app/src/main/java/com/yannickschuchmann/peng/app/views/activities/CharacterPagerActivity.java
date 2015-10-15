@@ -8,7 +8,7 @@ import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.CharacterPagerPresenter;
 import com.yannickschuchmann.peng.app.views.adapters.CharactersPagerAdapter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.views.CharacterPagerView;
 import com.yannickschuchmann.peng.model.entities.Character;
 
@@ -21,7 +21,7 @@ public class CharacterPagerActivity extends LoadingActivity implements Character
     CharacterPagerPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
     @Bind(R.id.pager)
     ViewPager mPager;
 

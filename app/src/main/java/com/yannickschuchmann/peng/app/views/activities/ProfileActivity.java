@@ -16,7 +16,7 @@ import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.ProfilePresenter;
 import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
 import com.yannickschuchmann.peng.app.views.fragments.EditUserDialogFragment;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
@@ -40,7 +40,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
     @Bind(R.id.user_edit)
     TextView mUserEdit;
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
     @Bind(R.id.last_games)
     LinearLayout mLastGames;
     @Bind(R.id.challenge_user)

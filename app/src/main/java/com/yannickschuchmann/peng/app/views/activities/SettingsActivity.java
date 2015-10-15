@@ -9,7 +9,7 @@ import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.SettingsPresenter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.views.SettingsView;
 
 public class SettingsActivity extends TransitionActivity implements SettingsView {
@@ -17,7 +17,7 @@ public class SettingsActivity extends TransitionActivity implements SettingsView
     SettingsPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,7 +8,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.NewDuelPresenter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.views.NewDuelView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 
@@ -18,7 +18,7 @@ public class NewDuelActivity extends TransitionActivity implements NewDuelView {
     NewDuelPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,20 +11,20 @@ import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
 
 
-public class BackToolbar extends LinearLayout {
+public class BackToolBar extends LinearLayout {
     TextView mTitleView;
 
-    public BackToolbar(Context context) {
+    public BackToolBar(Context context) {
         super(context);
         init(context);
     }
 
-    public BackToolbar(Context context, AttributeSet attrs) {
+    public BackToolBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public BackToolbar(Context context, AttributeSet attrs, int defStyle) {
+    public BackToolBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
     }

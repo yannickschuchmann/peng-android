@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.NewDuelFriendsPresenter;
-import com.yannickschuchmann.peng.app.views.components.BackToolbar;
+import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
 import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment.DuelBetDialogListener;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
@@ -25,7 +25,7 @@ public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDi
     NewDuelFriendsPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
-    BackToolbar mToolbar;
+    BackToolBar mToolbar;
 
     User mClickedUser;
 
