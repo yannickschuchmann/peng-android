@@ -10,7 +10,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent" android:layout_height="match_parent">
 
-        <com.yannickschuchmann.peng.app.views.components.BackToolbar
+        <com.yannickschuchmann.peng.app.views.components.BackToolBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/toolbarTitle"
