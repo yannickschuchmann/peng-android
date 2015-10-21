@@ -25,24 +25,31 @@ import java.util.List;
 
 public class AuthActivity extends TransitionActivity implements FacebookCallback<LoginResult> {
     List<String> permissionNeeds= Arrays.asList("public_profile", "email", "user_friends");
-
+    private boolean isLoggingIn = false;
     UserService mService;
     CallbackManager callbackManager;
 
     @Bind(R.id.login_button)
     LoginButton loginButton;
 
-    int count = 0;
+    @Override
+    protected void onResume(){
+        super.onResume();
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if(accessToken != null){
+            loginFacebookUser();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         callbackManager = CallbackManager.Factory.create();
-
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                if (newAccessToken != null) {
+                if (newAccessToken != null && !isLoggingIn) {
                     loginFacebookUser();
                 }
             }
@@ -71,7 +78,7 @@ public class AuthActivity extends TransitionActivity implements FacebookCallback
 
     @Override
     public void onSuccess(LoginResult loginResult) {
-        loginFacebookUser();
+
     }
 
     @Override
@@ -85,11 +92,13 @@ public class AuthActivity extends TransitionActivity implements FacebookCallback
     }
 
     public void loginFacebookUser() {
+        isLoggingIn = true;
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        count = count + 1;
+
         mService.loginFacebook(accessToken.getToken(), accessToken.getUserId() , new Callback<User>() {
             @Override
             public void success(User user, Response response) {
+                isLoggingIn = false;
                 CurrentUser.getInstance(getContext()).setUser(user);
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivityWithAnimation(intent);
@@ -97,7 +106,7 @@ public class AuthActivity extends TransitionActivity implements FacebookCallback
 
             @Override
             public void failure(RetrofitError error) {
-
+                isLoggingIn = false;
             }
         });
     }

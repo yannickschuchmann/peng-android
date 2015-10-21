@@ -51,7 +51,7 @@ public class RankingActivity extends TransitionActivity implements UserAdapterVi
     @Override
     public void onItemClicked(User user) {
         Intent intent = new Intent(getContext(), ProfileActivity.class);
-        intent.putExtra("userId", user.id);
+        intent.putExtra("userId", user.getId());
         startActivityWithAnimation(intent);
     }
 

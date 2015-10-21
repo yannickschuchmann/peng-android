@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -100,11 +102,22 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
 
     @OnClick(R.id.challenge_user)
     public void onChallengeUser() {
-        DuelBetDialogFragment dialogFragment = DuelBetDialogFragment.newInstance();
-        dialogFragment.show(getSupportFragmentManager(), "DUEL_BET_DIALOG");
+        if (isCurrentUser()) {
+            Toast.makeText(
+                    getContext().getApplicationContext(),
+                    "Du kannst dich nicht selbst duellieren.",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return;
+        }else {
+            DuelBetDialogFragment dialogFragment = DuelBetDialogFragment.newInstance();
+            dialogFragment.show(getSupportFragmentManager(), "DUEL_BET_DIALOG");
+        }
     }
 
     private boolean isCurrentUser() {
+        int userID = getIntent().getExtras().getInt("userId");
+        int currentUser = CurrentUser.getInstance(getContext()).getUserId();
         return getIntent().getExtras().getInt("userId") == CurrentUser.getInstance(getContext()).getUserId();
     }
 
@@ -165,7 +178,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
 
     @Override
     public void onDialogPositiveClick(DuelBetDialogFragment dialog) {
-        mPresenter.postDuel(dialog.getBet());
+            mPresenter.postDuel(dialog.getBet());
     }
 
     @Override

@@ -16,11 +16,12 @@ import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
 import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment.DuelBetDialogListener;
 import com.yannickschuchmann.peng.app.views.fragments.UsersFragment;
 import com.yannickschuchmann.peng.app.views.views.NewDuelFriendsView;
+import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
 import com.yannickschuchmann.peng.app.views.views.UserAdapterView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
 
-public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDialogListener, NewDuelFriendsView, UserAdapterView {
+public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDialogListener, NewDuelFriendsView, UserAdapterView, ToolbarBackView {
 
     NewDuelFriendsPresenter mPresenter;
 
