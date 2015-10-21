@@ -7,36 +7,31 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
               android:orientation="vertical"
-                tools:context="com.yannickschuchmann.peng.app.views.activities.AuthActivity" android:gravity="center">
+                tools:context="com.yannickschuchmann.peng.app.views.activities.AuthActivity" android:gravity="center"
+    android:background="#712724">
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
         <ImageView
-                android:layout_width="119dp"
-                android:layout_height="160dp"
+                android:layout_width="343dp"
+                android:layout_height="462dp"
                 android:id="@+id/imageView6" android:layout_gravity="center_horizontal"
-                android:src="@drawable/character_medic"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="PENG"
-                android:id="@+id/textView13" android:layout_gravity="center" android:textSize="50dp"
-                android:gravity="center"/>
+                android:src="@drawable/logo"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_weight="2"
-            android:gravity="center">
+            android:layout_width="281dp"
+            android:layout_height="57dp" android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:weightSum="1">
         <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                />
+            android:layout_weight="0.39" />
     </LinearLayout>
 
 </LinearLayout>
