@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.squareup.otto.Subscribe;
 import com.yannickschuchmann.peng.app.BusProvider;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.events.ActionPostedEvent;
 import com.yannickschuchmann.peng.app.socket.SocketAPI;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
@@ -46,7 +47,7 @@ public class SensorPresenter extends Presenter {
             public void failure(RetrofitError error) {
                 Toast.makeText(
                         mView.getContext().getApplicationContext(),
-                        "ups, da ist was schief gegangen",
+                        R.string.toastFailureMessage,
                         Toast.LENGTH_SHORT
                 ).show();
             }
@@ -68,7 +69,7 @@ public class SensorPresenter extends Presenter {
         if (mDuel.getMe().getShots() == 0 && result == 1) {
             Toast.makeText(
                     mView.getContext().getApplicationContext(),
-                    "Keine Patronen mehr! Du musst Nachladen!",
+                    R.string.toastNoMoreBullets,
                     Toast.LENGTH_SHORT
             ).show();
             return false;
@@ -76,7 +77,7 @@ public class SensorPresenter extends Presenter {
         if (mDuel.getMe().getShots() == 3 && result == 2) {
             Toast.makeText(
                     mView.getContext().getApplicationContext(),
-                    "Trommel ist voll! Schiess mal!",
+                    R.string.toastMagazineIsFull,
                     Toast.LENGTH_SHORT
             ).show();
             return false;
@@ -95,7 +96,7 @@ public class SensorPresenter extends Presenter {
                 public void failure(RetrofitError error) {
                     Toast.makeText(
                             mView.getContext().getApplicationContext(),
-                            "ups, da ist was schief gegangen",
+                            R.string.toastFailureMessage,
                             Toast.LENGTH_SHORT
                     ).show();
                 }

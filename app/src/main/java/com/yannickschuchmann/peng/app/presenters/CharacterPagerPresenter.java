@@ -2,6 +2,7 @@ package com.yannickschuchmann.peng.app.presenters;
 
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.views.CharacterPagerView;
 import com.yannickschuchmann.peng.model.entities.Character;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -35,7 +36,7 @@ public class CharacterPagerPresenter extends Presenter {
         mUserService = new RestSource().getRestAdapter().create(UserService.class);
         mService = new RestSource().getRestAdapter().create(CharacterService.class);
 
-        mView.setToolbarTitle("Charakter");
+        mView.setToolbarTitle(mView.getContext().getString(R.string.toolbarTitleCharacter));
 
         mActiveId = CurrentUser.getInstance(mView.getContext()).getCharacterId();
 
@@ -57,7 +58,7 @@ public class CharacterPagerPresenter extends Presenter {
             public void failure(RetrofitError error) {
                 Toast.makeText(
                         mView.getContext().getApplicationContext(),
-                        "ups, da ist was schief gegangen",
+                        R.string.toastFailureMessage,
                         Toast.LENGTH_SHORT
                 ).show();
             }

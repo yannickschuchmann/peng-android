@@ -17,7 +17,7 @@
         <view android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               class="com.yannickschuchmann.peng.app.views.components.SectionHeadline" android:id="@+id/view1"
-              custom:headlineText="Profil"
+              custom:headlineText="@string/activityLabelProfile"
               android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
@@ -28,23 +28,24 @@
             <view android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   class="com.yannickschuchmann.peng.app.views.components.LinkButton" android:id="@+id/edit_profil"
-                  custom:ButtonText="Profil bearbeiten"
+                  custom:ButtonText="@string/activityButtonEditProfile"
                   android:layout_gravity="center_horizontal"/>
             <view android:layout_width="fill_parent"
                   android:layout_height="69dp"
                   class="com.yannickschuchmann.peng.app.views.components.LinkButton" android:id="@+id/edit_character"
-                  custom:ButtonText="Charakter aendern"
+                  custom:ButtonText="@string/activityButtonEditCharacter"
                   android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 
         <view
             class="com.yannickschuchmann.peng.app.views.components.SectionHeadline"
-            custom:headlineText="How-to"
+            custom:headlineText="@string/activityLabelHowTo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/How_to_label"
-            android:layout_gravity="center_horizontal" >
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
 
         </view>
 
@@ -56,19 +57,19 @@
             <view android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   class="com.yannickschuchmann.peng.app.views.components.LinkButton" android:id="@+id/instructions"
-                  custom:ButtonText="Anleitung"
+                  custom:ButtonText="@string/activityButtonTutorial"
                   android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
         <view android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               class="com.yannickschuchmann.peng.app.views.components.SectionHeadline" android:id="@+id/view2"
-              custom:headlineText="Account"
+              custom:headlineText="@string/activityLabelAccount"
               android:layout_gravity="center_horizontal"/>
 
         <view
             class="com.yannickschuchmann.peng.app.views.components.LinkButton"
-            custom:ButtonText="Ausloggen"
+            custom:ButtonText="@string/activityButtonLogout"
             android:layout_width="fill_parent"
             android:layout_height="63dp"
             android:id="@+id/logoutButton"
@@ -80,7 +81,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Account loeschen"
+                android:text="@string/activityLabelDeteleAccount"
                 android:textAllCaps="true"
                 android:id="@+id/textView10" android:layout_gravity="center_horizontal" android:gravity="center"
                 android:paddingTop="15dp" android:paddingBottom="15dp" android:textColor="@color/theme_primary"

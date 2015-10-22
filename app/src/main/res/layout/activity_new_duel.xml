@@ -36,20 +36,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="fordere deine"
+                            android:text="@string/activityLabelBetYour"
                             android:id="@+id/textView2" android:textColor="@color/theme_text_light"
                             android:textSize="17dp"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Freunde"
+                            android:text="@string/activityLabelFriends"
                             android:id="@+id/textView4" android:textColor="@color/theme_text_light"
                             android:textSize="42dp"
                             android:textAllCaps="true"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               android:textAppearance="?android:attr/textAppearanceSmall"
-                              android:text="zum Duell heraus."
+                              android:text="@string/activityLabelToChallange"
                               android:id="@+id/textView6" android:textColor="@color/theme_text_light"
                               android:textSize="17dp"/>
                 </LinearLayout>
@@ -68,16 +68,16 @@
                 <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
                               android:layout_height="fill_parent" android:gravity="center_vertical">
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:textAppearance="?android:attr/textAppearanceSmall" android:text="fordere per"
+                              android:textAppearance="?android:attr/textAppearanceSmall" android:text="@string/activityLabelBetBy"
                               android:id="@+id/textView7" android:textColor="@color/theme_text_light"
                               android:textSize="17dp"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="Zufall"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/activityLabelRandom"
                               android:id="@+id/textView8" android:textColor="@color/theme_text_light"
                               android:textSize="42dp" android:textAllCaps="true"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               android:textAppearance="?android:attr/textAppearanceSmall"
-                              android:text="einen anderen Spieler heraus." android:id="@+id/textView9"
+                              android:text="@string/activityLabelBetAnOtherUser" android:id="@+id/textView9"
                               android:textColor="@color/theme_text_light" android:textSize="17dp"/>
                 </LinearLayout>
             </LinearLayout>

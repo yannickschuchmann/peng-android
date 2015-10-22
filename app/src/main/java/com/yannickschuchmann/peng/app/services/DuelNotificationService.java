@@ -35,7 +35,7 @@ public class DuelNotificationService extends Service {
         Intent mIntent = new Intent(this, SensorActivity.class);
         pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentTitle("Du wurdest herausgefordert!");
+        builder.setContentTitle(getString(R.string.notificationContentTitleChallange));
         builder.setContentText(String.valueOf(intent.getIntExtra("duelId", 0)));
         builder.setSmallIcon(R.drawable.character_cowboy);
         builder.setContentIntent(pendingIntent);

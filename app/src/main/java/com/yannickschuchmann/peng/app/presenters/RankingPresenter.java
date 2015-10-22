@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.views.RankingView;
 
 /**
@@ -15,7 +16,7 @@ public class RankingPresenter extends Presenter {
 
     @Override
     public void start() {
-        mView.setToolbarTitle("Rangliste");
+        mView.setToolbarTitle(mView.getContext().getString(R.string.toolbarTitleHighscore));
     }
 
     @Override

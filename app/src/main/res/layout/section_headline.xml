@@ -8,7 +8,7 @@
             android:paddingRight="20dp" android:paddingBottom="15dp">
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceLarge" android:text="Statistik"
+              android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/activityLabelStatistic"
               android:textAllCaps="true"
               android:id="@+id/headline" android:paddingLeft="0dp" android:paddingRight="0dp"
               android:paddingTop="15dp" android:paddingBottom="5dp"

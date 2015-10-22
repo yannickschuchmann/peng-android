@@ -68,7 +68,7 @@ public class NewDuelFriendsActivity extends LoadingActivity implements DuelBetDi
         if (mClickedUser.getId() == CurrentUser.getInstance(getContext()).getUserId()) {
             Toast.makeText(
                     getContext().getApplicationContext(),
-                    "Du kannst dich nicht selbst duellieren.",
+                    R.string.toastYouCanNotFightYourself,
                     Toast.LENGTH_SHORT
             ).show();
             return;

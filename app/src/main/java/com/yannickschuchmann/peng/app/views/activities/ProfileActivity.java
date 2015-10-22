@@ -106,7 +106,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
         if (isCurrentUser()) {
             Toast.makeText(
                     getContext().getApplicationContext(),
-                    "Du kannst dich nicht selbst duellieren.",
+                    R.string.toastYouCanNotFightYourself,
                     Toast.LENGTH_SHORT
             ).show();
             return;

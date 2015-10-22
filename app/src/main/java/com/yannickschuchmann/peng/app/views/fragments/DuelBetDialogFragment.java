@@ -49,16 +49,16 @@ public class DuelBetDialogFragment extends DialogFragment {
         ButterKnife.bind(this, view);
 
         builder.setView(view);
-        builder.setTitle("Um was wird gespielt?"); // TODO use strings xml
+        builder.setTitle(getString(R.string.dialogTitlewhatIsBeingFought));
 
         final DuelBetDialogFragment frag = this;
-        builder.setPositiveButton("Fordern", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.positiveButtonDemand), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
                     mListener.onDialogPositiveClick(frag);
                 }
             })
-            .setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
+            .setNegativeButton(getString(R.string.negativeButtonCancel), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     mListener.onDialogNegativeClick(frag);
                 }

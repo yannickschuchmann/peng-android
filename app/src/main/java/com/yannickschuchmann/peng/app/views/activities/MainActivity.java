@@ -94,7 +94,7 @@ public class MainActivity extends LoadingActivity implements MainView, DuelAdapt
     public void onBackPressed() {
         mBackPressed++;
         if (mBackPressed == 1) {
-            Toast.makeText(getApplicationContext(), "Press again for exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.toastOnBackPressedForExit, Toast.LENGTH_SHORT).show();
         } else if (mBackPressed >= 2) {
             super.onBackPressed();
         }

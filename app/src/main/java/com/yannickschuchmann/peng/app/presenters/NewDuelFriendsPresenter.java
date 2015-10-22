@@ -2,6 +2,7 @@ package com.yannickschuchmann.peng.app.presenters;
 
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.views.NewDuelFriendsView;
 import com.yannickschuchmann.peng.model.entities.Duel;
 import com.yannickschuchmann.peng.model.entities.User;
@@ -37,7 +38,7 @@ public class NewDuelFriendsPresenter extends Presenter {
             public void failure(RetrofitError error) {
                 Toast.makeText(
                         mView.getContext().getApplicationContext(),
-                        "ups, da ist was schief gegangen",
+                        R.string.toastFailureMessage,
                         Toast.LENGTH_SHORT
                 ).show();
             }

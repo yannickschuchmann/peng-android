@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.views.views.SettingsView;
 
 /**
@@ -16,7 +17,7 @@ public class SettingsPresenter extends Presenter {
 
     @Override
     public void start() {
-        mView.setToolbarTitle("Einstellungen");
+        mView.setToolbarTitle(mView.getContext().getString(R.string.toolbarTitleSettings));
     }
 
     @Override

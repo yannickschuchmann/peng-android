@@ -76,7 +76,7 @@ public class UsersFragment extends Fragment {
             public void failure(RetrofitError error) {
                 Toast.makeText(
                         getActivity(),
-                        "ups, da ist was schief gegangen",
+                        R.string.toastFailureMessage,
                         Toast.LENGTH_SHORT
                 ).show();
             }

@@ -57,7 +57,7 @@ public class EditUserDialogFragment extends DialogFragment {
         mSlogan.setText(getArguments().getString("slogan"));
 
         builder.setView(view);
-        builder.setTitle("Edit your User"); // TODO use strings xml
+        builder.setTitle(getString(R.string.dialogTitleEditUser)); // TODO use strings xml
 
         final EditUserDialogFragment frag = this;
         builder.setPositiveButton("update", new DialogInterface.OnClickListener() {
