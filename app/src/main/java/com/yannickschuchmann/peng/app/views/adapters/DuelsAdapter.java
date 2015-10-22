@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.yannickschuchmann.peng.app.R;
@@ -37,11 +39,12 @@ public class DuelsAdapter extends RecyclerView.Adapter<DuelsAdapter.DuelsRowHold
             @Override
             public void onItem(View caller, Duel duel) {
 
-                DuelAdapterView activity = (DuelAdapterView) caller.getContext();
+                    DuelAdapterView activity = (DuelAdapterView) caller.getContext();
 
-                caller.setSelected(true);
+                    caller.setSelected(true);
 
-                activity.onDuelClicked(duel);
+                    activity.onDuelClicked(duel);
+
             }
         });
         return mh;

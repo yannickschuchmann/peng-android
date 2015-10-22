@@ -21,6 +21,7 @@ import com.yannickschuchmann.peng.app.views.adapters.DuelsAdapter;
 import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.DuelBetDialogFragment;
 import com.yannickschuchmann.peng.app.views.fragments.EditUserDialogFragment;
+import com.yannickschuchmann.peng.app.views.views.DuelAdapterView;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.app.views.views.ToolbarBackView;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -29,7 +30,7 @@ import com.yannickschuchmann.peng.model.entities.User;
 import java.util.List;
 
 
-public class ProfileActivity extends LoadingActivity implements DuelBetDialogFragment.DuelBetDialogListener, ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener {
+public class ProfileActivity extends LoadingActivity implements DuelBetDialogFragment.DuelBetDialogListener, ProfileView, ToolbarBackView, EditUserDialogFragment.EditUserDialogListener, DuelAdapterView {
 
     ProfilePresenter mPresenter;
 
@@ -131,6 +132,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
             adapter.onBindViewHolder(holder, position);
 
             ll.addView(holder.itemView);
+
         }
     }
 
@@ -182,5 +184,10 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
     @Override
     public void onDialogNegativeClick(DuelBetDialogFragment dialog) {
         dialog.getDialog().cancel();
+    }
+
+    @Override
+    public void onDuelClicked(Duel duel) {
+
     }
 }

@@ -120,9 +120,19 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         registerListenerAccelerometer();    //Abschalten wenn nicht die ganze Zeit angezeigt werden soll
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        unregisterListenerAccelerometer();
+        imageUser.setImageDrawable(null);
+        imageEnemy.setImageDrawable(null);
+    }
+
     public void onStop() {
         super.onStop();
         unregisterListenerAccelerometer();
+        imageUser.setImageDrawable(null);
+        imageEnemy.setImageDrawable(null);
     }
 
     public void receiveAction(Duel duel, boolean update) {
@@ -367,7 +377,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     public void registerListenerAccelerometer(){
         //Method to register the sensor
         sensorManager.registerListener(accelListener, sensor,
-                SensorManager.SENSOR_DELAY_FASTEST);
+                SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(proximityListener, proximitySensor,
                 SensorManager.SENSOR_DELAY_NORMAL);
     }
