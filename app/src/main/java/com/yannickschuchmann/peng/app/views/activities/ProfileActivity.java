@@ -80,6 +80,12 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
         mPresenter.start();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //mUserImage.setImageDrawable(null);
+    }
+
     public void startDuelActivity(Duel duel) {
         Intent intent = new Intent(getContext(), SensorActivity.class);
         intent.putExtra("duelId", duel.id);

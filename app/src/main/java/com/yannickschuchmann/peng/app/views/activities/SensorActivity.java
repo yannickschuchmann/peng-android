@@ -124,15 +124,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     public void onPause(){
         super.onPause();
         unregisterListenerAccelerometer();
-        imageUser.setImageDrawable(null);
-        imageEnemy.setImageDrawable(null);
-    }
-
-    public void onStop() {
-        super.onStop();
-        unregisterListenerAccelerometer();
-        imageUser.setImageDrawable(null);
-        imageEnemy.setImageDrawable(null);
+        unregisterAllImageViews();
     }
 
     public void receiveAction(Duel duel, boolean update) {
@@ -416,5 +408,18 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Override
     public Context getContext() {
         return this;
+    }
+
+    public void unregisterAllImageViews(){
+        imageUser.setImageDrawable(null);
+        imageEnemy.setImageDrawable(null);
+        imageEnemyMag1.setImageDrawable(null);
+        imageEnemyMag2.setImageDrawable(null);
+        imageEnemyMag3.setImageDrawable(null);
+        imageUserMag1.setImageDrawable(null);
+        imageUserMag2.setImageDrawable(null);
+        imageUserMag3.setImageDrawable(null);
+        countDownOverlay.setImageDrawable(null);
+        imageResult.setImageDrawable(null);
     }
 }
