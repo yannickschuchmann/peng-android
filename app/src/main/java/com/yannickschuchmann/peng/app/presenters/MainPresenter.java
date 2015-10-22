@@ -35,7 +35,7 @@ public class MainPresenter extends Presenter {
         mView.showLoading();
         SocketAPI.getInstance(mView.getContext());
 
-        if (user.getNick() == null || user.getNick().equals("")) {
+        if (!(user == null) && (user.getNick() == null || user.getNick().equals(""))) {
             Intent intent;
             intent = new Intent(mView.getContext(), ProfileActivity.class);
             intent.putExtra("showEditDialog", true);
