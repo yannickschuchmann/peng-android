@@ -24,9 +24,9 @@ public class ProfilePresenter extends Presenter {
     private UserService mService;
     private DuelService mDuelService;
 
-    public ProfilePresenter(ProfileView view) {
+    public ProfilePresenter(ProfileView view, int userId) {
         mView = view;
-        mUserId = CurrentUser.getInstance(mView.getContext()).getUserId();
+        mUserId = userId;
     }
 
     @Override
@@ -34,11 +34,27 @@ public class ProfilePresenter extends Presenter {
         mService = new RestSource().getRestAdapter().create(UserService.class);
         mDuelService = new RestSource().getRestAdapter().create(DuelService.class);
 
-        mView.showLoading();
-        mUser = CurrentUser.getInstance(mView.getContext()).getUser();
-        setupView(mUser);
-        mView.hideLoading();
+        if (mView.isCurrentUser()) {
+            mUser = CurrentUser.getInstance(mView.getContext()).getUser();
+            setupView(mUser);
+        } else {
+            mView.showLoading();
+            mService.getUser(mUserId, new Callback<User>() {
+                @Override
+                public void success(User user, Response response) {
+                    mView.hideLoading();
+                    mUser = user;
+                    setupView(mUser);
+                }
 
+                @Override
+                public void failure(RetrofitError error) {
+                    mView.hideLoading();
+                    mView.onToolbarBackClicked();
+                }
+            });
+
+        }
     }
 
     @Override

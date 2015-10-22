@@ -70,7 +70,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
             dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
         }
 
-        mPresenter = new ProfilePresenter(this);
+        mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
     }
 
     @Override
@@ -115,9 +115,7 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
         }
     }
 
-    private boolean isCurrentUser() {
-        int userID = getIntent().getExtras().getInt("userId");
-        int currentUser = CurrentUser.getInstance(getContext()).getUserId();
+    public boolean isCurrentUser() {
         return getIntent().getExtras().getInt("userId") == CurrentUser.getInstance(getContext()).getUserId();
     }
 

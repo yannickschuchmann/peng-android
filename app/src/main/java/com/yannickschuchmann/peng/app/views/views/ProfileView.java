@@ -14,4 +14,6 @@ public interface ProfileView extends LoadingToolbarBackView {
     public void setImage(Drawable image);
     public void startDuelActivity(Duel duel);
     public void setLastDuels(List<Duel> duels);
+    public boolean isCurrentUser();
+
 }
