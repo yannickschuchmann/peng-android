@@ -6,18 +6,25 @@ import android.os.Bundle;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.SettingsPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.views.SettingsView;
+import com.yannickschuchmann.peng.model.rest.services.UserService;
 
-public class SettingsActivity extends TransitionActivity implements SettingsView {
+public class SettingsActivity extends TransitionActivity implements SettingsView, FacebookCallback<LoginResult> {
 
     SettingsPresenter mPresenter;
 
     @Bind(R.id.toolbarTitle)
     BackToolBar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,14 @@ public class SettingsActivity extends TransitionActivity implements SettingsView
         startActivityWithAnimation(intent);
     }
 
+    @OnClick(R.id.logoutButton)
+    public void onLogoutButtonClicked(){
+        LoginManager.getInstance().logOut();
+
+        Intent intent = new Intent(getContext(), AuthActivity.class);
+        startActivityWithAnimation(intent);
+    }
+
     // swap transitions
     @Override
     public void onBackPressed() {
@@ -78,6 +93,21 @@ public class SettingsActivity extends TransitionActivity implements SettingsView
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void onSuccess(LoginResult loginResult) {
+
+    }
+
+    @Override
+    public void onCancel() {
+
+    }
+
+    @Override
+    public void onError(FacebookException error) {
 
     }
 }

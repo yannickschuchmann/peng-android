@@ -54,7 +54,8 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="edit"
                             android:id="@+id/user_edit" android:layout_gravity="center_horizontal"
-                            android:textSize="23dp" android:textColor="@color/theme_text_gray"/>
+                            android:textSize="30dp" android:textColor="@color/theme_text_gray"
+                        android:textStyle="bold" />
                 </LinearLayout>
                 <com.yannickschuchmann.peng.app.views.components.SectionHeadline
                         android:layout_width="match_parent"
