@@ -1,5 +1,6 @@
 package com.yannickschuchmann.peng.app.views.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,5 +19,9 @@ public class TutorialPageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial_page, container, false);
 
         return rootView;
+    }
+
+    public static void instantiate(Drawable drawable) {
+
     }
 }

@@ -5,7 +5,7 @@ package com.yannickschuchmann.peng.app.views.activities;
  */
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,14 +14,14 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import com.yannickschuchmann.peng.app.R;
+import com.yannickschuchmann.peng.app.presenters.TutorialPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.TutorialPageFragment;
 import com.yannickschuchmann.peng.app.views.views.TutorialPagerView;
-import com.yannickschuchmann.peng.model.entities.*;
 import com.yannickschuchmann.peng.model.entities.Character;
+import com.yannickschuchmann.peng.app.views.helpers.TutorialImage;
 
 import java.util.List;
 
@@ -30,11 +30,13 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
     private static final int NUM_PAGES = 5;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    private TutorialPresenter mPresenter;
+    private int mImageID;
+    private Context mContext;
+    private TutorialPagerView mView;
 
     @Bind(R.id.toolbarTitle)
     BackToolBar mToolbar;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +47,20 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         ButterKnife.bind(this);
+
+        mPresenter = new TutorialPresenter(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        mPresenter.start();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        mPager.clearOnPageChangeListeners();
     }
 
     @Override
@@ -65,7 +71,7 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
     public Context getContext() {
         return this;
     }
-    
+
     @Override
     public void onToolbarBackClicked() {
         onBackPressed();
@@ -83,9 +89,10 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
 
         @Override
         public Fragment getItem(int position) {
+           // TutorialImage tutorialImage = new TutorialImage(mView.getContext(), position);
+           // TutorialPageFragment.instantiate(tutorialImage.getDrawable());
             return new TutorialPageFragment();
         }
-
         @Override
         public int getCount() {
             return NUM_PAGES;
