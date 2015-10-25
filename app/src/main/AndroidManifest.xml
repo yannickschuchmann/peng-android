@@ -58,6 +58,12 @@
             android:screenOrientation="portrait" >
         </activity>
 
+        <activity
+            android:name=".views.activities.TutorialPageActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="5b7e0d769d964b77bc2dbea10d81dbde3b5d72ef" />

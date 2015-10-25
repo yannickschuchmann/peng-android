@@ -55,10 +55,11 @@
             android:layout_height="62dp">
 
             <view android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  class="com.yannickschuchmann.peng.app.views.components.LinkButton" android:id="@+id/instructions"
-                  custom:ButtonText="@string/activityButtonTutorial"
-                  android:layout_gravity="center_horizontal"/>
+                android:layout_height="wrap_content"
+                class="com.yannickschuchmann.peng.app.views.components.LinkButton"
+                android:id="@+id/instructions"
+                custom:ButtonText="@string/activityButtonTutorial"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
         <view android:layout_width="fill_parent"
