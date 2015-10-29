@@ -125,7 +125,14 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         super.onPause();
         unregisterListenerAccelerometer();
         unregisterAllImageViews();
+        this.finish();
     }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
+
 
     public void receiveAction(Duel duel, boolean update) {
 //        movementSound(Movement.RoundResultToResultCode(duel.getResult()));

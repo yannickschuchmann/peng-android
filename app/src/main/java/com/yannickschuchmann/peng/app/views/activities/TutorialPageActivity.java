@@ -19,18 +19,20 @@ import butterknife.ButterKnife;
 
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.presenters.TutorialPresenter;
+import com.yannickschuchmann.peng.app.views.adapters.ScreenSlidePagerAdapter;
 import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.TutorialPageFragment;
 import com.yannickschuchmann.peng.app.views.views.TutorialPagerView;
 import com.yannickschuchmann.peng.app.views.helpers.TutorialImage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TutorialPageActivity extends LoadingActivity implements TutorialPagerView{
 
-    private static final int NUM_PAGES = 5;
+
     private ViewPager mPager;
-    private PagerAdapter mPagerAdapter;
+    private ScreenSlidePagerAdapter mPagerAdapter;
     private TutorialPresenter mPresenter;
     private int mImageID;
     private Context mContext;
@@ -45,7 +47,12 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
         setContentView(R.layout.activity_tutorial_slide);
 
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        List<String> allSlides = new ArrayList<String>();
+        allSlides.add("tutorial_dummy_page_0");
+        allSlides.add("tutorial_dummy_page_1");
+
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), allSlides);
+
         mPager.setAdapter(mPagerAdapter);
         ButterKnife.bind(this);
 
@@ -78,23 +85,5 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
         mToolbar.setTitleText(title);
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-            /*TEST CODE
-                TutorialImage tutorialImage = new TutorialImage(mView.getContext(), position);
-                TutorialPageFragment.instantiate(tutorialImage.getDrawable());
-                Toast.makeText(getApplicationContext(), position, Toast.LENGTH_SHORT).show();
-            */
-            return new TutorialPageFragment();
-        }
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-    }
 }

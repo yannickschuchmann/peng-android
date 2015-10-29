@@ -12,26 +12,35 @@ import android.widget.TextView;
 import com.yannickschuchmann.peng.app.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Simon on 25.10.2015.
  */
 public class TutorialPageFragment extends Fragment {
-    /*TEST CODE
-    @Bind(R.id.tutorial_image)
-    ImageView tutorial_image;
-    */
+    private String mSlide;
+
+        @Bind(R.id.tutorial_image)
+        ImageView tutorial_image;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial_page, container, false);
-        /*TEST CODE
-        Drawable drawable = getResources().getDrawable(R.drawable.tutorial_dummy_page_0);
+        View rootView = inflater.inflate(R.layout.fragment_tutorial_page, container, false);
+        ButterKnife.bind(this, rootView);
+
+        int slideId = getResources().getIdentifier(mSlide, "drawable", "com.yannickschuchmann.peng.app");
+        Drawable drawable = getResources().getDrawable(slideId);
         tutorial_image.setImageDrawable(drawable);
-        //tutorial.setImageDrawable(null);//R.drawable.tutorial_dummy_page_0
-        */
+
         return rootView;
     }
 
+    public static TutorialPageFragment newInstace(String slide){
+    TutorialPageFragment fragment = new TutorialPageFragment();
+        fragment.mSlide = slide;
+        return fragment;
+    }
+    
     public static void instantiate(Drawable drawable) {
 
     }

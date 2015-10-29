@@ -64,14 +64,14 @@ public class ProfileActivity extends LoadingActivity implements DuelBetDialogFra
         } else {
             mChallengeUser.setVisibility(View.GONE);
         }
+        mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
 
         if (getIntent().getBooleanExtra("showEditDialog", false)) {
+            mPresenter.redirectToTutorial = true;
             User user = CurrentUser.getInstance(getContext()).getUser();
             EditUserDialogFragment dialogFragment = EditUserDialogFragment.newInstance(user.getNick(), user.getSlogan());
             dialogFragment.show(getSupportFragmentManager(), "EDIT_USER_DIALOG");
         }
-
-        mPresenter = new ProfilePresenter(this, getIntent().getExtras().getInt("userId"));
     }
 
     @Override

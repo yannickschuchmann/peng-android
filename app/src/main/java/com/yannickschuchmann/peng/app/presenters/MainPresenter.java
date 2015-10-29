@@ -39,6 +39,7 @@ public class MainPresenter extends Presenter {
             Intent intent;
             intent = new Intent(mView.getContext(), ProfileActivity.class);
             intent.putExtra("showEditDialog", true);
+            intent.putExtra("userId", CurrentUser.getInstance(mView.getContext()).getUserId());
             mView.startActivityWithAnimation(intent);
         }
 

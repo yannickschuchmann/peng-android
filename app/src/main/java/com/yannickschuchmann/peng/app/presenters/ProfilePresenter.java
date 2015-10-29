@@ -1,7 +1,9 @@
 package com.yannickschuchmann.peng.app.presenters;
 
+import android.content.Intent;
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.views.activities.TutorialPageActivity;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
 import com.yannickschuchmann.peng.app.views.views.ProfileView;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -23,6 +25,7 @@ public class ProfilePresenter extends Presenter {
     private User mUser;
     private UserService mService;
     private DuelService mDuelService;
+    public boolean redirectToTutorial = false;
 
     public ProfilePresenter(ProfileView view, int userId) {
         mView = view;
@@ -83,8 +86,15 @@ public class ProfilePresenter extends Presenter {
         mService.updateUser(user.getId(), user, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
-                setupView(user);
+
                 mView.hideLoading();
+                if(redirectToTutorial){
+                    Intent intent;
+                    intent = new Intent(mView.getContext(), TutorialPageActivity.class);
+                    mView.startActivityWithAnimation(intent);
+                }else {
+                    setupView(user);
+                }
             }
 
             @Override
