@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/character_image" android:layout_below="@+id/activity_movies_toolbar"
+        android:id="@+id/tutorial_image" android:layout_below="@+id/activity_movies_toolbar"
         android:layout_centerHorizontal="true" android:src="@drawable/tutorial_dummy_page_0"
         android:background="@drawable/red_circle_bright"
         android:layout_weight="0.32" />

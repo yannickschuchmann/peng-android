@@ -59,12 +59,19 @@ public class MainActivity extends LoadingActivity implements MainView, DuelAdapt
         mMainPresenter.start();
     }
 
+
+
     @Override
     protected void onPause() {
         super.onPause();
         mBackPressed = 0;
         //mImage.setImageDrawable(null);
         //mOpenDuels.setLayoutAnimationListener(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
     }
 
     @OnClick(R.id.button_new_duel)

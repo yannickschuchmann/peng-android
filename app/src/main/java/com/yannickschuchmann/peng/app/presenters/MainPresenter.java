@@ -54,6 +54,7 @@ public class MainPresenter extends Presenter {
         mView.hideLoading();
     }
 
+
     @Override
     public void stop() {
     }

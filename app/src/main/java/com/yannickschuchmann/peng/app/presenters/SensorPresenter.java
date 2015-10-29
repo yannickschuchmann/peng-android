@@ -1,6 +1,8 @@
 package com.yannickschuchmann.peng.app.presenters;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.widget.Toast;
 import com.squareup.otto.Subscribe;
 import com.yannickschuchmann.peng.app.BusProvider;
@@ -8,6 +10,7 @@ import com.yannickschuchmann.peng.app.CurrentUser;
 import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.events.ActionPostedEvent;
 import com.yannickschuchmann.peng.app.socket.SocketAPI;
+import com.yannickschuchmann.peng.app.views.activities.MainActivity;
 import com.yannickschuchmann.peng.app.views.helpers.sensors.Movement;
 import com.yannickschuchmann.peng.app.views.views.SensorView;
 import com.yannickschuchmann.peng.model.entities.Duel;
@@ -90,6 +93,16 @@ public class SensorPresenter extends Presenter {
                     mDuel = duel;
                     mView.setupView(duel, duel.isMyTurn());
                     System.out.println(SocketAPI.getStatus());
+                    if (!duel.isMyTurn()){
+                        Toast.makeText(
+                                mView.getContext().getApplicationContext(),
+                                R.string.toastWaitForOpponent,
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        Intent intent;
+                        intent = new Intent(mView.getContext(), MainActivity.class);
+                        mView.startActivityWithAnimation(intent);
+                    }
                 }
 
                 @Override

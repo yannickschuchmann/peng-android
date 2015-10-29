@@ -114,12 +114,12 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         super.onStart();
         mPresenter.start();
     }
-
+/*
     public void onResume() {
         super.onResume();
         registerListenerAccelerometer();    //Abschalten wenn nicht die ganze Zeit angezeigt werden soll
     }
-
+*/
     @Override
     public void onPause(){
         super.onPause();

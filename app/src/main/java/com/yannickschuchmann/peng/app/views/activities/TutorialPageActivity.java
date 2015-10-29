@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -20,7 +22,6 @@ import com.yannickschuchmann.peng.app.presenters.TutorialPresenter;
 import com.yannickschuchmann.peng.app.views.components.BackToolBar;
 import com.yannickschuchmann.peng.app.views.fragments.TutorialPageFragment;
 import com.yannickschuchmann.peng.app.views.views.TutorialPagerView;
-import com.yannickschuchmann.peng.model.entities.Character;
 import com.yannickschuchmann.peng.app.views.helpers.TutorialImage;
 
 import java.util.List;
@@ -63,11 +64,6 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
         mPager.clearOnPageChangeListeners();
     }
 
-    @Override
-    public void setPagerAdapter(List<Character> characters, int currentIndex) {
-
-    }
-
     public Context getContext() {
         return this;
     }
@@ -89,8 +85,11 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
 
         @Override
         public Fragment getItem(int position) {
-           // TutorialImage tutorialImage = new TutorialImage(mView.getContext(), position);
-           // TutorialPageFragment.instantiate(tutorialImage.getDrawable());
+            /*TEST CODE
+                TutorialImage tutorialImage = new TutorialImage(mView.getContext(), position);
+                TutorialPageFragment.instantiate(tutorialImage.getDrawable());
+                Toast.makeText(getApplicationContext(), position, Toast.LENGTH_SHORT).show();
+            */
             return new TutorialPageFragment();
         }
         @Override

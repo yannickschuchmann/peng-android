@@ -93,4 +93,16 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
             public void onItem(View caller, User user);
         }
     }
+
+    public void clearData() {
+        int size = this.users.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                this.users.remove(0);
+            }
+
+            this.notifyItemRangeRemoved(0, size);
+        }
+    }
+
 }

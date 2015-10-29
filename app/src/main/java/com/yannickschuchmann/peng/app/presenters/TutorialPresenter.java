@@ -17,6 +17,7 @@ public class TutorialPresenter extends Presenter{
     @Override
     public void start() {
         mView.setToolbarTitle(mView.getContext().getString(R.string.toolbarTitleTutorial));
+
     }
 
     @Override
