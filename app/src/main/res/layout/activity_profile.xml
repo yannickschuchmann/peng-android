@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/headline1"
                         custom:headlineText="@string/activityLabelStatistic"
-                        />
+                    android:visibility="gone" />
                 <LinearLayout
                         android:id="@+id/last_games"
                         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             custom:headlineText="@string/activityLabelLastGames"
-                            />
+                        android:visibility="gone" />
                     <LinearLayout
                             android:orientation="vertical"
                             android:id="@+id/open_duels"

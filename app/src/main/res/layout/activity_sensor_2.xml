@@ -28,7 +28,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Magazin"
+                        android:text="@string/textLabelLoadedMagazineEnemy"
                         android:textAllCaps="true"
                         android:id="@+id/textView14" android:textSize="30dp" android:textStyle="bold"
                         />
@@ -101,7 +101,7 @@
                            android:src="@drawable/shoot_unloaded" android:layout_marginBottom="0dp"
                            android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="Magazin"
+                          android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/textLabelLoadedMagazineUser"
                           android:textAllCaps="true" android:id="@+id/textView15" android:textSize="30dp"
                           android:textStyle="bold" android:layout_marginTop="2dp" android:layout_gravity="top"/>
             </LinearLayout>

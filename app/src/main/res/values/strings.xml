@@ -36,7 +36,7 @@
     <string name="toastOnBackPressedForExit">Press again for exit</string>
     <string name="toastYouCanNotFightYourself">You cannot fight against yourself!</string>
     <string name="dialogTitlewhatIsBeingFought">For what do you want to fight?</string>
-    <string name="positiveButtonDemand">Challange</string>
+    <string name="positiveButtonDemand">Challenge</string>
     <string name="negativeButtonCancel">Cancel</string>
     <string name="dialogTitleEditUser">Edit your profile</string>
     
@@ -70,5 +70,5 @@
     <string name="fragmentLabelSwipeToChange">Swipe to change</string>
     <string name="toolbarTitleTutorial">Tutorial</string>
     <string name="toastWaitForOpponent">Wait for opponent.</string>
-    <string name="rankingPlace">Place</string>
+    <string name="rankingPlace">. Place</string>
 </resources>
