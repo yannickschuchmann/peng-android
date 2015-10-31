@@ -56,7 +56,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
         usersRowHolder.mUser = user;
         usersRowHolder.nick.setText(user.getNick());
         usersRowHolder.slogan.setText(user.getSlogan());
-        usersRowHolder.rank.setText(String.valueOf(user.getRank()) + ". Platz");
+        usersRowHolder.rank.setText(String.valueOf(user.getRank()));
+        usersRowHolder.rankPlace.setText(mContext.getString(R.string.rankingPlace));
     }
 
     @Override
@@ -69,6 +70,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersRowHold
         @Bind(R.id.thumbnail) ImageView thumbnail;
         @Bind(R.id.slogan) TextView slogan;
         @Bind(R.id.rank) TextView rank;
+        @Bind(R.id.rankPlace) TextView rankPlace;
 
         public User mUser;
 

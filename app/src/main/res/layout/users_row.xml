@@ -27,14 +27,32 @@
                 android:layout_marginTop="5dp"
                 android:maxLines="3" android:text="Lasse Bluten" android:singleLine="true"
                 android:textColor="@color/theme_primary"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="290"
+                    android:textAllCaps="true"
+                    android:id="@+id/rank" android:textSize="40dp" android:textColor="@color/theme_primary"
+                    android:fontFamily="Verdana"
+                    android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="290. Platz"
-                android:textAllCaps="true"
-                android:id="@+id/rank" android:textSize="40dp" android:textColor="@color/theme_primary"
+                android:text=". Platz" android:textSize="46dp" android:textColor="@color/theme_primary"
+                android:id="@+id/rankPlace"
+                android:fontFamily="Verdana"
                 android:textStyle="bold"/>
+        </LinearLayout>
+
         <TextView android:id="@+id/slogan" android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:maxLines="3"
                   android:singleLine="true" android:textColor="@color/theme_primary"
