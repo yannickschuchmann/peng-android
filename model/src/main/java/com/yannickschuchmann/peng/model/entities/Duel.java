@@ -9,6 +9,16 @@ public class Duel {
     private Actor opponent;
     private Action myAction;
     private Action opponentAction;
+    private int roundCount;
+
+    public int getRoundCount() {
+        return roundCount;
+    }
+
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
+    }
+
     private boolean active;
 
     public String getResult() {

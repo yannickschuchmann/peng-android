@@ -51,6 +51,9 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Bind(R.id.countDownOverlay) ImageView countDownOverlay;
 
     @Bind(R.id.sensor_overlay) LinearLayout sensorOverlay;
+    @Bind(R.id.round_overlay) LinearLayout roundOverlay;
+
+    @Bind(R.id.roundCount) TextView roundCount;
 
     @Bind(R.id.imageUser)
     GifImageView imageUser;
@@ -90,6 +93,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         ButterKnife.bind(this);
 
         sensorOverlay.setVisibility(View.GONE);
+        roundOverlay.setVisibility(View.GONE);
 
         //*********************CONSTRUCTORS*********************
         vibrator = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
@@ -138,6 +142,8 @@ public class SensorActivity extends TransitionActivity implements SensorView {
 
         mMe = duel.getMe();
         mOpponent = duel.getOpponent();
+
+        roundCount.setText("Round " + Integer.toString(duel.getRoundCount()));
 
         textLabelHealthUser.setText(Integer.toString(mMe.getHitPoints()));
         textLabelHealthEnemy.setText(Integer.toString(mOpponent.getHitPoints()));
@@ -216,6 +222,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         if (mPresenter.getDuel().isMyTurn()) {
 
             sensorOverlay.setVisibility(View.VISIBLE);
+            roundOverlay.setVisibility(View.VISIBLE);
 
             vibrator.vibrate(100);
 
@@ -267,6 +274,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
                     }
 
                     sensorOverlay.setVisibility(View.GONE);
+                    roundOverlay.setVisibility(View.GONE);
 
 
                     // for now movement is set for own character,
