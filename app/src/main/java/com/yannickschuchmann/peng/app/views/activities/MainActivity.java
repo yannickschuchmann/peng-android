@@ -72,6 +72,7 @@ public class MainActivity extends LoadingActivity implements MainView, DuelAdapt
     @Override
     public void onResume(){
         super.onResume();
+        mMainPresenter.update();
     }
 
     @OnClick(R.id.button_new_duel)

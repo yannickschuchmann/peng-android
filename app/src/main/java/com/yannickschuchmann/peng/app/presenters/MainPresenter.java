@@ -3,6 +3,7 @@ package com.yannickschuchmann.peng.app.presenters;
 import android.content.Intent;
 import android.widget.Toast;
 import com.yannickschuchmann.peng.app.CurrentUser;
+import com.yannickschuchmann.peng.app.R;
 import com.yannickschuchmann.peng.app.socket.SocketAPI;
 import com.yannickschuchmann.peng.app.views.activities.ProfileActivity;
 import com.yannickschuchmann.peng.app.views.helpers.CharacterImage;
@@ -29,10 +30,14 @@ public class MainPresenter extends Presenter {
     @Override
     public void start() {
         mService = new RestSource().getRestAdapter().create(UserService.class);
+        mView.showLoading();
+        this.setup();
+        mView.hideLoading();
+    }
 
+    public void setup() {
         User user = CurrentUser.getInstance(mView.getContext()).getUser();
 
-        mView.showLoading();
         SocketAPI.getInstance(mView.getContext());
 
         if (!(user == null) && (user.getNick() == null || user.getNick().equals(""))) {
@@ -51,8 +56,28 @@ public class MainPresenter extends Presenter {
         mView.setDuelsCount(user.getDuelsCount());
         mView.setRank(user.getRank());
         mView.setOpenDuels(user.getOpenDuels());
+    }
 
-        mView.hideLoading();
+    public void update() {
+        mView.showLoading();
+        mService.getUser(CurrentUser.getInstance(mView.getContext()).getUserId(), new Callback<User>() {
+            @Override
+            public void success(User user, Response response) {
+                CurrentUser.getInstance(mView.getContext()).setUser(user);
+                setup();
+                mView.hideLoading();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(
+                        mView.getContext().getApplicationContext(),
+                        R.string.toastFailureMessage,
+                        Toast.LENGTH_SHORT
+                ).show();
+                mView.hideLoading();
+            }
+        });
     }
 
 
