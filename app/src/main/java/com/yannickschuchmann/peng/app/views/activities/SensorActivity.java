@@ -57,6 +57,9 @@ public class SensorActivity extends TransitionActivity implements SensorView {
     @Bind(R.id.imageEnemy) GifImageView imageEnemy;
     @Bind(R.id.imageResult) ImageView imageResult;
 
+    @Bind(R.id.myActionLabel) TextView myActionLabel;
+    @Bind(R.id.opActionLabel) TextView opActionLabel;
+
     private Actor mMe, mOpponent;
     private Movement movement;
     private float x, y, z, p, tempX, tempY, tempZ, tempP;
@@ -99,14 +102,6 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
 
-        blockedDrawable = getResources().getDrawable(R.drawable.b_blocked);
-        loseDrawable = getResources().getDrawable(R.drawable.b_lose);
-        missedDrawable = getResources().getDrawable(R.drawable.b_missed);
-        readyDrawable = getResources().getDrawable(R.drawable.b_ready);
-        reloadDrawable = getResources().getDrawable(R.drawable.b_reload);
-        versusDrawable = getResources().getDrawable(R.drawable.b_versus);
-        waitDrawable = getResources().getDrawable(R.drawable.b_wait);
-        winDrawable = getResources().getDrawable(R.drawable.b_win);
     }
 
     @Override
@@ -147,22 +142,17 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         textLabelHealthUser.setText(Integer.toString(mMe.getHitPoints()));
         textLabelHealthEnemy.setText(Integer.toString(mOpponent.getHitPoints()));
 
-//        Drawable user = getResources().getDrawable(R.drawable.blue_waits);
-//        imageUser.setImageDrawable(user);
-//        Drawable enemy = getResources().getDrawable(R.drawable.red_waits);
-//        imageEnemy.setImageDrawable(enemy);
+        Drawable resultImage = getResources().getDrawable(
+            getResources().getIdentifier(duel.getResult(), "drawable", "com.yannickschuchmann.peng.app")
+        );
 
+        String myAction = (!duel.isMyTurn() || !duel.isActive()) ?
+                Movement.ActionNameToActionFileName(duel.getMyAction().getType()) : "your turn";
+        myActionLabel.setText(myAction);
 
-        Drawable resultImage =
-                duel.getResult().equals("blocked") ? blockedDrawable :
-                duel.getResult().equals("reload") ? reloadDrawable :
-                duel.getResult().equals("versus") ? versusDrawable :
-                duel.getResult().equals("wait") ? waitDrawable :
-                duel.getResult().equals("same") ? missedDrawable :
-                duel.getResult().equals("nothing") ? missedDrawable :
-                duel.getResult().equals("won") ? winDrawable :
-                duel.getResult().equals("lost") ? loseDrawable :
-                readyDrawable;
+        String opAction = (duel.isMyTurn() || !duel.isActive()) ?
+                Movement.ActionNameToActionFileName(duel.getOpponentAction().getType()) : "waiting";
+        opActionLabel.setText(opAction);
 
         imageResult.setImageDrawable(resultImage);
 

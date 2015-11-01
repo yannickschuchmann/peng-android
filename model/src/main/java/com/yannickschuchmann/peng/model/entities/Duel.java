@@ -9,6 +9,7 @@ public class Duel {
     private Actor opponent;
     private Action myAction;
     private Action opponentAction;
+    private boolean active;
 
     public String getResult() {
         return result;
@@ -19,6 +20,14 @@ public class Duel {
     }
 
     private String result;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;

@@ -20,8 +20,8 @@
     <string name="textLabelX">X</string>
     <string name="textLabelY">Y</string>
     <string name="textLabelZ">Z</string>
-    <string name="textLabelLoadedMagazineEnemy">Magazine</string>
-    <string name="textLabelLoadedMagazineUser">Magazine</string>
+    <string name="textLabelLoadedMagazineEnemy">...</string>
+    <string name="textLabelLoadedMagazineUser">...</string>
     <string name="buttonOpenSensorActivity">Fight</string>
     <string name="textLabelProximity">P</string>
 
