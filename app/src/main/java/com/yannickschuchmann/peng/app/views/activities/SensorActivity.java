@@ -106,6 +106,7 @@ public class SensorActivity extends TransitionActivity implements SensorView {
         averageMovementCalculation = new AverageMovementCalculation();
         averageMovementCalculationThread = new Thread(averageMovementCalculation);
 
+        registerListenerAccelerometer();
     }
 
     @Override
