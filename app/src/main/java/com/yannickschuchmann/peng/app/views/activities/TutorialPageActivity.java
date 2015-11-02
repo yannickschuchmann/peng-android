@@ -48,8 +48,12 @@ public class TutorialPageActivity extends LoadingActivity implements TutorialPag
 
         mPager = (ViewPager) findViewById(R.id.pager);
         List<String> allSlides = new ArrayList<String>();
-        allSlides.add("tutorial_dummy_page_0");
-        allSlides.add("tutorial_dummy_page_1");
+
+        for (int i = 1; i<=12 ; i++) {
+            allSlides.add("how_to_" + String.valueOf(i));
+        }
+
+
 
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), allSlides);
 

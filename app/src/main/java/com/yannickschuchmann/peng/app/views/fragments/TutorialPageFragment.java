@@ -35,7 +35,7 @@ public class TutorialPageFragment extends Fragment {
         return rootView;
     }
 
-    public static TutorialPageFragment newInstace(String slide){
+    public static TutorialPageFragment newInstance(String slide){
     TutorialPageFragment fragment = new TutorialPageFragment();
         fragment.mSlide = slide;
         return fragment;
