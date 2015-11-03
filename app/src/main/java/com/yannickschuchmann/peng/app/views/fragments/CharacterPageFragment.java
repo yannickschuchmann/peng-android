@@ -40,7 +40,7 @@ public class CharacterPageFragment extends Fragment {
 
         CharacterImage characterImage = new CharacterImage(getActivity(), mCharacter.getName());
         mImage.setImageDrawable(characterImage.getDrawable());
-        mName.setText(mCharacter.getNameDe());
+        mName.setText(mCharacter.getName());
         mDescription.setText(mCharacter.getDescription());
 
         return view;
