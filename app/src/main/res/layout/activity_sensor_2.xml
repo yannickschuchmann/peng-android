@@ -30,7 +30,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/textLabelLoadedMagazineEnemy"
                         android:textAllCaps="true"
-                        android:id="@+id/opActionLabel" android:textSize="30dp" android:textStyle="bold"
+                        android:id="@+id/opActionLabel" android:textSize="26dp" android:textStyle="bold"
                         />
                 <ImageView
                         android:layout_width="15dp"
@@ -102,7 +102,7 @@
                            android:layout_marginRight="10dp" android:layout_gravity="top" android:layout_marginTop="8dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/textLabelLoadedMagazineUser"
-                          android:textAllCaps="true" android:id="@+id/myActionLabel" android:textSize="30dp"
+                          android:textAllCaps="true" android:id="@+id/myActionLabel" android:textSize="26dp"
                           android:textStyle="bold" android:layout_marginTop="2dp" android:layout_gravity="top"/>
             </LinearLayout>
             <TextView android:layout_width="50dp" android:layout_height="50dp" android:text="1"
