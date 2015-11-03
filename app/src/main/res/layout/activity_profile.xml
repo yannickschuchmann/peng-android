@@ -63,6 +63,10 @@
                         android:id="@+id/headline1"
                         custom:headlineText="@string/activityLabelStatistic"
                     android:visibility="gone" />
+                <Button android:layout_width="match_parent" android:layout_height="84dp" android:text="@string/activityButtonChallange"
+                        android:id="@+id/challenge_user" android:layout_gravity="center_horizontal"
+                        android:background="@color/theme_primary" android:textColor="@color/theme_text_light"
+                        android:textSize="30dp"/>
                 <LinearLayout
                         android:id="@+id/last_games"
                         android:layout_width="match_parent"
@@ -71,7 +75,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             custom:headlineText="@string/activityLabelLastGames"
-                        android:visibility="gone" />
+                            />
                     <LinearLayout
                             android:orientation="vertical"
                             android:id="@+id/open_duels"
@@ -79,11 +83,6 @@
                             android:layout_height="wrap_content"
                             />
                 </LinearLayout>
-                <Button android:layout_width="match_parent" android:layout_height="84dp" android:text="@string/activityButtonChallange"
-                        android:id="@+id/challenge_user" android:layout_gravity="center_horizontal"
-                        android:background="@color/theme_primary" android:textColor="@color/theme_text_light"
-                        android:textSize="30dp"/>
-
 
             </LinearLayout>
         </ScrollView>
