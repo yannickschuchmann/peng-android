@@ -51,7 +51,7 @@
     <string name="activityLabelRandom">random</string>
     <string name="activityLabelBetAnOtherUser">player.</string>
     <string name="activityLabelStatistic">Statistic</string>
-    <string name="activityLabelLastGames">Last games</string>
+    <string name="activityLabelLastGames">Last duels</string>
     <string name="activityButtonChallange">Challenge</string>
     <string name="activityLabelEdit">Edit</string>
     <string name="activityLabelProfile">Profile</string>
